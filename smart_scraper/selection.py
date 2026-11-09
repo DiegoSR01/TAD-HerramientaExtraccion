@@ -1,0 +1,93 @@
+"""Selección configurable de campos HTML/JSON y extracción de tablas."""
+
+from __future__ import annotations
+
+import json
+from typing import Any
+
+from bs4 import BeautifulSoup
+
+from .config import FieldRule
+
+
+def select_html(
+    html: str, item_selector: str = "", fields: list[FieldRule] | None = None, limit: int = 250
+) -> list[dict[str, Any]]:
+    soup = BeautifulSoup(html, "html.parser")
+    rules = fields or []
+    if not rules:
+        table = soup.find("table")
+        if table:
+            rows = [
+                [cell.get_text(" ", strip=True) for cell in row.find_all(["th", "td"])]
+                for row in table.find_all("tr")
+            ]
+            rows = [row for row in rows if row]
+            if rows:
+                headers = rows[0]
+                if table.find("th") is None:
+                    headers = [f"column_{index + 1}" for index in range(len(rows[0]))]
+                    data_rows = rows
+                else:
+                    data_rows = rows[1:]
+                return [
+                    {headers[index] if index < len(headers) else f"column_{index + 1}": value
+                     for index, value in enumerate(row)}
+                    for row in data_rows[:limit]
+                ]
+        title = soup.title.get_text(" ", strip=True) if soup.title else ""
+        headings = [tag.get_text(" ", strip=True) for tag in soup.select("h1, h2")[:limit]]
+        if title or headings:
+            return [{"title": title, "heading": heading} for heading in headings] or [{"title": title}]
+        return []
+
+    items = soup.select(item_selector)[:limit] if item_selector else [soup]
+    results: list[dict[str, Any]] = []
+    for item in items:
+        record: dict[str, Any] = {}
+        for rule in rules:
+            selected = item.select_one(rule.selector)
+            value = None
+            if selected is not None:
+                value = selected.get(rule.attribute) if rule.attribute else selected.get_text(" ", strip=True)
+            record[rule.name] = value
+        results.append(record)
+    return results
+
+
+def _json_path(value: Any, path: str) -> Any:
+    current = value
+    for part in path.split(".") if path else []:
+        if isinstance(current, list):
+            try:
+                current = current[int(part)]
+            except (ValueError, IndexError):
+                return None
+        elif isinstance(current, dict):
+            current = current.get(part)
+        else:
+            return None
+    return current
+
+
+def select_json(
+    payload: Any,
+    fields: list[FieldRule],
+    records_path: str = "",
+    limit: int = 250,
+) -> list[dict[str, Any]]:
+    items = _json_path(payload, records_path) if records_path else payload
+    if isinstance(items, dict):
+        items = [items]
+    if not isinstance(items, list):
+        raise ValueError("La ruta de registros de la API no apunta a una lista u objeto JSON.")
+    results = []
+    for item in items[:limit]:
+        if not isinstance(item, dict):
+            item = {"value": item}
+        results.append({rule.name: _json_path(item, rule.selector) for rule in fields})
+    return results
+
+
+def parse_json_body(body: bytes, encoding: str | None = None) -> Any:
+    return json.loads(body.decode(encoding or "utf-8", errors="strict"))

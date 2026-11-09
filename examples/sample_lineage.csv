@@ -1,0 +1,5 @@
+execution_id,record_index,source_url,acquired_at,method,field,value,validation_status,transformations
+sample-run-001,0,http://fixture.local/catalog,2026-01-01T00:00:00+00:00,requests,product_id,P-100,valid,"trim_whitespace;collapse_whitespace;deduplicate_record"
+sample-run-001,0,http://fixture.local/catalog,2026-01-01T00:00:00+00:00,requests,name,Cuaderno rayado,valid,"trim_whitespace;collapse_whitespace;deduplicate_record"
+sample-run-001,0,http://fixture.local/catalog,2026-01-01T00:00:00+00:00,requests,category,Papelería,valid,"trim_whitespace;collapse_whitespace;deduplicate_record"
+sample-run-001,0,http://fixture.local/catalog,2026-01-01T00:00:00+00:00,requests,price,4.50,valid,"trim_whitespace;collapse_whitespace;deduplicate_record"

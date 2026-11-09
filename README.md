@@ -2,6 +2,8 @@
 
 Aplicación local, configurable y modular para inspeccionar una URL, definir selectores, adquirir contenido, limpiarlo y exportarlo. Usa Python, Requests, BeautifulSoup, Pandas y Selenium; Playwright, Excel, PostgreSQL y MongoDB se pueden habilitar como extras.
 
+Para instrucciones detalladas de instalación, operación, arquitectura y desarrollo, consulta la [Guía de desarrollo y operación](GUIA_DESARROLLO_Y_OPERACION.md).
+
 ## Inicio rápido en Windows
 
 ```powershell

@@ -1,4 +1,10 @@
-"""Persistencia en archivos, SQLite y conectores opcionales externos."""
+"""Persistencia de resultados y detección de cambios entre ejecuciones.
+
+Rol en la arquitectura: módulo de almacenamiento. Guarda registros y su
+linaje en CSV, Excel, JSON o SQLite y, de forma opcional, en PostgreSQL o
+MongoDB (credenciales por variables de entorno, nunca en la configuración).
+También compara cada ejecución con la anterior del mismo host.
+"""
 
 from __future__ import annotations
 
@@ -22,6 +28,24 @@ def save_results(
     method: str,
     execution_id: str,
 ) -> list[Path]:
+    """Guarda registros y linaje en el formato indicado.
+
+    Args:
+        records: registros limpios.
+        lineage: filas de linaje (origen, validación, transformaciones).
+        destination: carpeta de salida.
+        format_name: csv, excel, json, sqlite, postgresql o mongodb.
+        source_url: URL de origen.
+        method: método de adquisición usado.
+        execution_id: identificador de la ejecución.
+
+    Returns:
+        Rutas de los archivos creados (vacío para bases de datos externas).
+
+    Raises:
+        ValueError: si el formato no se reconoce.
+        RuntimeError: si faltan variables de entorno o dependencias opcionales.
+    """
     destination.mkdir(parents=True, exist_ok=True)
     if format_name == "sqlite":
         path = destination / "scraper.sqlite3"
@@ -72,6 +96,7 @@ def _save_sqlite(
     method: str,
     execution_id: str,
 ) -> None:
+    """Guarda registros y linaje en SQLite (tablas ``records``, ``lineage`` y ``run_snapshots``)."""
     acquired_at = datetime.now(timezone.utc).isoformat()
     with sqlite3.connect(path) as connection:
         connection.execute(
@@ -126,6 +151,19 @@ def compare_and_store_snapshot(
     endpoints: list[str],
     source_url: str,
 ) -> dict:
+    """Compara la ejecución actual con la anterior del mismo host y guarda la nueva.
+
+    Args:
+        database: archivo SQLite de historial.
+        execution_id: identificador de la ejecución actual.
+        records: registros guardados.
+        endpoints: endpoints sugeridos por la inspección.
+        source_url: URL de origen (su host identifica el historial).
+
+    Returns:
+        Diccionario de cambios (campos añadidos/faltantes, endpoints nuevos o
+        eliminados, variación de registros) o ``{"baseline_created": True}``.
+    """
     host = urlparse(source_url).netloc.lower()
     fields = sorted({str(name) for record in records for name in record})
     captured_at = datetime.now(timezone.utc).isoformat()
@@ -170,6 +208,7 @@ def compare_and_store_snapshot(
 
 
 def _lineage_frame(lineage: list[dict]) -> pd.DataFrame:
+    """Convierte el linaje en DataFrame serializando las transformaciones a JSON."""
     frame = pd.DataFrame(lineage)
     if "transformations" in frame:
         frame["transformations"] = frame["transformations"].map(json.dumps)
@@ -177,6 +216,11 @@ def _lineage_frame(lineage: list[dict]) -> pd.DataFrame:
 
 
 def _save_postgres(records: list[dict], lineage: list[dict], source_url: str, method: str, execution_id: str) -> None:
+    """Guarda en PostgreSQL usando el DSN de ``SCRAPER_POSTGRES_DSN``.
+
+    Raises:
+        RuntimeError: si falta la variable de entorno o el extra ``psycopg``.
+    """
     dsn = os.environ.get("SCRAPER_POSTGRES_DSN")
     if not dsn:
         raise RuntimeError("Define SCRAPER_POSTGRES_DSN para guardar en PostgreSQL.")
@@ -214,6 +258,11 @@ def _save_postgres(records: list[dict], lineage: list[dict], source_url: str, me
 
 
 def _save_mongodb(records: list[dict], lineage: list[dict], source_url: str, method: str, execution_id: str) -> None:
+    """Guarda en MongoDB usando el URI de ``SCRAPER_MONGODB_URI``.
+
+    Raises:
+        RuntimeError: si falta la variable de entorno o el extra ``pymongo``.
+    """
     uri = os.environ.get("SCRAPER_MONGODB_URI")
     if not uri:
         raise RuntimeError("Define SCRAPER_MONGODB_URI para guardar en MongoDB.")

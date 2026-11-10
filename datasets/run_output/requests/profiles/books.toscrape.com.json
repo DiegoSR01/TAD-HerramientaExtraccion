@@ -1,0 +1,48 @@
+{
+  "url": "https://books.toscrape.com/",
+  "method": "requests",
+  "item_selector": "article.product_pod",
+  "fields": [
+    {
+      "name": "titulo",
+      "selector": "h3 a",
+      "attribute": "title",
+      "required": true
+    },
+    {
+      "name": "precio",
+      "selector": "p.price_color",
+      "attribute": null,
+      "required": true
+    },
+    {
+      "name": "disponibilidad",
+      "selector": "p.instock.availability",
+      "attribute": null,
+      "required": false
+    },
+    {
+      "name": "rating",
+      "selector": "p.star-rating",
+      "attribute": "class",
+      "required": false
+    },
+    {
+      "name": "url",
+      "selector": "h3 a",
+      "attribute": "href",
+      "required": true
+    }
+  ],
+  "json_records_path": "",
+  "timeout_seconds": 20,
+  "max_records": 100,
+  "max_pages": 5,
+  "pagination_selector": "li.next a",
+  "load_more_selector": "",
+  "load_more_clicks": 0,
+  "delay_seconds": 1.5,
+  "scroll_steps": 0,
+  "headless": true,
+  "authorized_api": false
+}

@@ -1,4 +1,11 @@
-"""Interfaz gráfica Tkinter para diagnosticar y ejecutar tareas controladas."""
+"""Interfaz gráfica Tkinter para diagnosticar y ejecutar tareas controladas.
+
+Rol en la arquitectura: capa de presentación. Recoge la configuración del
+usuario, la convierte en ``ScrapeConfig`` y delega en ``app``. Las tareas de
+red se ejecutan en hilos secundarios para no congelar la ventana; los
+resultados se muestran de vuelta en el hilo de Tkinter con ``root.after``.
+Los encabezados autorizados se mantienen solo en memoria (campo enmascarado).
+"""
 
 from __future__ import annotations
 
@@ -14,7 +21,17 @@ from .inspector import InspectedPage
 
 
 class ScraperWindow:
+    """Ventana principal de la aplicación.
+
+    Mantiene la última página inspeccionada para reutilizarla al ejecutar y
+    la carpeta de salida elegida por el usuario.
+    """
     def __init__(self, root: tk.Tk):
+        """Inicializa la ventana y construye sus controles.
+
+        Args:
+            root: ventana raíz de Tkinter.
+        """
         self.root = root
         self.root.title("Web Scraper Inteligente")
         self.root.geometry("940x800")
@@ -24,6 +41,7 @@ class ScraperWindow:
         self._build()
 
     def _build(self) -> None:
+        """Crea y distribuye todos los controles (campos, opciones, botones y salida)."""
         frame = ttk.Frame(self.root, padding=12)
         frame.pack(fill="both", expand=True)
         frame.columnconfigure(1, weight=1)
@@ -143,6 +161,15 @@ class ScraperWindow:
         frame.rowconfigure(row, weight=1)
 
     def _config(self) -> ScrapeConfig:
+        """Construye y valida un ``ScrapeConfig`` desde los controles.
+
+        Returns:
+            Configuración validada.
+
+        Raises:
+            ValueError: si algún valor numérico, campo o encabezado no es válido.
+            json.JSONDecodeError: si los encabezados no son JSON válido.
+        """
         raw_headers = self.headers.get().strip()
         headers = json.loads(raw_headers) if raw_headers else {}
         if not isinstance(headers, dict) or any(
@@ -170,6 +197,11 @@ class ScraperWindow:
         return config
 
     def _inspect(self) -> None:
+        """Botón "Inspeccionar": diagnostica la URL en un hilo aparte.
+
+        Guarda la inspección para reutilizarla en la ejecución y muestra el
+        diagnóstico (incluidas advertencias de CAPTCHA, autenticación o bloqueo).
+        """
         try:
             config = self._config()
         except (ValueError, json.JSONDecodeError) as exc:
@@ -192,6 +224,11 @@ class ScraperWindow:
         threading.Thread(target=worker, daemon=True).start()
 
     def _run(self) -> None:
+        """Botón "Extraer y guardar": ejecuta ``run_job`` en un hilo aparte.
+
+        Reutiliza la inspección previa si la URL no cambió. Ante ``RunFailure``
+        (incluidas paradas por CAPTCHA/401/403/429) muestra el informe con el error.
+        """
         try:
             config = self._config()
         except (ValueError, json.JSONDecodeError) as exc:
@@ -219,6 +256,10 @@ class ScraperWindow:
         threading.Thread(target=worker, daemon=True).start()
 
     def _load_profile(self) -> None:
+        """Carga el perfil guardado del host y rellena los controles.
+
+        Credenciales y autorización API no se restauran; deben ingresarse de nuevo.
+        """
         try:
             config = load_profile_for_url(self.output_directory / "profiles", self.url.get().strip())
             if config is None:
@@ -248,6 +289,7 @@ class ScraperWindow:
             messagebox.showerror("Perfil", str(exc))
 
     def _choose_directory(self) -> None:
+        """Permite elegir la carpeta de salida y descarta la inspección en caché."""
         selected = filedialog.askdirectory(initialdir=self.output_directory)
         if selected:
             self.output_directory = Path(selected)
@@ -255,11 +297,13 @@ class ScraperWindow:
             self.inspected_page = None
 
     def _set_busy(self, busy: bool) -> None:
+        """Habilita o deshabilita los botones de acción mientras hay una tarea en curso."""
         state = "disabled" if busy else "normal"
         self.inspect_button.configure(state=state)
         self.run_button.configure(state=state)
 
     def _show(self, text: str) -> None:
+        """Reemplaza el contenido del panel de salida (de solo lectura) con ``text``."""
         self.output.configure(state="normal")
         self.output.delete("1.0", "end")
         self.output.insert("1.0", text)
@@ -267,6 +311,7 @@ class ScraperWindow:
 
 
 def main() -> None:
+    """Crea la ventana raíz y arranca el bucle de eventos de Tkinter."""
     root = tk.Tk()
     ScraperWindow(root)
     root.mainloop()

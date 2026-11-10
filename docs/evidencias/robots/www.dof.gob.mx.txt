@@ -1,0 +1,3 @@
+Sitio: https://www.dof.gob.mx/
+robots.txt consultado: 2026-11-09T23:46:36.932534+00:00
+No se obtuvo robots.txt: TLS - HTTPSConnectionPool(host='www.dof.gob.mx', port=443): Max retries exceeded with url: /robots.txt (Caused by SSLError(SSLCertVerificationError(1, "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.dof.gob.mx'. (_ssl.c:1010)")))

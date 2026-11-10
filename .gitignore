@@ -9,3 +9,7 @@ output/
 .env
 .env.*
 !.env.example
+video/demo_output/
+video/_demo_raw.mkv
+video/_*.txt
+video/_demo_tiempos.json

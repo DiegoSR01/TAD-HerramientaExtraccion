@@ -1,0 +1,51 @@
+Sitio: https://www.inegi.org.mx/datosabiertos/
+robots.txt consultado: 2026-11-09T23:46:10.552875+00:00
+HTTP 200 (2657 bytes); parece robots.txt valido: True
+Disallow para User-agent '*': 44
+  Disallow: /auth/register/
+  Disallow: /catalog/*/data-dictionary/*?file_name=*
+  Disallow: /catalog/*/variable/*/*?name=*
+  Disallow: /metadata/export_variable/*/*/csv
+  Disallow: /metadata/export_variable/*/*/json
+  Disallow: /catalog/*/variable-groups/*
+  Disallow: /catalog/*/variable/*
+  Disallow: /catalog/*/download/*
+  Disallow: /catalog/*/dataprocessing
+  Disallow: /catalog/*/vargrp/*
+  Disallow: /catalog/*/accesspolicy
+  Disallow: /catalog/*/sampling
+  Disallow: /catalog/*/download/*
+  Disallow: /catalog/*/link/study-website
+  Disallow: /catalog/*/dataappraisal
+  Disallow: /catalog/*/overview
+  Disallow: /catalog/*/datacollection
+  Disallow: /catalog/*/link/interactive
+  Disallow: /catalog/*/function.unserialize
+  Disallow: /catalog/*/study-descriptio
+  Disallow: /catalog/*/technicaldocuments
+  Disallow: /catalog/ddi/*
+  Disallow: /rnm/index.php/auth/register/
+  Disallow: /rnm/index.php/catalog/*/data-dictionary/*?file_name=*
+  Disallow: /rnm/index.php/catalog/*/variable/*/*?name=*
+  Disallow: /rnm/index.php/metadata/export_variable/*/*/csv
+  Disallow: /rnm/index.php/metadata/export_variable/*/*/json
+  Disallow: /rnm/index.php/catalog/*/variable-groups/*
+  Disallow: /rnm/index.php/catalog/*/variable/*
+  Disallow: /rnm/index.php/catalog/*/download/*
+  Disallow: /rnm/index.php/catalog/*/dataprocessing
+  Disallow: /rnm/index.php/catalog/*/vargrp/*
+  Disallow: /rnm/index.php/catalog/*/accesspolicy
+  Disallow: /rnm/index.php/catalog/*/sampling
+  Disallow: /rnm/index.php/catalog/*/download/*
+  Disallow: /rnm/index.php/catalog/*/link/study-website
+  Disallow: /rnm/index.php/catalog/*/dataappraisal
+  Disallow: /rnm/index.php/catalog/*/overview
+  Disallow: /rnm/index.php/catalog/*/datacollection
+  Disallow: /rnm/index.php/catalog/*/link/interactive
+  Disallow: /rnm/index.php/catalog/*/function.unserialize
+  Disallow: /rnm/index.php/catalog/*/study-descriptio
+  Disallow: /rnm/index.php/catalog/*/technicaldocuments
+  Disallow: /rnm/index.php/catalog/ddi/*
+Disallow total de '/': False
+Crawl-delay: no declarado
+Sitemaps: ['https://www.inegi.org.mx/sitemap_contenidos_generales.xml', 'https://www.inegi.org.mx/sitemap_programas.xml']

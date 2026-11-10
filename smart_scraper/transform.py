@@ -1,4 +1,9 @@
-"""Normalización, validación, deduplicación y linaje de datos extraídos."""
+"""Normalización, validación, deduplicación y linaje de datos extraídos.
+
+Rol en la arquitectura: módulo de transformación. Limpia los registros crudos
+que entrega ``extractor``, descarta vacíos y duplicados, valida campos
+requeridos y registra el linaje de cada valor para su almacenamiento.
+"""
 
 from __future__ import annotations
 
@@ -19,6 +24,22 @@ def transform_records(
     method: str,
     execution_id: str | None = None,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]], str]:
+    """Limpia, valida y deduplica registros, generando su linaje.
+
+    Recorta y colapsa espacios, convierte cadenas vacías en ``None``, descarta
+    registros totalmente vacíos o duplicados y marca ``missing_required`` los
+    campos requeridos ausentes.
+
+    Args:
+        records: registros crudos.
+        rules: reglas de campos (indican cuáles son requeridos).
+        source_url: URL de origen.
+        method: método de adquisición.
+        execution_id: identificador existente; si es ``None`` se genera uno.
+
+    Returns:
+        Tupla ``(registros_limpios, linaje, execution_id)``.
+    """
     execution_id = execution_id or str(uuid4())
     acquired_at = datetime.now(timezone.utc).isoformat()
     required = {rule.name for rule in rules if rule.required}

@@ -55,3 +55,28 @@ python -c "import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())"
 - Las escenas son imágenes fijas con fundidos de 0,4 s (sin animaciones internas).
 - Los subtítulos reparten el texto proporcionalmente al número de caracteres; si la voz real se desvía, ajusten `PALABRAS_POR_SEGUNDO` o `dur` y regeneren.
 - Las cifras de pruebas (14) se cuentan desde `tests/test_pipeline.py`; la afirmación "todas pasan" se verificó con `pytest` al generar el video, pero no se vuelve a ejecutar en cada regeneración.
+
+## Demostración en vivo (VS Code + GUI + Selenium)
+
+`grabar_demo.py` graba la pantalla real (ffmpeg gdigrab) mientras automatiza la demo, unos 2:46 en total:
+
+1. Abre VS Code y muestra `extractor.py` (`_acquire_selenium`), `app.py` (`run_job`) y `config.py` (`ScrapeConfig`).
+2. Ejecuta `pytest -v` en una terminal, donde se ven las 14 pruebas pasando.
+3. Abre la GUI Tkinter real, teclea la configuración de books.toscrape.com y pulsa **Inspeccionar** y luego **Extraer y guardar**. Selenium abre Chrome visible y recorre 3 páginas.
+4. Abre en VS Code el CSV generado.
+
+| Archivo | Contenido |
+|---|---|
+| `demo_en_vivo.mp4` | Grabación con subtítulos quemados |
+| `demo_en_vivo_sin_subs.mp4` | Grabación limpia (para editar con voz) |
+| `demo_en_vivo.srt` | Subtítulos sincronizados con los tiempos reales de cada paso |
+| `guion_demo_en_vivo.md` | Narración por paso con sus tiempos (narra Andrea Arroyo) |
+
+Antes de volver a grabar con `python video/grabar_demo.py`:
+
+- Cierre las aplicaciones privadas y active *No molestar*: se graba la pantalla completa.
+- El script minimiza todas las ventanas al inicio y las restaura al final.
+- No use el teclado ni el mouse durante la grabación.
+- `--ensayo` ejecuta los mismos pasos sin grabar.
+
+Por la pausa visual que se añade solo en la grabación, cada Chrome se desplaza unos 4 s antes de cerrarse. Así se ven los libros, y los datos extraídos no cambian.

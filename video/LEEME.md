@@ -58,7 +58,7 @@ python -c "import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())"
 
 ## Demostración en vivo (VS Code + GUI + Selenium)
 
-`grabar_demo.py` graba la pantalla real (ffmpeg gdigrab) mientras automatiza la demo, unos 2:46 en total:
+`grabar_demo.py` graba la pantalla real (ffmpeg gdigrab) mientras automatiza la demo, unos 3:00 en total:
 
 1. Abre VS Code y muestra `extractor.py` (`_acquire_selenium`), `app.py` (`run_job`) y `config.py` (`ScrapeConfig`).
 2. Ejecuta `pytest -v` en una terminal, donde se ven las 14 pruebas pasando.

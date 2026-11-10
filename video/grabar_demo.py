@@ -52,9 +52,20 @@ FINAL_SIN_SUBS = VIDEO / "demo_en_vivo_sin_subs.mp4"
 SRT = VIDEO / "demo_en_vivo.srt"
 GUION = VIDEO / "guion_demo_en_vivo.md"
 NARRADORA = "Andrea Arroyo"
+INTEGRANTES = ["Nelson Noriega", "Andrea Arroyo", "Diego Salazar"]
+INSTITUCION = "Tecnológico de Toluca"
+MATERIA = "Técnicas de Adquisición de Datos"
+PROYECTO = "Herramienta de Extracción Web Inteligente"
+DUR_PORTADA, DUR_CIERRE = 10.0, 6.0  # segundos
+PORTADA = VIDEO / "_portada.png"
+CIERRE = VIDEO / "_cierre.png"
 
 # Narración de cada paso: los subtítulos se reparten a lo largo de la duración REAL del paso.
 NARRACION = {
+    "portada": "Hola, somos Nelson Noriega, Andrea Arroyo y Diego Salazar, del Tecnológico de Toluca. "
+               "Presentamos la demostración en vivo de nuestra herramienta para la materia "
+               "Técnicas de Adquisición de Datos.",
+    "cierre": "Gracias por su atención.",
     "intro": "Esta es la demostración en vivo. Abrimos el proyecto en Visual Studio Code: "
              "el paquete smart_scraper contiene los siete módulos de la arquitectura.",
     "extractor": "En extractor.py está la función _acquire_selenium. Configura Chrome, navega a la URL, "
@@ -452,14 +463,69 @@ def _bloques(texto: str, max_linea: int = 46) -> list[str]:
     return ["\n".join(lineas[i:i + 2]) for i in range(0, len(lineas), 2)]
 
 
+def _tarjetas() -> None:
+    """Dibuja con Pillow la portada y el cierre (1920x1080), con los datos del equipo."""
+    from PIL import Image, ImageDraw, ImageFont
+
+    W, H = 1920, 1080
+    BG, PANEL, CYAN, AMBAR, TXT, MUTED = (11, 22, 48), (21, 37, 74), (56, 189, 248), (251, 191, 36), (226, 232, 240), (148, 163, 184)
+
+    def f(bold: bool, tam: int):
+        return ImageFont.truetype("C:/Windows/Fonts/" + ("segoeuib.ttf" if bold else "segoeui.ttf"), tam)
+
+    def base():
+        img = Image.new("RGB", (W, H), BG)
+        d = ImageDraw.Draw(img)
+        d.rectangle((0, 0, W, 10), fill=CYAN)
+        d.rectangle((0, H - 10, W, H), fill=CYAN)
+        return img, d
+
+    def integrantes(d, y, tam):
+        d.text((W / 2, y), "   ·   ".join(INTEGRANTES), font=f(True, tam), fill=AMBAR, anchor="mm")
+
+    # Portada
+    img, d = base()
+    d.text((W / 2, 110), INSTITUCION.upper(), font=f(True, 44), fill=MUTED, anchor="mm")
+    d.rounded_rectangle((W / 2 - 520, 165, W / 2 + 520, 245), radius=40, fill=PANEL, outline=CYAN, width=3)
+    d.text((W / 2, 205), MATERIA, font=f(True, 46), fill=CYAN, anchor="mm")
+    d.text((W / 2, 365), "Herramienta de Extracción Web", font=f(True, 96), fill=TXT, anchor="mm")
+    d.text((W / 2, 480), "Inteligente", font=f(True, 96), fill=CYAN, anchor="mm")
+    d.text((W / 2, 580), "Demostración en vivo: VS Code · pruebas · GUI · Selenium", font=f(False, 40),
+           fill=MUTED, anchor="mm")
+    d.line((W / 2 - 300, 650, W / 2 + 300, 650), fill=PANEL, width=3)
+    d.text((W / 2, 700), "Integrantes", font=f(False, 34), fill=MUTED, anchor="mm")
+    integrantes(d, 765, 52)
+    img.save(PORTADA)
+
+    # Cierre
+    img, d = base()
+    d.text((W / 2, 380), "¡Gracias!", font=f(True, 170), fill=CYAN, anchor="mm")
+    d.text((W / 2, 530), "Gracias por su atención", font=f(False, 50), fill=TXT, anchor="mm")
+    integrantes(d, 680, 48)
+    d.text((W / 2, 770), f"{MATERIA}  ·  {INSTITUCION}", font=f(False, 38), fill=MUTED, anchor="mm")
+    img.save(CIERRE)
+
+
 def generar_subtitulos() -> None:
-    """Crea el .srt, quema los subtítulos y escribe el guion con los tiempos reales."""
+    """Agrega portada y cierre, crea el .srt, quema los subtítulos y escribe el guion.
+
+    La grabación cruda (``_demo_raw.mkv``) no se modifica: se le antepone la portada y se
+    le añade el cierre, y los tiempos de cada paso se desplazan ``DUR_PORTADA`` segundos.
+    """
     datos = json.loads(TIEMPOS.read_text(encoding="utf-8"))
-    pasos, total = datos["pasos"], datos["total"]
+    total_grab = datos["total"]
+    pasos = [{"clave": "portada", "inicio": 0.0}]
+    pasos += [{"clave": p["clave"], "inicio": p["inicio"] + DUR_PORTADA} for p in datos["pasos"]]
+    pasos.append({"clave": "cierre", "inicio": DUR_PORTADA + total_grab})
+    total = DUR_PORTADA + total_grab + DUR_CIERRE
+
     srt, guion, n = [], [], 1
     guion += ["# Guion de la demostración en vivo", "",
               f"*Generado por `video/grabar_demo.py` con los tiempos reales de la grabación. Narra: **{NARRADORA}**.*",
-              "", f"- Duración: **{int(total // 60)}:{int(total % 60):02}**",
+              "", f"- {MATERIA} · {INSTITUCION}",
+              f"- Integrantes: {', '.join(INTEGRANTES)}",
+              f"- Duración: **{int(total // 60)}:{int(total % 60):02}** (portada {DUR_PORTADA:.0f} s + "
+              f"demostración + cierre {DUR_CIERRE:.0f} s)",
               "- Si la voz no cabe en un paso, recorten o alarguen la pausa en el editor; los tiempos son los de la pantalla.", ""]
     for i, paso in enumerate(pasos):
         ini = paso["inicio"]
@@ -468,7 +534,7 @@ def generar_subtitulos() -> None:
         guion += [f"## {_ts(ini)[3:8]} – {_ts(fin)[3:8]} · {paso['clave']}", "", texto, ""]
         bloques = _bloques(texto)
         pesos = [len(b) for b in bloques]
-        util_ini, util_fin = ini + 0.3, max(ini + 1.0, fin - 0.3)
+        util_ini, util_fin = ini + 0.6, max(ini + 1.2, fin - 0.4)
         t = util_ini
         for b, w in zip(bloques, pesos):
             d = (util_fin - util_ini) * w / sum(pesos)
@@ -479,15 +545,24 @@ def generar_subtitulos() -> None:
     SRT.write_text("\n".join(srt), encoding="utf-8")
     GUION.write_text("\n".join(guion), encoding="utf-8")
 
+    _tarjetas()
+    unir = (
+        f"[0:v]format=yuv420p,setsar=1,fade=t=in:st=0:d=0.6,fade=t=out:st={DUR_PORTADA - 0.6}:d=0.6[p];"
+        "[1:v]scale=1920:1080,fps=30,format=yuv420p,setsar=1,fade=t=in:st=0:d=0.5[g];"
+        f"[2:v]format=yuv420p,setsar=1,fade=t=in:st=0:d=0.6,fade=t=out:st={DUR_CIERRE - 0.8}:d=0.8[c];"
+        "[p][g][c]concat=n=3:v=1:a=0[v]"
+    )
+    entradas = ["-loop", "1", "-framerate", "30", "-t", str(DUR_PORTADA), "-i", PORTADA.name,
+                "-i", GRABACION.name,
+                "-loop", "1", "-framerate", "30", "-t", str(DUR_CIERRE), "-i", CIERRE.name]
+    codec = ["-c:v", "libx264", "-preset", "medium", "-crf", "23", "-pix_fmt", "yuv420p", "-r", "30", "-an"]
     estilo = ("FontName=Arial,FontSize=15,PrimaryColour=&H00FFFFFF,BackColour=&H99000000,"
               "BorderStyle=4,Outline=0,Shadow=0,MarginV=28")
-    subprocess.run([ffmpeg(), "-hide_banner", "-loglevel", "error", "-y", "-i", GRABACION.name,
-                    "-c:v", "libx264", "-preset", "medium", "-crf", "23", "-pix_fmt", "yuv420p",
-                    "-r", "30", "-an", FINAL_SIN_SUBS.name], cwd=VIDEO, check=True)
-    subprocess.run([ffmpeg(), "-hide_banner", "-loglevel", "error", "-y", "-i", GRABACION.name,
-                    "-vf", f"subtitles={SRT.name}:force_style='{estilo}'",
-                    "-c:v", "libx264", "-preset", "medium", "-crf", "23", "-pix_fmt", "yuv420p",
-                    "-r", "30", "-an", FINAL.name], cwd=VIDEO, check=True)
+    subprocess.run([ffmpeg(), "-hide_banner", "-loglevel", "error", "-y", *entradas,
+                    "-filter_complex", unir, "-map", "[v]", *codec, FINAL_SIN_SUBS.name], cwd=VIDEO, check=True)
+    subprocess.run([ffmpeg(), "-hide_banner", "-loglevel", "error", "-y", *entradas,
+                    "-filter_complex", unir + f";[v]subtitles={SRT.name}:force_style='{estilo}'[s]",
+                    "-map", "[s]", *codec, FINAL.name], cwd=VIDEO, check=True)
     print(f"Listo: {FINAL} ({int(total // 60)}:{int(total % 60):02})")
 
 

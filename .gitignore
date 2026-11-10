@@ -13,3 +13,6 @@ video/demo_output/
 video/_demo_raw.mkv
 video/_*.txt
 video/_demo_tiempos.json
+video/_*.png
+video/demo_arquitectura*.mp4
+video/preview/

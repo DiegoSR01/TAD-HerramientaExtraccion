@@ -99,46 +99,51 @@ _N = len(_df)
 _N_TESTS = D["n_tests"]
 
 # ------------------------------------------------------------------ ESCENAS (fuente única)
+# Integrantes del equipo y persona que narra (una sola voz).
+INTEGRANTES = ["Nelson Noriega", "Andrea Arroyo", "Diego Salazar"]
+NARRADORA = "Andrea Arroyo"
+INTEGRANTES_TXT = "  ·  ".join(INTEGRANTES)
+
 # render: nombre de la función de dibujo; voz: quién lee; ver: texto para guion.md.
 ESCENAS = [
-    dict(id=1, titulo="Portada", voz="Voz 1", render="s_portada",
-         ver="Título del proyecto, integrantes (placeholder) y los siete módulos como fichas.",
-         texto="Hola, somos [Nombre 1] y [Nombre 2]. Presentamos la Herramienta de Extracción Web Inteligente del curso TAD y la arquitectura que ejecutamos de principio a fin."),
-    dict(id=2, titulo="Problema y objetivo", voz="Voz 2", render="s_problema",
+    dict(id=1, titulo="Portada", voz=NARRADORA, render="s_portada",
+         ver="Título del proyecto, integrantes y los siete módulos como fichas.",
+         texto="Hola, soy Andrea Arroyo y, junto con Nelson Noriega y Diego Salazar, presentamos la Herramienta de Extracción Web Inteligente del curso TAD y la arquitectura que ejecutamos de principio a fin."),
+    dict(id=2, titulo="Problema y objetivo", voz=NARRADORA, render="s_problema",
          ver="Dos tarjetas: el problema (sitios heterogéneos) y el objetivo (herramienta local, modular y responsable).",
          texto="Extraer datos de la web no es solo descargar páginas. Hay HTML estático, JavaScript, APIs, paginación y controles de acceso. Nuestro objetivo: una herramienta local, configurable y modular, que inspeccione el sitio y entregue datos limpios, trazables y obtenidos con responsabilidad."),
-    dict(id=3, titulo="Arquitectura de siete módulos", voz="Voz 1", render="s_arquitectura",
+    dict(id=3, titulo="Arquitectura de siete módulos", voz=NARRADORA, render="s_arquitectura",
          ver="Diagrama de cajas con flechas: Configuración → Inspección → Extracción (Requests, Selenium, Playwright, API) → Selección → Transformación → Almacenamiento → Monitoreo; app.py orquesta y gui.py es la interfaz.",
          texto="La solución tiene siete módulos. Configuración define URL, límites y selectores. Inspección diagnostica el sitio. El motor de extracción usa Requests, Selenium, Playwright o una API autorizada. Siguen selección, transformación y calidad, almacenamiento y monitoreo. app.py los orquesta y la interfaz Tkinter los expone."),
-    dict(id=4, titulo="Flujo de ejecución", voz="Voz 2", render="s_flujo",
+    dict(id=4, titulo="Flujo de ejecución", voz=NARRADORA, render="s_flujo",
          ver="Lista de los pasos de run_job() y recuadros de 'se detiene si…' y 'siempre'.",
          texto="Así fluye run_job. Valida la configuración e inspecciona la página; si hay 401, 403, 429 o CAPTCHA, se detiene. Si no, adquiere, transforma, guarda, compara con la ejecución anterior y escribe un informe JSON, incluso cuando hay errores."),
-    dict(id=5, titulo="Código real: Selenium", voz="Voz 1", render="s_selenium",
+    dict(id=5, titulo="Código real: Selenium", voz=NARRADORA, render="s_selenium",
          ver="Fragmento real de _acquire_selenium con resaltado de sintaxis y siete pasos señalados.",
          texto="Este es código real del método Selenium. Se configura Chrome headless, se abre la URL y WebDriverWait espera a que el documento cargue. Antes de interactuar se revisa CAPTCHA o login. Luego hay clics acotados en cargar más y desplazamientos limitados. Y en finally, driver.quit siempre cierra el navegador."),
-    dict(id=6, titulo="Selección CSS / JSON", voz="Voz 2", render="s_seleccion",
+    dict(id=6, titulo="Selección CSS / JSON", voz=NARRADORA, render="s_seleccion",
          ver="HTML de una tarjeta de libro, reglas nombre=selector reales del dataset, ejemplo de ruta JSON y registro resultante.",
          texto="La selección convierte HTML en campos. Un selector de elemento repetido y reglas nombre igual selector, como titulo igual h3 a dos puntos title, leen texto o atributos. El asterisco marca un campo requerido. En APIs se usan rutas JSON con puntos."),
-    dict(id=7, titulo="Transformación y linaje", voz="Voz 1", render="s_transformacion",
+    dict(id=7, titulo="Transformación y linaje", voz=NARRADORA, render="s_transformacion",
          ver="Limpiezas aplicadas (antes → después) y una fila de linaje con sus campos.",
          texto="La transformación recorta espacios, elimina duplicados y valida campos requeridos. Cada valor genera una fila de linaje con ejecución, URL de origen, método, fecha, estado de validación y transformaciones. Así cada dato se rastrea hasta su origen."),
-    dict(id=8, titulo="Almacenamiento", voz="Voz 2", render="s_almacenamiento",
+    dict(id=8, titulo="Almacenamiento", voz=NARRADORA, render="s_almacenamiento",
          ver="Tarjetas SQLite, CSV, Excel y JSON con tamaños reales de los archivos; extras PostgreSQL/MongoDB.",
          texto="El almacenamiento exporta a CSV, Excel, JSON y SQLite; PostgreSQL y MongoDB son opcionales. En SQLite guardamos la tabla de libros y la de linaje. También se guarda el perfil del sitio y se compara cada corrida con la anterior para detectar cambios."),
-    dict(id=9, titulo="Demo: dataset real", voz="Voz 1", render="s_demo",
+    dict(id=9, titulo="Demo: dataset real", voz=NARRADORA, render="s_demo",
          ver="Tabla con filas reales del CSV, estadísticas y barras con la distribución de ratings.",
          texto=f"Para la demostración usamos books.toscrape.com, un sandbox hecho para practicar scraping. La herramienta recorrió cinco páginas y obtuvo {_N} libros sin duplicados. Vemos filas reales, un precio medio de {_PM} libras y la distribución de valoraciones."),
-    dict(id=10, titulo="Clasificación de sitios", voz="Voz 2", render="s_sitios",
+    dict(id=10, titulo="Clasificación de sitios", voz=NARRADORA, render="s_sitios",
          ver="Tabla de los 7 sitios del informe con protección observada y viabilidad legal (verde / ámbar / rojo).",
          texto="También clasificamos siete sitios por protección y viabilidad legal. Los dos sandboxes son viables. INEGI, Banco Mundial, data.gov y el DOF son viables con condiciones. datos.gob.mx devolvió 403 y no es viable sin autorización: se usaría su API oficial. Es una evaluación técnica, no asesoría legal."),
-    dict(id=11, titulo="Seguridad y uso responsable", voz="Voz 1", render="s_seguridad",
+    dict(id=11, titulo="Seguridad y uso responsable", voz=NARRADORA, render="s_seguridad",
          ver="Dos columnas: lo que detiene la ejecución (rojo) y los límites que se respetan (verde).",
          texto="La herramienta es conservadora. Se detiene ante CAPTCHA, formularios de autenticación y respuestas 401, 403 o 429, y no intenta evadirlos. Solo sigue paginación del mismo host, limita páginas, registros y tamaño del DOM, y espera entre solicitudes."),
-    dict(id=12, titulo="Pruebas automatizadas", voz="Voz 2", render="s_pruebas",
+    dict(id=12, titulo="Pruebas automatizadas", voz=NARRADORA, render="s_pruebas",
          ver=f"Contador de {_N_TESTS} pruebas y la lista de sitios simulados.",
          texto=f"Las {_N_TESTS} pruebas automatizadas pasan. Usan un servidor local con sitios simulados: estático, dinámico, carga bajo demanda, API, paginación, tabla, autenticación y CAPTCHA. Selenium y Playwright se prueban con adaptadores simulados, sin tocar sitios públicos."),
-    dict(id=13, titulo="Conclusiones y cierre", voz="Voz 1 y Voz 2", render="s_cierre",
-         ver="Cuatro conclusiones, agradecimiento e integrantes (placeholder).",
+    dict(id=13, titulo="Conclusiones y cierre", voz=NARRADORA, render="s_cierre",
+         ver="Cuatro conclusiones, agradecimiento e integrantes.",
          texto=f"En resumen: siete módulos que inspeccionan, extraen, limpian, almacenan y monitorean con trazabilidad, validados con un dataset real de {_N} libros. El siguiente paso es probar sitios reales solo con autorización, priorizando APIs oficiales. Gracias por su atención."),
 ]
 for e in ESCENAS:
@@ -223,7 +228,7 @@ def s_portada(n):
     d.text((W / 2, 300), "Herramienta de Extracción Web", font=fuente("b", 100), fill=TXT, anchor="mm")
     d.text((W / 2, 420), "Inteligente – TAD", font=fuente("b", 100), fill=CYAN, anchor="mm")
     d.text((W / 2, 540), "Video de demostración: arquitectura ejecutada", font=fuente("n", 40), fill=MUTED, anchor="mm")
-    d.text((W / 2, 640), "[Nombre 1]  ·  [Nombre 2]", font=fuente("b", 46), fill=AMBAR, anchor="mm")
+    d.text((W / 2, 640), INTEGRANTES_TXT, font=fuente("b", 46), fill=AMBAR, anchor="mm")
     etiquetas = [f"{i} {m[0].split()[0]}" for i, m in enumerate(MODULOS, 1)]
     f = fuente("b", 26)
     ancho_total = sum(int(f.getlength(t)) + 36 + 20 for t in etiquetas) - 20
@@ -607,7 +612,7 @@ def s_cierre(n):
         d.text((190, y + 18), a, font=fuente("b", 40), fill=TXT)
         d.text((190, y + 74), b, font=fuente("n", 28), fill=MUTED)
     d.text((W / 2, 810), "Gracias por su atención", font=fuente("b", 52), fill=CYAN, anchor="mm")
-    d.text((W / 2, 862), "[Nombre 1]  ·  [Nombre 2]", font=fuente("n", 30), fill=AMBAR, anchor="mm")
+    d.text((W / 2, 862), INTEGRANTES_TXT, font=fuente("n", 30), fill=AMBAR, anchor="mm")
     return img
 
 
@@ -652,7 +657,7 @@ def escribir_guion():
          f"- Duración total: **{mmss(DURACION)} ({DURACION:.0f} s)** · {pal} palabras de narración · ritmo base {PALABRAS_POR_SEGUNDO} palabras/s.",
          "- Cada escena deja ~0,5 s de silencio al inicio (fundido) y ~0,25 s al final; lean con calma y de forma natural, sin acelerar.",
          "- Los subtítulos del video (`subtitulos.srt`) reproducen exactamente este texto.",
-         "- Reparto sugerido: Voz 1 y Voz 2 alternan escena por escena. Sustituyan `[Nombre 1]` y `[Nombre 2]` en la portada y el cierre (están en `build_video.py`).", ""]
+         "- Narra: **" + NARRADORA + "** (todas las escenas). Integrantes: " + ", ".join(INTEGRANTES) + " (constantes `INTEGRANTES` y `NARRADORA` en `build_video.py`).", ""]
     for e in ESCENAS:
         L += [f"## Escena {e['id']} · {e['titulo']}", "",
               f"- **Tiempo:** {mmss(e['ini'])}–{mmss(e['fin'])} ({e['dur']:.1f} s, {e['palabras']} palabras)",

@@ -9,7 +9,7 @@ Video de ~4 minutos (1920x1080, 30 fps, H.264) **sin audio**, con subtítulos qu
 | `demo_arquitectura.mp4` | Video con subtítulos quemados (sin audio) |
 | `demo_arquitectura_sin_subs.mp4` | Mismo video sin subtítulos (para editar con voz) |
 | `subtitulos.srt` | Subtítulos de la narración, sincronizados con el video |
-| `guion.md` | Guion por escena: tiempos, qué se ve, texto de narración y reparto Voz 1 / Voz 2 |
+| `guion.md` | Guion por escena: tiempos, qué se ve, texto de narración y quién narra (Andrea Arroyo) |
 | `build_video.py` | Script que genera todo lo anterior |
 | `preview/` | PNG de revisión (un fotograma por escena; se regenera, no se versiona) |
 
@@ -28,7 +28,7 @@ Los datos del video se leen del proyecto (no hay cifras escritas a mano): `datas
 
 Todo sale de la lista `ESCENAS` al inicio de `build_video.py` (texto de narración, voz, descripción). Con ella el script recalcula las duraciones y regenera `guion.md`, `subtitulos.srt` y el video, así que siempre quedan sincronizados.
 
-- **Nombres de los integrantes:** buscar `[Nombre 1]` y `[Nombre 2]` en `build_video.py` (portada, cierre y primer texto de narración) y reemplazarlos.
+- **Integrantes y narradora:** constantes `INTEGRANTES` y `NARRADORA` en `build_video.py` (Nelson Noriega, Andrea Arroyo y Diego Salazar; narra Andrea Arroyo).
 - **Ritmo de la voz:** `PALABRAS_POR_SEGUNDO` (por defecto 2,3). Si al grabar la voz sale más lenta, bajen el valor (por ejemplo 2,0) y se alargarán todas las escenas.
 - **Una escena concreta:** añadir `dur=<segundos>` a esa escena en `ESCENAS`.
 - Mantener el total entre 3:00 y 5:00 (el script imprime la duración al ejecutarse).

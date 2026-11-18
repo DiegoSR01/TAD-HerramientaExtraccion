@@ -1,0 +1,4 @@
+Sitio: https://books.toscrape.com/
+robots.txt consultado: 2026-11-09T23:46:43.191952+00:00
+HTTP 404 (153 bytes); parece robots.txt valido: False
+La respuesta no parece un robots.txt (sin reglas); no hay politica declarada.

@@ -1,4 +1,10 @@
-"""Trazabilidad y reportes legibles de cada ejecución."""
+"""Trazabilidad y reportes legibles de cada ejecución.
+
+Rol en la arquitectura: módulo de monitoreo. Configura el registro en archivo
+(``smart_scraper.log``) y define el informe JSON por ejecución con estado,
+conteos, advertencias, errores y cambios detectados, incluyendo las
+ejecuciones detenidas por CAPTCHA, 401, 403 o 429.
+"""
 
 from __future__ import annotations
 
@@ -10,6 +16,16 @@ from uuid import uuid4
 
 
 def configure_logging(output_directory: Path) -> logging.Logger:
+    """Configura el logger ``smart_scraper`` con salida a archivo.
+
+    No añade manejadores duplicados si ya existe uno.
+
+    Args:
+        output_directory: carpeta donde se crea ``smart_scraper.log``.
+
+    Returns:
+        Logger listo para usar.
+    """
     output_directory.mkdir(parents=True, exist_ok=True)
     logger = logging.getLogger("smart_scraper")
     logger.setLevel(logging.INFO)
@@ -22,6 +38,18 @@ def configure_logging(output_directory: Path) -> logging.Logger:
 
 @dataclass
 class RunReport:
+    """Informe de una ejecución.
+
+    Atributos:
+        execution_id: identificador único (UUID).
+        started_at: marca de tiempo UTC ISO 8601.
+        status: "started", "completed" o "failed".
+        records_found, records_saved, invalid_fields, pages_visited: conteos.
+        diagnostic: resultado de la inspección.
+        output_paths: archivos generados.
+        changes: diferencias respecto a la ejecución anterior.
+        warnings, error: mensajes para el usuario.
+    """
     execution_id: str = field(default_factory=lambda: str(uuid4()))
     started_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     source_url: str = ""
@@ -38,10 +66,20 @@ class RunReport:
     error: str = ""
 
     def to_dict(self) -> dict:
+        """Devuelve el informe como diccionario serializable a JSON."""
         return asdict(self)
 
 
 def write_report(report: RunReport, output_directory: Path) -> Path:
+    """Escribe el informe como ``report-<execution_id>.json``.
+
+    Args:
+        report: informe a guardar.
+        output_directory: carpeta de salida; se crea si no existe.
+
+    Returns:
+        Ruta del archivo escrito.
+    """
     import json
 
     output_directory.mkdir(parents=True, exist_ok=True)

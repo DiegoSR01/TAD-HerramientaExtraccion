@@ -1,0 +1,125 @@
+1
+00:00:00,600 --> 00:00:05,474
+Hola, somos Nelson Noriega, Andrea Arroyo y
+Diego Salazar, del Tecnológico de Toluca.
+
+2
+00:00:05,474 --> 00:00:10,406
+Presentamos la demostración en vivo de nuestra
+herramienta para la materia Técnicas de
+
+3
+00:00:10,406 --> 00:00:11,610
+Adquisición de Datos.
+
+4
+00:00:12,610 --> 00:00:18,500
+Esta es la demostración en vivo. Abrimos el
+proyecto en Visual Studio Code: el paquete
+
+5
+00:00:18,500 --> 00:00:22,610
+smart_scraper contiene los siete módulos de la
+arquitectura.
+
+6
+00:00:23,610 --> 00:00:29,335
+En extractor.py está la función
+_acquire_selenium. Configura Chrome, navega a
+
+7
+00:00:29,335 --> 00:00:35,581
+la URL, espera con WebDriverWait, revisa si
+hay CAPTCHA o login, hace clics y scroll
+
+8
+00:00:35,581 --> 00:00:39,670
+acotados y siempre cierra el navegador con
+driver.quit.
+
+9
+00:00:40,670 --> 00:00:47,162
+En app.py, la función run_job orquesta el
+flujo: inspecciona, extrae, selecciona,
+
+10
+00:00:47,162 --> 00:00:51,730
+transforma, guarda y registra el informe de la
+ejecución.
+
+11
+00:00:52,730 --> 00:00:59,730
+En config.py, ScrapeConfig valida los límites:
+máximo diez páginas, mil registros y una pausa
+
+12
+00:01:00,515 --> 00:01:03,780
+mínima de un segundo entre solicitudes.
+
+13
+00:01:04,780 --> 00:01:11,780
+Ahora ejecutamos las pruebas automatizadas con
+pytest. Usan un servidor local con sitios
+
+14
+00:01:13,799 --> 00:01:20,799
+simulados: HTML estático, JavaScript, API,
+paginación, autenticación y CAPTCHA. Las
+
+15
+00:01:22,305 --> 00:01:24,560
+catorce pruebas pasan.
+
+16
+00:01:25,560 --> 00:01:32,560
+Abrimos la interfaz gráfica de la herramienta.
+Ingresamos la URL de books.toscrape.com, un
+
+17
+00:01:33,220 --> 00:01:40,220
+sitio creado para practicar extracción,
+elegimos el método Selenium con el navegador
+
+18
+00:01:40,369 --> 00:01:44,880
+visible y definimos los selectores CSS de cada
+campo.
+
+19
+00:01:45,880 --> 00:01:52,880
+Primero pulsamos Inspeccionar. La herramienta
+diagnostica el sitio: título, señales de
+
+20
+00:01:53,507 --> 00:01:58,740
+JavaScript, paginación y si existe CAPTCHA o
+autenticación.
+
+21
+00:01:59,740 --> 00:02:06,740
+Después pulsamos Extraer y guardar. Selenium
+abre Chrome, carga cada página, sigue el
+
+22
+00:02:20,313 --> 00:02:27,313
+enlace siguiente y respeta la pausa entre
+solicitudes. Al terminar, el panel muestra el
+
+23
+00:02:41,370 --> 00:02:48,370
+informe con el número de registros y las
+validaciones.
+
+24
+00:02:55,440 --> 00:03:02,440
+Por último abrimos el CSV generado: cada libro
+con su título, precio, disponibilidad, rating
+
+25
+00:03:03,168 --> 00:03:10,168
+y URL, listo para limpiar y analizar. Así se
+ejecuta la arquitectura de principio a fin.
+
+26
+00:03:11,560 --> 00:03:16,560
+Gracias por su atención.

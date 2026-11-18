@@ -1,4 +1,12 @@
-"""Inspección de bajo impacto de HTML, señales de carga y restricciones."""
+"""Inspección de bajo impacto de una URL antes de extraer datos.
+
+Rol en la arquitectura: módulo de inspección/diagnóstico. Hace una única
+solicitud GET acotada y analiza el HTML en busca de señales de renderizado
+dinámico, paginación, "cargar más", scroll infinito, formularios, endpoints
+de API, autenticación y CAPTCHA. Marca como ``blocked`` las respuestas 401,
+403 y 429 o la presencia de CAPTCHA, para que el resto del sistema se detenga
+sin intentar evadir la restricción.
+"""
 
 from __future__ import annotations
 
@@ -21,6 +29,18 @@ _API_PATTERN = re.compile(
 
 @dataclass
 class InspectionReport:
+    """Diagnóstico de una página.
+
+    Atributos principales:
+        status_code, content_type, title: datos básicos de la respuesta.
+        rendering: "HTML estático" o "dinámico o mixto" (heurístico).
+        authentication_detected, captcha_detected: señales de restricción.
+        blocked: ``True`` si hay 401/403/429 o CAPTCHA; se debe detener el acceso.
+        pagination_detected, load_more_detected, infinite_scroll_suspected,
+        user_interaction_suspected: señales de carga bajo demanda.
+        api_hints: posibles endpoints del mismo host.
+        warnings: mensajes legibles para el usuario.
+    """
     url: str
     status_code: int
     content_type: str
@@ -38,11 +58,16 @@ class InspectionReport:
     warnings: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict:
+        """Devuelve el informe como diccionario serializable a JSON."""
         return asdict(self)
 
 
 @dataclass
 class InspectedPage:
+    """Página inspeccionada: informe, cuerpo crudo, encabezados y codificación.
+
+    Permite reutilizar la respuesta ya descargada sin repetir la solicitud.
+    """
     report: InspectionReport
     body: bytes
     headers: dict[str, str]
@@ -50,13 +75,29 @@ class InspectedPage:
 
 
 class InspectionError(RuntimeError):
+    """Error al inspeccionar o adquirir una URL (red, tamaño excedido o HTTP de error)."""
     pass
 
 
 def inspect_url(
     url: str, timeout_seconds: int = 15, headers: dict[str, str] | None = None
 ) -> InspectedPage:
-    """Hace una sola solicitud GET con tamaño máximo y sin seguir páginas automáticamente."""
+    """Hace una sola solicitud GET con tamaño máximo y sin seguir páginas automáticamente.
+
+    La respuesta se lee por bloques y se aborta si supera ``MAX_HTML_BYTES``.
+    Se identifica con un User-Agent explícito y no evade restricciones.
+
+    Args:
+        url: URL http/https a inspeccionar.
+        timeout_seconds: tiempo límite de la solicitud.
+        headers: encabezados autorizados adicionales (no se almacenan).
+
+    Returns:
+        ``InspectedPage`` con el diagnóstico y el cuerpo descargado.
+
+    Raises:
+        InspectionError: si falla la red o la respuesta excede el límite.
+    """
     try:
         response = requests.get(
             url,
@@ -91,6 +132,22 @@ def inspect_url(
 
 
 def diagnose(url: str, status_code: int, content_type: str, body: bytes) -> InspectionReport:
+    """Analiza una respuesta y genera un ``InspectionReport``.
+
+    Detecta endpoints candidatos del mismo host, formularios, autenticación
+    (HTTP 401 o formulario con contraseña), CAPTCHA, paginación, "cargar más",
+    scroll infinito y uso de JavaScript. Marca ``blocked`` ante 401/403/429 o
+    CAPTCHA y añade advertencias; las señales son heurísticas.
+
+    Args:
+        url: URL final de la respuesta.
+        status_code: código HTTP.
+        content_type: valor del encabezado Content-Type.
+        body: contenido de la respuesta en bytes.
+
+    Returns:
+        Informe de diagnóstico.
+    """
     text = body.decode("utf-8", errors="replace")
     soup = BeautifulSoup(text, "html.parser")
     title = soup.title.get_text(" ", strip=True) if soup.title else ""

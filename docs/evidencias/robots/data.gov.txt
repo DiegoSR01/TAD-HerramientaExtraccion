@@ -1,0 +1,7 @@
+Sitio: https://data.gov/
+robots.txt consultado: 2026-11-09T23:46:30.596404+00:00
+HTTP 200 (61 bytes); parece robots.txt valido: True
+Disallow para User-agent '*': 0
+Disallow total de '/': False
+Crawl-delay: no declarado
+Sitemaps: ['https://data.gov/sitemap.xml']

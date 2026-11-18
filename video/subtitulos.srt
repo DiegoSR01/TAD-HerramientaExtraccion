@@ -1,0 +1,243 @@
+1
+00:00:00,450 --> 00:00:05,461
+Hola, soy Andrea Arroyo y, junto con
+Nelson Noriega y Diego Salazar,
+
+2
+00:00:05,461 --> 00:00:10,987
+presentamos la Herramienta de Extracción
+Web Inteligente del curso TAD y la
+
+3
+00:00:10,987 --> 00:00:14,450
+arquitectura que ejecutamos de principio a
+fin.
+
+4
+00:00:15,150 --> 00:00:19,856
+Extraer datos de la web no es solo
+descargar páginas. Hay HTML estático,
+
+5
+00:00:19,856 --> 00:00:24,627
+JavaScript, APIs, paginación y controles
+de acceso. Nuestro objetivo: una
+
+6
+00:00:24,627 --> 00:00:30,117
+herramienta local, configurable y modular,
+que inspeccione el sitio y entregue datos
+
+7
+00:00:30,117 --> 00:00:33,450
+limpios, trazables y obtenidos con
+responsabilidad.
+
+8
+00:00:34,150 --> 00:00:38,381
+La solución tiene siete módulos.
+Configuración define URL, límites y
+
+9
+00:00:38,381 --> 00:00:42,799
+selectores. Inspección diagnostica el
+sitio. El motor de extracción usa
+
+10
+00:00:42,799 --> 00:00:47,154
+Requests, Selenium, Playwright o una API
+autorizada. Siguen selección,
+
+11
+00:00:47,154 --> 00:00:52,008
+transformación y calidad, almacenamiento y
+monitoreo. app.py los orquesta y la
+
+12
+00:00:52,008 --> 00:00:53,750
+interfaz Tkinter los expone.
+
+13
+00:00:54,450 --> 00:01:00,527
+Así fluye run_job. Valida la configuración
+e inspecciona la página; si hay 401, 403,
+
+14
+00:01:00,527 --> 00:01:05,952
+429 o CAPTCHA, se detiene. Si no,
+adquiere, transforma, guarda, compara con
+
+15
+00:01:05,952 --> 00:01:11,450
+la ejecución anterior y escribe un informe
+JSON, incluso cuando hay errores.
+
+16
+00:01:12,150 --> 00:01:17,978
+Este es código real del método Selenium.
+Se configura Chrome headless, se abre la
+
+17
+00:01:17,978 --> 00:01:23,518
+URL y WebDriverWait espera a que el
+documento cargue. Antes de interactuar se
+
+18
+00:01:23,518 --> 00:01:29,273
+revisa CAPTCHA o login. Luego hay clics
+acotados en cargar más y desplazamientos
+
+19
+00:01:29,273 --> 00:01:33,950
+limitados. Y en finally, driver.quit
+siempre cierra el navegador.
+
+20
+00:01:34,650 --> 00:01:40,839
+La selección convierte HTML en campos. Un
+selector de elemento repetido y reglas
+
+21
+00:01:40,839 --> 00:01:46,719
+nombre igual selector, como titulo igual
+h3 a dos puntos title, leen texto o
+
+22
+00:01:46,719 --> 00:01:52,908
+atributos. El asterisco marca un campo
+requerido. En APIs se usan rutas JSON con
+
+23
+00:01:52,908 --> 00:01:53,450
+puntos.
+
+24
+00:01:54,150 --> 00:01:58,912
+La transformación recorta espacios,
+elimina duplicados y valida campos
+
+25
+00:01:58,912 --> 00:02:04,219
+requeridos. Cada valor genera una fila de
+linaje con ejecución, URL de origen,
+
+26
+00:02:04,219 --> 00:02:09,661
+método, fecha, estado de validación y
+transformaciones. Así cada dato se rastrea
+
+27
+00:02:09,661 --> 00:02:10,750
+hasta su origen.
+
+28
+00:02:11,450 --> 00:02:17,616
+El almacenamiento exporta a CSV, Excel,
+JSON y SQLite; PostgreSQL y MongoDB son
+
+29
+00:02:17,616 --> 00:02:23,626
+opcionales. En SQLite guardamos la tabla
+de libros y la de linaje. También se
+
+30
+00:02:23,626 --> 00:02:30,026
+guarda el perfil del sitio y se compara
+cada corrida con la anterior para detectar
+
+31
+00:02:30,026 --> 00:02:30,650
+cambios.
+
+32
+00:02:31,350 --> 00:02:35,876
+Para la demostración usamos
+books.toscrape.com, un sandbox hecho para
+
+33
+00:02:35,876 --> 00:02:40,926
+practicar scraping. La herramienta
+recorrió cinco páginas y obtuvo 100 libros
+
+34
+00:02:40,926 --> 00:02:45,648
+sin duplicados. Vemos filas reales, un
+precio medio de 34,56 libras y la
+
+35
+00:02:45,648 --> 00:02:47,550
+distribución de valoraciones.
+
+36
+00:02:48,250 --> 00:02:53,514
+También clasificamos siete sitios por
+protección y viabilidad legal. Los dos
+
+37
+00:02:53,514 --> 00:02:58,916
+sandboxes son viables. INEGI, Banco
+Mundial, data.gov y el DOF son viables con
+
+38
+00:02:58,916 --> 00:03:04,525
+condiciones. datos.gob.mx devolvió 403 y
+no es viable sin autorización: se usaría
+
+39
+00:03:04,525 --> 00:03:08,750
+su API oficial. Es una evaluación técnica,
+no asesoría legal.
+
+40
+00:03:09,450 --> 00:03:15,324
+La herramienta es conservadora. Se detiene
+ante CAPTCHA, formularios de autenticación
+
+41
+00:03:15,324 --> 00:03:21,129
+y respuestas 401, 403 o 429, y no intenta
+evadirlos. Solo sigue paginación del mismo
+
+42
+00:03:21,129 --> 00:03:26,450
+host, limita páginas, registros y tamaño
+del DOM, y espera entre solicitudes.
+
+43
+00:03:27,150 --> 00:03:32,114
+Las 14 pruebas automatizadas pasan. Usan
+un servidor local con sitios simulados:
+
+44
+00:03:32,114 --> 00:03:37,017
+estático, dinámico, carga bajo demanda,
+API, paginación, tabla, autenticación y
+
+45
+00:03:37,017 --> 00:03:41,857
+CAPTCHA. Selenium y Playwright se prueban
+con adaptadores simulados, sin tocar
+
+46
+00:03:41,857 --> 00:03:42,850
+sitios públicos.
+
+47
+00:03:43,550 --> 00:03:48,157
+En resumen: siete módulos que
+inspeccionan, extraen, limpian, almacenan
+
+48
+00:03:48,157 --> 00:03:53,218
+y monitorean con trazabilidad, validados
+con un dataset real de 100 libros. El
+
+49
+00:03:53,218 --> 00:03:58,279
+siguiente paso es probar sitios reales
+solo con autorización, priorizando APIs
+
+50
+00:03:58,279 --> 00:04:00,550
+oficiales. Gracias por su atención.
+

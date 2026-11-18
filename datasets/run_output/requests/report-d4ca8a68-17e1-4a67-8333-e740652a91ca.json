@@ -1,0 +1,42 @@
+{
+  "execution_id": "d4ca8a68-17e1-4a67-8333-e740652a91ca",
+  "started_at": "2026-11-09T23:45:58.572323+00:00",
+  "source_url": "https://books.toscrape.com/",
+  "method": "requests",
+  "status": "completed",
+  "records_found": 100,
+  "records_saved": 100,
+  "invalid_fields": 0,
+  "pages_visited": 5,
+  "diagnostic": {
+    "url": "https://books.toscrape.com/",
+    "status_code": 200,
+    "content_type": "text/html",
+    "title": "All products | Books to Scrape - Sandbox",
+    "rendering": "dinámico o mixto",
+    "has_forms": true,
+    "authentication_detected": false,
+    "captcha_detected": false,
+    "blocked": false,
+    "pagination_detected": true,
+    "load_more_detected": false,
+    "infinite_scroll_suspected": false,
+    "user_interaction_suspected": false,
+    "api_hints": [],
+    "warnings": [
+      "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+    ]
+  },
+  "output_paths": [
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\run_output\\requests\\records-d4ca8a68-17e1-4a67-8333-e740652a91ca.xlsx",
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\run_output\\requests\\profiles\\books.toscrape.com.json",
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\run_output\\requests\\report-d4ca8a68-17e1-4a67-8333-e740652a91ca.json"
+  ],
+  "changes": {
+    "baseline_created": true
+  },
+  "warnings": [
+    "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+  ],
+  "error": ""
+}

@@ -66,4 +66,6 @@ Las pruebas usan un servidor HTTP local con sitios simulados; no envían solicit
 
 ## Dataset de ejemplo
 
+El dataset procesado real (100 libros de books.toscrape.com en SQLite, CSV y Excel, con linaje) está en [datasets/](datasets/README.md); se regenera con `python scripts/build_dataset.py`.
+
 [examples/sample_dataset.csv](examples/sample_dataset.csv) y [examples/sample_lineage.csv](examples/sample_lineage.csv) contienen datos sintéticos ilustrativos, no datos adquiridos de un sitio público.

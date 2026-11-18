@@ -1,0 +1,318 @@
+{
+  "generado_utc": "2026-11-09T23:46:06.783259+00:00",
+  "user_agent": "TAD-SmartScraper/0.1 (proyecto academico)",
+  "timeout_s": 15,
+  "pausa_s": 2,
+  "resultados": [
+    {
+      "sitio": "https://www.inegi.org.mx/datosabiertos/",
+      "host": "www.inegi.org.mx",
+      "pagina": {
+        "url_final": "https://www.inegi.org.mx/datosabiertos/",
+        "status": 200,
+        "segundos": 0.89,
+        "bytes": 3562,
+        "titulo": "Datos abiertos",
+        "cabeceras": {
+          "server": "Microsoft-IIS/10.0",
+          "x-powered-by": "C_ASP.net_pro51",
+          "content-type": "text/html"
+        },
+        "cabeceras_akamai": {},
+        "set_cookie_nombres": [
+          "BIGipServerLB_NuevoPortal"
+        ],
+        "set_cookie_waf": [
+          "BIGipServerLB_NuevoPortal"
+        ],
+        "csp_presente": false,
+        "senales_js_spa": [],
+        "rendering_inspector": "dinámico o mixto",
+        "captcha_detectado": false,
+        "marcadores_challenge": [],
+        "bloqueado_inspector": false,
+        "paginacion": false,
+        "api_hints": []
+      },
+      "robots": {
+        "status": 200,
+        "url_final": "https://www.inegi.org.mx/robots.txt",
+        "bytes": 2657,
+        "parece_robots": true,
+        "crawl_delay": [],
+        "sitemaps": [
+          "https://www.inegi.org.mx/sitemap_contenidos_generales.xml",
+          "https://www.inegi.org.mx/sitemap_programas.xml"
+        ],
+        "disallow_agente_todos": [
+          "/auth/register/",
+          "/catalog/*/data-dictionary/*?file_name=*",
+          "/catalog/*/variable/*/*?name=*",
+          "/metadata/export_variable/*/*/csv",
+          "/metadata/export_variable/*/*/json",
+          "/catalog/*/variable-groups/*",
+          "/catalog/*/variable/*",
+          "/catalog/*/download/*",
+          "/catalog/*/dataprocessing",
+          "/catalog/*/vargrp/*",
+          "/catalog/*/accesspolicy",
+          "/catalog/*/sampling",
+          "/catalog/*/download/*",
+          "/catalog/*/link/study-website",
+          "/catalog/*/dataappraisal",
+          "/catalog/*/overview",
+          "/catalog/*/datacollection",
+          "/catalog/*/link/interactive",
+          "/catalog/*/function.unserialize",
+          "/catalog/*/study-descriptio",
+          "/catalog/*/technicaldocuments",
+          "/catalog/ddi/*",
+          "/rnm/index.php/auth/register/",
+          "/rnm/index.php/catalog/*/data-dictionary/*?file_name=*",
+          "/rnm/index.php/catalog/*/variable/*/*?name=*",
+          "/rnm/index.php/metadata/export_variable/*/*/csv",
+          "/rnm/index.php/metadata/export_variable/*/*/json",
+          "/rnm/index.php/catalog/*/variable-groups/*",
+          "/rnm/index.php/catalog/*/variable/*",
+          "/rnm/index.php/catalog/*/download/*",
+          "/rnm/index.php/catalog/*/dataprocessing",
+          "/rnm/index.php/catalog/*/vargrp/*",
+          "/rnm/index.php/catalog/*/accesspolicy",
+          "/rnm/index.php/catalog/*/sampling",
+          "/rnm/index.php/catalog/*/download/*",
+          "/rnm/index.php/catalog/*/link/study-website",
+          "/rnm/index.php/catalog/*/dataappraisal",
+          "/rnm/index.php/catalog/*/overview",
+          "/rnm/index.php/catalog/*/datacollection",
+          "/rnm/index.php/catalog/*/link/interactive",
+          "/rnm/index.php/catalog/*/function.unserialize",
+          "/rnm/index.php/catalog/*/study-descriptio",
+          "/rnm/index.php/catalog/*/technicaldocuments",
+          "/rnm/index.php/catalog/ddi/*"
+        ],
+        "bloqueos_ia_o_generales": [],
+        "disallow_raiz_total": false,
+        "texto_crudo_primeros_3000": "Sitemap: https://www.inegi.org.mx/sitemap_contenidos_generales.xml\r\nSitemap: https://www.inegi.org.mx/sitemap_programas.xml\r\nUser-Agent: *\r\nAllow: /app\r\nAllow: /temas\r\nAllow: /datos\r\nAllow: /datosprimarios\r\nAllow: /eventos\r\nAllow: /inegi\r\nAllow: /investigacion\r\nAllow: /infraestructura\r\nAllow: /mapasitio\r\nAllow: /programas\r\nAllow: /servicios\r\nAllow: /transparencia\r\nAllow: /widgets\r\nAllow: /contenidos/app\r\nAllow: /contenidos/clasificadoresycatalogos\r\nAllow: /contenidos/datosprimarios\r\nAllow: /contenidos/eventos\r\nAllow: /contenidos/inegi\r\nAllow: /contenidos/investigacion\r\nAllow: /contenidos/productos\r\nAllow: /contenidos/programas\r\nAllow: /contenidos/temas\r\nAllow: /contenidos/transparencia\r\n\r\n#SNM 18.03.2025\r\nDisallow: /auth/register/\r\nDisallow: /catalog/*/data-dictionary/*?file_name=*\r\nDisallow: /catalog/*/variable/*/*?name=*\r\nDisallow: /metadata/export_variable/*/*/csv\r\nDisallow: /metadata/export_variable/*/*/json\r\nDisallow: /catalog/*/variable-groups/*\r\nDisallow: /catalog/*/variable/*\r\nDisallow: /catalog/*/download/*\r\nDisallow: /catalog/*/dataprocessing\r\nDisallow: /catalog/*/vargrp/*\r\nDisallow: /catalog/*/accesspolicy\r\nDisallow: /catalog/*/sampling\r\nDisallow: /catalog/*/download/*\r\nDisallow: /catalog/*/link/study-website\r\nDisallow: /catalog/*/dataappraisal\r\nDisallow: /catalog/*/overview\r\nDisallow: /catalog/*/datacollection\r\nDisallow: /catalog/*/link/interactive\r\nDisallow: /catalog/*/function.unserialize\r\nDisallow: /catalog/*/study-descriptio\r\nDisallow: /catalog/*/technicaldocuments\r\nDisallow: /catalog/ddi/*\r\nDisallow: /rnm/index.php/auth/register/\r\nDisallow: /rnm/index.php/catalog/*/data-dictionary/*?file_name=*\r\nDisallow: /rnm/index.php/catalog/*/variable/*/*?name=*\r\nDisallow: /rnm/index.php/metadata/export_variable/*/*/csv\r\nDisallow: /rnm/index.php/metadata/export_variable/*/*/json\r\nDisallow: /rnm/index.php/catalog/*/variable-groups/*\r\nDisallow: /rnm/index.php/catalog/*/variable/*\r\nDisallow: /rnm/index.php/catalog/*/download/*\r\nDisallow: /rnm/index.php/catalog/*/dataprocessing\r\nDisallow: /rnm/index.php/catalog/*/vargrp/*\r\nDisallow: /rnm/index.php/catalog/*/accesspolicy\r\nDisallow: /rnm/index.php/catalog/*/sampling\r\nDisallow: /rnm/index.php/catalog/*/download/*\r\nDisallow: /rnm/index.php/catalog/*/link/study-website\r\nDisallow: /rnm/index.php/catalog/*/dataappraisal\r\nDisallow: /rnm/index.php/catalog/*/overview\r\nDisallow: /rnm/index.php/catalog/*/datacollection\r\nDisallow: /rnm/index.php/catalog/*/link/interactive\r\nDisallow: /rnm/index.php/catalog/*/function.unserialize\r\nDisallow: /rnm/index.php/catalog/*/study-descriptio\r\nDisallow: /rnm/index.php/catalog/*/technicaldocuments\r\nDisallow: /rnm/index.php/catalog/ddi/*"
+      }
+    },
+    {
+      "sitio": "https://www.datos.gob.mx/",
+      "host": "www.datos.gob.mx",
+      "pagina": {
+        "url_final": "https://www.datos.gob.mx/",
+        "status": 403,
+        "segundos": 1.41,
+        "bytes": 374,
+        "titulo": "Access Denied",
+        "cabeceras": {
+          "server": "AkamaiGHost",
+          "content-type": "text/html"
+        },
+        "cabeceras_akamai": {
+          "akamai-grn": "0.49ae3017.1794267973.44647581"
+        },
+        "set_cookie_nombres": [],
+        "set_cookie_waf": [],
+        "csp_presente": false,
+        "senales_js_spa": [],
+        "rendering_inspector": "HTML estático",
+        "captcha_detectado": false,
+        "marcadores_challenge": [
+          "access denied"
+        ],
+        "bloqueado_inspector": true,
+        "paginacion": false,
+        "api_hints": []
+      },
+      "robots": {
+        "status": 403,
+        "url_final": "https://www.datos.gob.mx/robots.txt",
+        "bytes": 386,
+        "parece_robots": false,
+        "crawl_delay": [],
+        "sitemaps": [],
+        "disallow_agente_todos": [],
+        "bloqueos_ia_o_generales": []
+      }
+    },
+    {
+      "sitio": "https://data.worldbank.org/",
+      "host": "data.worldbank.org",
+      "pagina": {
+        "url_final": "https://data.worldbank.org/",
+        "status": 200,
+        "segundos": 1.02,
+        "bytes": 212221,
+        "titulo": "World Bank Open Data | Data",
+        "cabeceras": {
+          "server": "cloudflare",
+          "cf-ray": "a580b239ea4932cd-QRO",
+          "cf-cache-status": "HIT",
+          "x-powered-by": "Express",
+          "content-type": "text/html; charset=utf-8",
+          "x-frame-options": "DENY, SAMEORIGIN"
+        },
+        "cabeceras_akamai": {},
+        "set_cookie_nombres": [
+          "__cf_bm",
+          "_cfuvid"
+        ],
+        "set_cookie_waf": [
+          "__cf_bm"
+        ],
+        "csp_presente": false,
+        "senales_js_spa": [
+          "data-reactroot",
+          "id=\"app\"",
+          "webpack"
+        ],
+        "rendering_inspector": "dinámico o mixto",
+        "captcha_detectado": false,
+        "marcadores_challenge": [],
+        "bloqueado_inspector": false,
+        "paginacion": false,
+        "api_hints": []
+      },
+      "robots": {
+        "status": 200,
+        "url_final": "https://data.worldbank.org/robots.txt",
+        "bytes": 23,
+        "parece_robots": true,
+        "crawl_delay": [],
+        "sitemaps": [],
+        "disallow_agente_todos": [],
+        "bloqueos_ia_o_generales": [],
+        "disallow_raiz_total": false,
+        "texto_crudo_primeros_3000": "User-agent: *\nAllow: /\n"
+      }
+    },
+    {
+      "sitio": "https://data.gov/",
+      "host": "data.gov",
+      "pagina": {
+        "url_final": "https://data.gov/",
+        "status": 200,
+        "segundos": 1.47,
+        "bytes": 121849,
+        "titulo": "Data.gov Home - Data.gov",
+        "cabeceras": {
+          "via": "1.1 99428b194b789dc91708a62963bf6350.cloudfront.net (CloudFront)",
+          "x-cache": "Hit from cloudfront",
+          "x-amz-cf-id": "mZRkB_jDelUiXURK7wI_kmEnsVJ_V5CK-rvCQKvubKVALTrubsorAw==",
+          "strict-transport-security": "max-age=31536000; preload",
+          "content-type": "text/html; charset=utf-8",
+          "x-frame-options": "SAMEORIGIN"
+        },
+        "cabeceras_akamai": {},
+        "set_cookie_nombres": [],
+        "set_cookie_waf": [],
+        "csp_presente": false,
+        "senales_js_spa": [],
+        "rendering_inspector": "dinámico o mixto",
+        "captcha_detectado": false,
+        "marcadores_challenge": [],
+        "bloqueado_inspector": false,
+        "paginacion": false,
+        "api_hints": []
+      },
+      "robots": {
+        "status": 200,
+        "url_final": "https://data.gov/robots.txt",
+        "bytes": 61,
+        "parece_robots": true,
+        "crawl_delay": [],
+        "sitemaps": [
+          "https://data.gov/sitemap.xml"
+        ],
+        "disallow_agente_todos": [],
+        "bloqueos_ia_o_generales": [],
+        "disallow_raiz_total": false,
+        "texto_crudo_primeros_3000": "User-agent: *\nAllow: /\nSitemap: https://data.gov/sitemap.xml\n"
+      }
+    },
+    {
+      "sitio": "https://www.dof.gob.mx/",
+      "host": "www.dof.gob.mx",
+      "pagina": {
+        "error_tipo": "TLS",
+        "error": "HTTPSConnectionPool(host='www.dof.gob.mx', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.dof.gob.mx'. (_ssl.c:1010)\")))"
+      },
+      "robots": {
+        "error_tipo": "TLS",
+        "error": "HTTPSConnectionPool(host='www.dof.gob.mx', port=443): Max retries exceeded with url: /robots.txt (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.dof.gob.mx'. (_ssl.c:1010)\")))"
+      }
+    },
+    {
+      "sitio": "https://books.toscrape.com/",
+      "host": "books.toscrape.com",
+      "pagina": {
+        "url_final": "https://books.toscrape.com/",
+        "status": 200,
+        "segundos": 1.23,
+        "bytes": 51294,
+        "titulo": "All products | Books to Scrape - Sandbox",
+        "cabeceras": {
+          "strict-transport-security": "max-age=0; includeSubDomains; preload",
+          "content-type": "text/html"
+        },
+        "cabeceras_akamai": {},
+        "set_cookie_nombres": [],
+        "set_cookie_waf": [],
+        "csp_presente": false,
+        "senales_js_spa": [],
+        "rendering_inspector": "dinámico o mixto",
+        "captcha_detectado": false,
+        "marcadores_challenge": [],
+        "bloqueado_inspector": false,
+        "paginacion": true,
+        "api_hints": []
+      },
+      "robots": {
+        "status": 404,
+        "url_final": "https://books.toscrape.com/robots.txt",
+        "bytes": 153,
+        "parece_robots": false,
+        "crawl_delay": [],
+        "sitemaps": [],
+        "disallow_agente_todos": [],
+        "bloqueos_ia_o_generales": []
+      }
+    },
+    {
+      "sitio": "https://quotes.toscrape.com/",
+      "host": "quotes.toscrape.com",
+      "pagina": {
+        "url_final": "https://quotes.toscrape.com/",
+        "status": 200,
+        "segundos": 1.38,
+        "bytes": 11064,
+        "titulo": "Quotes to Scrape",
+        "cabeceras": {
+          "strict-transport-security": "max-age=0; includeSubDomains; preload",
+          "content-type": "text/html; charset=utf-8"
+        },
+        "cabeceras_akamai": {},
+        "set_cookie_nombres": [],
+        "set_cookie_waf": [],
+        "csp_presente": false,
+        "senales_js_spa": [],
+        "rendering_inspector": "HTML estático",
+        "captcha_detectado": false,
+        "marcadores_challenge": [],
+        "bloqueado_inspector": false,
+        "paginacion": true,
+        "api_hints": []
+      },
+      "robots": {
+        "status": 404,
+        "url_final": "https://quotes.toscrape.com/robots.txt",
+        "bytes": 207,
+        "parece_robots": false,
+        "crawl_delay": [],
+        "sitemaps": [],
+        "disallow_agente_todos": [],
+        "bloqueos_ia_o_generales": []
+      }
+    }
+  ]
+}

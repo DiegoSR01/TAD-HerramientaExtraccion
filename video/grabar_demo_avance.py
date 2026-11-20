@@ -392,6 +392,19 @@ def _powershell_teclas(teclas: str) -> None:
                     f"[System.Windows.Forms.SendKeys]::SendWait('{teclas}')"], capture_output=True)
 
 
+def traer_al_frente(fragmento: str, espera: float = 8.0) -> None:
+    """Pone al frente la ventana cuyo título contiene ``fragmento`` sin simular teclas."""
+    flags = 0x0001 | 0x0002 | 0x0040  # SWP_NOSIZE | SWP_NOMOVE | SWP_SHOWWINDOW
+    limite = time.time() + espera
+    while time.time() < limite:
+        for hwnd, titulo in base._ventanas():
+            if fragmento.lower() in titulo.lower():
+                user32.SetWindowPos(hwnd, -1, 0, 0, 0, 0, flags)  # HWND_TOPMOST
+                user32.SetWindowPos(hwnd, -2, 0, 0, 0, 0, flags)  # HWND_NOTOPMOST
+                return
+        time.sleep(0.3)
+
+
 def ejecutar_demo(grabar: bool) -> None:
     """Ejecuta (y opcionalmente graba) la demostración completa."""
     if SALIDA_GUI.exists():
@@ -416,7 +429,9 @@ def ejecutar_demo(grabar: bool) -> None:
         if EVENTOS.exists() and "listo" in EVENTOS.read_text(encoding="utf-8"):
             break
         time.sleep(0.3)
-    base.enfocar("Web Scraper Inteligente", maximizar=False, espera=8)
+    # Sin el truco de la tecla ALT de base.enfocar: en Tk deja la ventana en "modo menú"
+    # y congela los temporizadores (la GUI no avanzaba). Se trae al frente con SetWindowPos.
+    traer_al_frente("Web Scraper Inteligente")
     time.sleep(0.8)
     activo = lambda: gui.poll() is None  # noqa: E731
     threading.Thread(target=vigilar_chrome, args=(activo, previas, lay["chrome"]), daemon=True).start()

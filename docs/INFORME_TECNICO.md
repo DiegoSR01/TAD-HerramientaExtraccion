@@ -197,7 +197,7 @@ Con la evidencia recogida, los dos sandboxes son viables; INEGI, Banco Mundial, 
 - Cada fila de linaje registra ejecución, URL de origen, instante UTC, método, campo, valor, validación y transformaciones.
 - `report-<id>.json`, `smart_scraper.log` y `profiles/<host>.json`: informe, log y perfil técnico sin encabezados de autenticación.
 - SQLite conserva registros, linaje y último snapshot por host; CSV/Excel generan una hoja/archivo auxiliar para linaje.
-- **Video de demostración:** `video/demo_avance.mp4` muestra la GUI con el panel de progreso recorriendo distintos escenarios; `video/demo_en_vivo.mp4` se conserva como versión previa.
+- **Video de demostración:** `video/demo_avance.mp4` (3:20, 1920x1080) muestra la GUI con el panel de progreso recorriendo distintos escenarios; `video/demo_en_vivo.mp4` se conserva como versión previa.
 
 ## Cumplimiento de entregables
 
@@ -208,7 +208,7 @@ Con la evidencia recogida, los dos sandboxes son viables; INEGI, Banco Mundial, 
 | Informe técnico | `docs/INFORME_TECNICO.md` y `docs/INFORME_TECNICO.docx` | Cumplido |
 | Evidencia de clasificación de sitios y viabilidad legal | Sección «Clasificación de esquemas de protección y viabilidad legal», `docs/evidencias/sitios_2026-11-09.json` y matriz `docs/evidencias/MATRIZ_ESCENARIOS.md` | Cumplido (preliminar; no es asesoría legal) |
 | Pruebas automatizadas | `tests/` (32 pruebas aprobadas) | Cumplido |
-| Video de 3 a 5 minutos | `video/demo_avance.mp4` (nuevo) y `video/demo_en_vivo.mp4` (previo, 3:16) | Verificar la duración del video nuevo al cerrarlo |
+| Video de 3 a 5 minutos | `video/demo_avance.mp4` (nuevo, 3:20) y `video/demo_en_vivo.mp4` (previo, 3:16) | Cumplido |
 
 ## Limitaciones conocidas y siguientes pruebas autorizadas
 

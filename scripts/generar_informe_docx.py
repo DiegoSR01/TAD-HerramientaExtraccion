@@ -374,8 +374,8 @@ def main(entrada: Path, salida: Path) -> None:
     set_text(fila("Evidencia de pruebas")._tr.findall(qn("w:tc"))[1].find(qn("w:p")),
              "docs/evidencias/ (sitios_2026-11-09.json, MATRIZ_ESCENARIOS.md y extraccion_2026-11-20.json), Anexos A y D")
     v = fila("Video")._tr
-    set_text(v.findall(qn("w:tc"))[1].find(qn("w:p")), "video/demo_avance.mp4 (nuevo) y video/demo_en_vivo.mp4 (previo, 3:16)")
-    set_text(v.findall(qn("w:tc"))[2].find(qn("w:p")), "Cumplido; verificar duración del video nuevo (3 a 5 min)")
+    set_text(v.findall(qn("w:tc"))[1].find(qn("w:p")), "video/demo_avance.mp4 (nuevo, 3:20) y video/demo_en_vivo.mp4 (previo, 3:16)")
+    set_text(v.findall(qn("w:tc"))[2].find(qn("w:p")), "Cumplido (3:20)")
     extra = copy.deepcopy(fila("Documento")._tr)
     cs = extra.findall(qn("w:tc"))
     for tc, val in zip(cs, ["Pruebas automatizadas", "tests/ (32 pruebas aprobadas)", "Cumplido"]):

@@ -1,0 +1,199 @@
+1
+00:00:00,600 --> 00:00:04,120
+Hola, somos Nelson Noriega, Andrea Arroyo y
+Diego Salazar, del Tecnológico de Toluca. Esta
+
+2
+00:00:04,120 --> 00:00:07,365
+es la demostración de la arquitectura
+ejecutándose, para Técnicas de Adquisición de
+
+3
+00:00:07,365 --> 00:00:07,600
+Datos.
+
+4
+00:00:08,600 --> 00:00:14,961
+La arquitectura tiene siete módulos:
+configuración, inspección, adquisición,
+
+5
+00:00:14,961 --> 00:00:21,961
+selección, transformación, almacenamiento y
+monitoreo. app.py los orquesta en un flujo de
+
+6
+00:00:22,410 --> 00:00:29,410
+nueve pasos y la interfaz Tkinter muestra el
+avance en vivo. Lo importante: es un solo
+
+7
+00:00:29,608 --> 00:00:33,876
+motor. Cada sitio nuevo es solo otra
+configuración.
+
+8
+00:00:34,876 --> 00:00:37,791
+Escenario uno: HTML estático con paginación.
+En la capa de presentación, gui.py, capturamos
+
+9
+00:00:37,791 --> 00:00:40,545
+la URL, el método requests y los selectores
+CSS. Todo se convierte en un ScrapeConfig.
+
+10
+00:00:41,545 --> 00:00:45,317
+Al pulsar Inspeccionar, app.py recorre los
+pasos uno a tres. Config valida la URL,
+
+11
+00:00:45,317 --> 00:00:49,043
+inspector.py hace una sola solicitud GET y
+estrategia.py clasifica el escenario y
+
+12
+00:00:49,043 --> 00:00:50,009
+recomienda el método.
+
+13
+00:00:51,009 --> 00:00:54,064
+Con Extraer y guardar continúa el flujo. El
+motor de extracción obtiene cada página y
+
+14
+00:00:54,064 --> 00:00:57,118
+respeta la pausa de dos segundos; selection
+aplica los selectores, transform limpia y
+
+15
+00:00:57,118 --> 00:01:00,173
+valida, storage guarda el CSV y monitoring
+escribe el informe. La barra avanza paso a
+
+16
+00:01:00,173 --> 00:01:00,353
+paso.
+
+17
+00:01:01,353 --> 00:01:03,353
+Escenario dos: un sitio con JavaScript. Es el
+mismo motor; solo cambia la configuración:
+
+18
+00:01:03,353 --> 00:01:05,148
+método selenium con Chrome visible, a la
+derecha, y selectores del contenido ya
+
+19
+00:01:05,148 --> 00:01:05,420
+renderizado.
+
+20
+00:01:06,420 --> 00:01:11,306
+El inspector detecta que el HTML inicial casi
+no trae las citas y que hay señales de
+
+21
+00:01:11,306 --> 00:01:14,563
+JavaScript. La estrategia recomendada cambia a
+selenium.
+
+22
+00:01:15,563 --> 00:01:22,563
+Selenium abre Chrome, espera a que el
+navegador renderice las citas, lee el DOM y
+
+23
+00:01:25,138 --> 00:01:32,138
+sigue a la siguiente página. Después se
+repiten los mismos pasos de selección,
+
+24
+00:01:34,359 --> 00:01:38,497
+limpieza, almacenamiento e informe.
+
+25
+00:01:39,497 --> 00:01:41,999
+Escenario tres: una API JSON. Indicamos el
+método api y la ruta de la lista de registros,
+
+26
+00:01:41,999 --> 00:01:44,445
+y confirmamos que el endpoint está autorizado;
+sin esa casilla el motor no lo consulta.
+
+27
+00:01:45,445 --> 00:01:52,296
+La inspección reconoce una respuesta JSON y la
+estrategia recomienda api.
+
+28
+00:01:53,296 --> 00:01:57,713
+Sin navegador: una solicitud GET al endpoint,
+selection recorre la ruta quotes, y transform
+
+29
+00:01:57,713 --> 00:02:00,237
+y storage completan los nueve pasos del mismo
+flujo.
+
+30
+00:02:01,237 --> 00:02:03,770
+Escenario cuatro: una página protegida con
+reCAPTCHA. Aquí mostramos el comportamiento
+
+31
+00:02:03,770 --> 00:02:04,653
+responsable de la herramienta.
+
+32
+00:02:05,653 --> 00:02:12,653
+El inspector detecta el CAPTCHA. El paso tres
+se marca como incidencia y el cuadro de
+
+33
+00:02:13,368 --> 00:02:15,819
+escenario cambia a naranja.
+
+34
+00:02:16,819 --> 00:02:21,953
+Al intentar extraer, el motor se detiene: no
+resuelve ni evade el CAPTCHA. Los pasos
+
+35
+00:02:21,953 --> 00:02:25,743
+siguientes quedan sin ejecutar y el informe
+explica el motivo.
+
+36
+00:02:26,743 --> 00:02:33,743
+Por último repetimos el escenario uno.
+Monitoring compara con la ejecución anterior
+
+37
+00:02:39,186 --> 00:02:46,186
+para detectar cambios, y el registro lo
+informa.
+
+38
+00:02:47,382 --> 00:02:54,382
+Todos los escenarios se consolidaron en un
+dataset multisitio con linaje: escenario, URL
+
+39
+00:02:55,601 --> 00:02:59,710
+de origen, método y ejecución de cada valor.
+
+40
+00:03:00,710 --> 00:03:07,710
+La matriz de escenarios resume sitio,
+mecanismo detectado, estrategia, resultado y
+
+41
+00:03:09,051 --> 00:03:13,730
+viabilidad. Un único motor, muchos escenarios.
+
+42
+00:03:14,730 --> 00:03:19,730
+Gracias por su atención.

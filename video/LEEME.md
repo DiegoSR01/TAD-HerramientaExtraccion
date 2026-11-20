@@ -1,6 +1,6 @@
 # Video de demostración
 
-## Entregable principal: "Arquitectura ejecutada" (`demo_avance.mp4`)
+## Entregable principal: "Arquitectura ejecutada" (`demo_avance.mp4`, 3:20)
 
 Grabación real (1920x1080, 30 fps, 3:30 a 4:45 aprox., sin audio) de la herramienta ejecutando la arquitectura con el **panel de progreso** de la GUI (barra, contador n/9, tiempo, 9 pasos, escenario/estrategia y registro).
 

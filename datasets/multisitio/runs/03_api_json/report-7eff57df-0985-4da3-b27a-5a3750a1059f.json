@@ -1,0 +1,41 @@
+{
+  "execution_id": "7eff57df-0985-4da3-b27a-5a3750a1059f",
+  "started_at": "2026-11-20T20:26:19.378409+00:00",
+  "source_url": "https://quotes.toscrape.com/api/quotes?page=1",
+  "method": "api",
+  "status": "completed",
+  "records_found": 10,
+  "records_saved": 10,
+  "invalid_fields": 0,
+  "pages_visited": 1,
+  "diagnostic": {
+    "url": "https://quotes.toscrape.com/api/quotes?page=1",
+    "status_code": 200,
+    "content_type": "application/json",
+    "title": "",
+    "rendering": "HTML estático",
+    "has_forms": false,
+    "authentication_detected": false,
+    "captcha_detected": false,
+    "blocked": false,
+    "pagination_detected": false,
+    "load_more_detected": false,
+    "infinite_scroll_suspected": false,
+    "user_interaction_suspected": false,
+    "tables_detected": false,
+    "api_hints": [
+      "https://quotes.toscrape.com/api/quotes?page=1"
+    ],
+    "warnings": []
+  },
+  "output_paths": [
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\03_api_json\\records-7eff57df-0985-4da3-b27a-5a3750a1059f.xlsx",
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\03_api_json\\profiles\\quotes.toscrape.com.json",
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\03_api_json\\report-7eff57df-0985-4da3-b27a-5a3750a1059f.json"
+  ],
+  "changes": {
+    "baseline_created": true
+  },
+  "warnings": [],
+  "error": ""
+}

@@ -1,0 +1,60 @@
+{
+  "url": "https://www.scrapethissite.com/pages/forms/?page_num=1",
+  "method": "requests",
+  "item_selector": "tr.team",
+  "fields": [
+    {
+      "name": "equipo",
+      "selector": "td.name",
+      "attribute": null,
+      "required": true
+    },
+    {
+      "name": "anio",
+      "selector": "td.year",
+      "attribute": null,
+      "required": true
+    },
+    {
+      "name": "victorias",
+      "selector": "td.wins",
+      "attribute": null,
+      "required": false
+    },
+    {
+      "name": "derrotas",
+      "selector": "td.losses",
+      "attribute": null,
+      "required": false
+    },
+    {
+      "name": "porcentaje_victorias",
+      "selector": "td.pct",
+      "attribute": null,
+      "required": false
+    },
+    {
+      "name": "goles_favor",
+      "selector": "td.gf",
+      "attribute": null,
+      "required": false
+    },
+    {
+      "name": "goles_contra",
+      "selector": "td.ga",
+      "attribute": null,
+      "required": false
+    }
+  ],
+  "json_records_path": "",
+  "timeout_seconds": 20,
+  "max_records": 50,
+  "max_pages": 2,
+  "pagination_selector": "a[aria-label=\"Next\"]",
+  "load_more_selector": "",
+  "load_more_clicks": 0,
+  "delay_seconds": 2.0,
+  "scroll_steps": 0,
+  "headless": true,
+  "authorized_api": false
+}

@@ -1,0 +1,39 @@
+{
+  "execution_id": "6ecbc099-cb6f-4f43-82ee-5ec899a47b4a",
+  "started_at": "2026-11-20T20:27:05.022155+00:00",
+  "source_url": "https://quotes.toscrape.com/login",
+  "method": "selenium",
+  "status": "failed",
+  "records_found": 0,
+  "records_saved": 0,
+  "invalid_fields": 0,
+  "pages_visited": 0,
+  "diagnostic": {
+    "url": "https://quotes.toscrape.com/login",
+    "status_code": 200,
+    "content_type": "text/html; charset=utf-8",
+    "title": "Quotes to Scrape",
+    "rendering": "HTML estático",
+    "has_forms": true,
+    "authentication_detected": true,
+    "captcha_detected": false,
+    "blocked": false,
+    "pagination_detected": false,
+    "load_more_detected": false,
+    "infinite_scroll_suspected": false,
+    "user_interaction_suspected": false,
+    "tables_detected": false,
+    "api_hints": [],
+    "warnings": [
+      "Se detectó autenticación; usa solo credenciales y permisos legítimos."
+    ]
+  },
+  "output_paths": [
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\08_autenticacion\\report-6ecbc099-cb6f-4f43-82ee-5ec899a47b4a.json"
+  ],
+  "changes": {},
+  "warnings": [
+    "Se detectó autenticación; usa solo credenciales y permisos legítimos."
+  ],
+  "error": "Se detectó un formulario de autenticación; se detuvo el navegador."
+}

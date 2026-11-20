@@ -1,0 +1,36 @@
+{
+  "url": "https://quotes.toscrape.com/api/quotes?page=1",
+  "method": "api",
+  "item_selector": "",
+  "fields": [
+    {
+      "name": "texto",
+      "selector": "text",
+      "attribute": null,
+      "required": true
+    },
+    {
+      "name": "autor",
+      "selector": "author.name",
+      "attribute": null,
+      "required": true
+    },
+    {
+      "name": "autor_slug",
+      "selector": "author.slug",
+      "attribute": null,
+      "required": false
+    }
+  ],
+  "json_records_path": "quotes",
+  "timeout_seconds": 20,
+  "max_records": 10,
+  "max_pages": 1,
+  "pagination_selector": "",
+  "load_more_selector": "",
+  "load_more_clicks": 0,
+  "delay_seconds": 2.0,
+  "scroll_steps": 0,
+  "headless": true,
+  "authorized_api": false
+}

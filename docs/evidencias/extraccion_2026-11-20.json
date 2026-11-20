@@ -1,0 +1,771 @@
+{
+  "generado_utc": "2026-11-20T20:26:04.975289+00:00",
+  "user_agent": "TAD-SmartScraper/0.1 (proyecto academico)",
+  "motor": "smart_scraper.app.run_job",
+  "resultados": [
+    {
+      "escenario": "01_html_estatico",
+      "nombre": "HTML estático",
+      "sitio": "quotes.toscrape.com",
+      "url": "https://quotes.toscrape.com/",
+      "metodo": "requests",
+      "mecanismo_declarado": "HTML estático (renderizado en servidor)",
+      "estrategia": "requests + selectores CSS",
+      "esperado": "extraccion",
+      "config": {
+        "max_pages": 1,
+        "max_records": 20,
+        "delay_seconds": 2.0,
+        "scroll_steps": 0,
+        "load_more_clicks": 0,
+        "item_selector": "div.quote",
+        "campos": [
+          "texto*=span.text",
+          "autor*=small.author",
+          "etiqueta=a.tag"
+        ]
+      },
+      "robots_url": "https://quotes.toscrape.com/robots.txt",
+      "robots_estado": "HTTP 404",
+      "permitido_por_robots": true,
+      "estado": "completed",
+      "registros": 10,
+      "paginas": 1,
+      "advertencias": [],
+      "error": "",
+      "execution_id": "6b91a59d-5050-469b-9a76-99af9748cf1d",
+      "diagnostico": {
+        "url": "https://quotes.toscrape.com/",
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8",
+        "title": "Quotes to Scrape",
+        "rendering": "HTML estático",
+        "has_forms": false,
+        "authentication_detected": false,
+        "captcha_detected": false,
+        "blocked": false,
+        "pagination_detected": true,
+        "load_more_detected": false,
+        "infinite_scroll_suspected": false,
+        "user_interaction_suspected": false,
+        "tables_detected": false,
+        "api_hints": [],
+        "warnings": []
+      },
+      "salidas": [
+        "datasets/multisitio/runs/01_html_estatico/records-6b91a59d-5050-469b-9a76-99af9748cf1d.xlsx",
+        "datasets/multisitio/runs/01_html_estatico/profiles/quotes.toscrape.com.json",
+        "datasets/multisitio/runs/01_html_estatico/report-6b91a59d-5050-469b-9a76-99af9748cf1d.json"
+      ],
+      "cambios": {
+        "baseline_created": true
+      },
+      "iniciado_utc": "2026-11-20T20:26:07.440223+00:00",
+      "diagnostico_resumen": {
+        "http": 200,
+        "renderizado": "HTML estático",
+        "formularios": false,
+        "autenticacion": false,
+        "captcha": false,
+        "bloqueado": false,
+        "paginacion": true,
+        "cargar_mas": false,
+        "scroll_infinito": false,
+        "interaccion_usuario": false,
+        "pistas_api": []
+      },
+      "mecanismo_detectado": "HTML estático, paginación",
+      "proteccion": "Ninguna (sandbox público de práctica)",
+      "viabilidad": "Viable",
+      "observacion": "Una página, HTTP directo; sin JavaScript necesario."
+    },
+    {
+      "escenario": "02_javascript",
+      "nombre": "Sitio con JavaScript",
+      "sitio": "quotes.toscrape.com/js/",
+      "url": "https://quotes.toscrape.com/js/",
+      "metodo": "selenium",
+      "mecanismo_declarado": "Contenido renderizado por JavaScript",
+      "estrategia": "selenium headless (DOM renderizado)",
+      "esperado": "extraccion",
+      "config": {
+        "max_pages": 1,
+        "max_records": 10,
+        "delay_seconds": 2.0,
+        "scroll_steps": 0,
+        "load_more_clicks": 0,
+        "item_selector": "div.quote",
+        "campos": [
+          "texto*=span.text",
+          "autor*=small.author",
+          "etiqueta=a.tag"
+        ]
+      },
+      "robots_url": "https://quotes.toscrape.com/robots.txt",
+      "robots_estado": "HTTP 404",
+      "permitido_por_robots": true,
+      "estado": "completed",
+      "registros": 10,
+      "paginas": 1,
+      "advertencias": [
+        "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+      ],
+      "error": "",
+      "execution_id": "36d56956-c78b-4b8d-ba79-b4a4752273d8",
+      "diagnostico": {
+        "url": "https://quotes.toscrape.com/js/",
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8",
+        "title": "Quotes to Scrape",
+        "rendering": "dinámico o mixto",
+        "has_forms": false,
+        "authentication_detected": false,
+        "captcha_detected": false,
+        "blocked": false,
+        "pagination_detected": true,
+        "load_more_detected": false,
+        "infinite_scroll_suspected": false,
+        "user_interaction_suspected": false,
+        "tables_detected": false,
+        "api_hints": [],
+        "warnings": [
+          "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+        ]
+      },
+      "salidas": [
+        "datasets/multisitio/runs/02_javascript/records-36d56956-c78b-4b8d-ba79-b4a4752273d8.xlsx",
+        "datasets/multisitio/runs/02_javascript/profiles/quotes.toscrape.com.json",
+        "datasets/multisitio/runs/02_javascript/report-36d56956-c78b-4b8d-ba79-b4a4752273d8.json"
+      ],
+      "cambios": {
+        "baseline_created": true
+      },
+      "iniciado_utc": "2026-11-20T20:26:11.316045+00:00",
+      "diagnostico_resumen": {
+        "http": 200,
+        "renderizado": "dinámico o mixto",
+        "formularios": false,
+        "autenticacion": false,
+        "captcha": false,
+        "bloqueado": false,
+        "paginacion": true,
+        "cargar_mas": false,
+        "scroll_infinito": false,
+        "interaccion_usuario": false,
+        "pistas_api": []
+      },
+      "mecanismo_detectado": "JS/dinámico, paginación",
+      "proteccion": "Renderizado en cliente (sin WAF)",
+      "viabilidad": "Viable con navegador",
+      "observacion": "El HTML inicial no contiene las citas; se leen del DOM tras ejecutar JS."
+    },
+    {
+      "escenario": "03_api_json",
+      "nombre": "Información vía API",
+      "sitio": "quotes.toscrape.com/api/quotes",
+      "url": "https://quotes.toscrape.com/api/quotes?page=1",
+      "metodo": "api",
+      "mecanismo_declarado": "API JSON pública",
+      "estrategia": "api (GET JSON, ruta `quotes`, autorización confirmada)",
+      "esperado": "extraccion",
+      "config": {
+        "max_pages": 1,
+        "max_records": 10,
+        "delay_seconds": 2.0,
+        "scroll_steps": 0,
+        "load_more_clicks": 0,
+        "item_selector": "",
+        "campos": [
+          "texto*=text",
+          "autor*=author.name",
+          "autor_slug=author.slug"
+        ]
+      },
+      "robots_url": "https://quotes.toscrape.com/robots.txt",
+      "robots_estado": "HTTP 404",
+      "permitido_por_robots": true,
+      "estado": "completed",
+      "registros": 10,
+      "paginas": 1,
+      "advertencias": [],
+      "error": "",
+      "execution_id": "7eff57df-0985-4da3-b27a-5a3750a1059f",
+      "diagnostico": {
+        "url": "https://quotes.toscrape.com/api/quotes?page=1",
+        "status_code": 200,
+        "content_type": "application/json",
+        "title": "",
+        "rendering": "HTML estático",
+        "has_forms": false,
+        "authentication_detected": false,
+        "captcha_detected": false,
+        "blocked": false,
+        "pagination_detected": false,
+        "load_more_detected": false,
+        "infinite_scroll_suspected": false,
+        "user_interaction_suspected": false,
+        "tables_detected": false,
+        "api_hints": [
+          "https://quotes.toscrape.com/api/quotes?page=1"
+        ],
+        "warnings": []
+      },
+      "salidas": [
+        "datasets/multisitio/runs/03_api_json/records-7eff57df-0985-4da3-b27a-5a3750a1059f.xlsx",
+        "datasets/multisitio/runs/03_api_json/profiles/quotes.toscrape.com.json",
+        "datasets/multisitio/runs/03_api_json/report-7eff57df-0985-4da3-b27a-5a3750a1059f.json"
+      ],
+      "cambios": {
+        "baseline_created": true
+      },
+      "iniciado_utc": "2026-11-20T20:26:19.378409+00:00",
+      "diagnostico_resumen": {
+        "http": 200,
+        "renderizado": "HTML estático",
+        "formularios": false,
+        "autenticacion": false,
+        "captcha": false,
+        "bloqueado": false,
+        "paginacion": false,
+        "cargar_mas": false,
+        "scroll_infinito": false,
+        "interaccion_usuario": false,
+        "pistas_api": [
+          "https://quotes.toscrape.com/api/quotes?page=1"
+        ]
+      },
+      "mecanismo_detectado": "API JSON",
+      "proteccion": "Ninguna (API pública de práctica, sin autenticación)",
+      "viabilidad": "Viable (API pública autorizada)",
+      "observacion": "Endpoint público de un sandbox pensado para prácticas; se declara autorizado."
+    },
+    {
+      "escenario": "04_paginacion",
+      "nombre": "Paginación",
+      "sitio": "books.toscrape.com",
+      "url": "https://books.toscrape.com/",
+      "metodo": "requests",
+      "mecanismo_declarado": "Paginación por enlace «siguiente»",
+      "estrategia": "requests + selector de paginación `li.next a` (3 páginas)",
+      "esperado": "extraccion",
+      "config": {
+        "max_pages": 3,
+        "max_records": 60,
+        "delay_seconds": 2.0,
+        "scroll_steps": 0,
+        "load_more_clicks": 0,
+        "item_selector": "article.product_pod",
+        "campos": [
+          "titulo*=h3 a::title",
+          "precio*=p.price_color",
+          "disponibilidad=p.instock.availability",
+          "rating=p.star-rating::class"
+        ]
+      },
+      "robots_url": "https://books.toscrape.com/robots.txt",
+      "robots_estado": "HTTP 404",
+      "permitido_por_robots": true,
+      "estado": "completed",
+      "registros": 60,
+      "paginas": 3,
+      "advertencias": [
+        "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+      ],
+      "error": "",
+      "execution_id": "598fece6-8ed8-4bb2-a6d3-e6cb88969d69",
+      "diagnostico": {
+        "url": "https://books.toscrape.com/",
+        "status_code": 200,
+        "content_type": "text/html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "rendering": "dinámico o mixto",
+        "has_forms": true,
+        "authentication_detected": false,
+        "captcha_detected": false,
+        "blocked": false,
+        "pagination_detected": true,
+        "load_more_detected": false,
+        "infinite_scroll_suspected": false,
+        "user_interaction_suspected": false,
+        "tables_detected": false,
+        "api_hints": [],
+        "warnings": [
+          "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+        ]
+      },
+      "salidas": [
+        "datasets/multisitio/runs/04_paginacion/records-598fece6-8ed8-4bb2-a6d3-e6cb88969d69.xlsx",
+        "datasets/multisitio/runs/04_paginacion/profiles/books.toscrape.com.json",
+        "datasets/multisitio/runs/04_paginacion/report-598fece6-8ed8-4bb2-a6d3-e6cb88969d69.json"
+      ],
+      "cambios": {
+        "baseline_created": true
+      },
+      "iniciado_utc": "2026-11-20T20:26:25.489423+00:00",
+      "diagnostico_resumen": {
+        "http": 200,
+        "renderizado": "dinámico o mixto",
+        "formularios": true,
+        "autenticacion": false,
+        "captcha": false,
+        "bloqueado": false,
+        "paginacion": true,
+        "cargar_mas": false,
+        "scroll_infinito": false,
+        "interaccion_usuario": false,
+        "pistas_api": []
+      },
+      "mecanismo_detectado": "JS/dinámico, paginación",
+      "proteccion": "Ninguna (sandbox público de práctica)",
+      "viabilidad": "Viable",
+      "observacion": "Sigue la paginación solo dentro del mismo host y con pausa de 2 s."
+    },
+    {
+      "escenario": "05_scroll_infinito",
+      "nombre": "Scroll infinito",
+      "sitio": "quotes.toscrape.com/scroll",
+      "url": "https://quotes.toscrape.com/scroll",
+      "metodo": "selenium",
+      "mecanismo_declarado": "Carga progresiva por scroll infinito (AJAX)",
+      "estrategia": "selenium headless + 2 desplazamientos acotados",
+      "esperado": "extraccion",
+      "config": {
+        "max_pages": 1,
+        "max_records": 30,
+        "delay_seconds": 2.0,
+        "scroll_steps": 2,
+        "load_more_clicks": 0,
+        "item_selector": "div.quote",
+        "campos": [
+          "texto*=span.text",
+          "autor*=small.author",
+          "etiqueta=a.tag"
+        ]
+      },
+      "robots_url": "https://quotes.toscrape.com/robots.txt",
+      "robots_estado": "HTTP 404",
+      "permitido_por_robots": true,
+      "estado": "completed",
+      "registros": 30,
+      "paginas": 1,
+      "advertencias": [
+        "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+      ],
+      "error": "",
+      "execution_id": "6b4762da-cb48-4b98-b06f-c548e9b94843",
+      "diagnostico": {
+        "url": "https://quotes.toscrape.com/scroll",
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8",
+        "title": "Quotes to Scrape",
+        "rendering": "dinámico o mixto",
+        "has_forms": false,
+        "authentication_detected": false,
+        "captcha_detected": false,
+        "blocked": false,
+        "pagination_detected": false,
+        "load_more_detected": false,
+        "infinite_scroll_suspected": false,
+        "user_interaction_suspected": false,
+        "tables_detected": false,
+        "api_hints": [
+          "https://quotes.toscrape.com/api/quotes"
+        ],
+        "warnings": [
+          "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+        ]
+      },
+      "salidas": [
+        "datasets/multisitio/runs/05_scroll_infinito/records-6b4762da-cb48-4b98-b06f-c548e9b94843.xlsx",
+        "datasets/multisitio/runs/05_scroll_infinito/profiles/quotes.toscrape.com.json",
+        "datasets/multisitio/runs/05_scroll_infinito/report-6b4762da-cb48-4b98-b06f-c548e9b94843.json"
+      ],
+      "cambios": {
+        "baseline_created": true
+      },
+      "iniciado_utc": "2026-11-20T20:26:35.349910+00:00",
+      "diagnostico_resumen": {
+        "http": 200,
+        "renderizado": "dinámico o mixto",
+        "formularios": false,
+        "autenticacion": false,
+        "captcha": false,
+        "bloqueado": false,
+        "paginacion": false,
+        "cargar_mas": false,
+        "scroll_infinito": false,
+        "interaccion_usuario": false,
+        "pistas_api": [
+          "https://quotes.toscrape.com/api/quotes"
+        ]
+      },
+      "mecanismo_detectado": "JS/dinámico",
+      "proteccion": "Renderizado en cliente (sin WAF)",
+      "viabilidad": "Viable con navegador",
+      "observacion": "Cada scroll dispara una petición AJAX que añade más citas."
+    },
+    {
+      "escenario": "06_tablas",
+      "nombre": "Tablas HTML",
+      "sitio": "scrapethissite.com/pages/forms/",
+      "url": "https://www.scrapethissite.com/pages/forms/?page_num=1",
+      "metodo": "requests",
+      "mecanismo_declarado": "Tabla HTML con paginación",
+      "estrategia": "requests + filas `tr.team` y paginación `a[aria-label=Next]` (2 páginas)",
+      "esperado": "extraccion",
+      "config": {
+        "max_pages": 2,
+        "max_records": 50,
+        "delay_seconds": 2.0,
+        "scroll_steps": 0,
+        "load_more_clicks": 0,
+        "item_selector": "tr.team",
+        "campos": [
+          "equipo*=td.name",
+          "anio*=td.year",
+          "victorias=td.wins",
+          "derrotas=td.losses",
+          "porcentaje_victorias=td.pct",
+          "goles_favor=td.gf",
+          "goles_contra=td.ga"
+        ]
+      },
+      "robots_url": "https://www.scrapethissite.com/robots.txt",
+      "robots_estado": "HTTP 200",
+      "permitido_por_robots": true,
+      "estado": "completed",
+      "registros": 50,
+      "paginas": 2,
+      "advertencias": [
+        "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+      ],
+      "error": "",
+      "execution_id": "37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea",
+      "diagnostico": {
+        "url": "https://www.scrapethissite.com/pages/forms/?page_num=1",
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8",
+        "title": "Hockey Teams: Forms, Searching and Pagination | Scrape This Site | A public sandbox for learning web scraping",
+        "rendering": "dinámico o mixto",
+        "has_forms": true,
+        "authentication_detected": false,
+        "captcha_detected": false,
+        "blocked": false,
+        "pagination_detected": true,
+        "load_more_detected": false,
+        "infinite_scroll_suspected": false,
+        "user_interaction_suspected": false,
+        "tables_detected": true,
+        "api_hints": [],
+        "warnings": [
+          "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+        ]
+      },
+      "salidas": [
+        "datasets/multisitio/runs/06_tablas/records-37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea.xlsx",
+        "datasets/multisitio/runs/06_tablas/profiles/www.scrapethissite.com.json",
+        "datasets/multisitio/runs/06_tablas/report-37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea.json"
+      ],
+      "cambios": {
+        "baseline_created": true
+      },
+      "iniciado_utc": "2026-11-20T20:26:48.071435+00:00",
+      "diagnostico_resumen": {
+        "http": 200,
+        "renderizado": "dinámico o mixto",
+        "formularios": true,
+        "autenticacion": false,
+        "captcha": false,
+        "bloqueado": false,
+        "paginacion": true,
+        "cargar_mas": false,
+        "scroll_infinito": false,
+        "interaccion_usuario": false,
+        "pistas_api": []
+      },
+      "mecanismo_detectado": "JS/dinámico, paginación",
+      "proteccion": "Ninguna (sandbox público de práctica)",
+      "viabilidad": "Viable",
+      "observacion": "Se extrae por columnas con clases de `td`; el mismo motor, otro selector. Se parte de `?page_num=1` porque el enlace «siguiente» de la URL sin parámetro apunta a la misma página."
+    },
+    {
+      "escenario": "07_bajo_demanda",
+      "nombre": "Contenido bajo demanda (AJAX)",
+      "sitio": "scrapethissite.com/pages/ajax-javascript/",
+      "url": "https://www.scrapethissite.com/pages/ajax-javascript/",
+      "metodo": "selenium",
+      "mecanismo_declarado": "Contenido cargado tras un clic (AJAX)",
+      "estrategia": "selenium + clic acotado en `a.year-link` (carga bajo demanda)",
+      "esperado": "extraccion",
+      "config": {
+        "max_pages": 1,
+        "max_records": 30,
+        "delay_seconds": 2.0,
+        "scroll_steps": 0,
+        "load_more_clicks": 2,
+        "item_selector": "tr.film",
+        "campos": [
+          "pelicula*=td.film-title",
+          "nominaciones=td.film-nominations",
+          "premios=td.film-awards"
+        ]
+      },
+      "robots_url": "https://www.scrapethissite.com/robots.txt",
+      "robots_estado": "HTTP 200",
+      "permitido_por_robots": true,
+      "estado": "completed",
+      "registros": 16,
+      "paginas": 1,
+      "advertencias": [
+        "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+      ],
+      "error": "",
+      "execution_id": "4c20a3d1-0bc8-4a66-8c02-787261c56e17",
+      "diagnostico": {
+        "url": "https://www.scrapethissite.com/pages/ajax-javascript/",
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8",
+        "title": "Oscar Winning Films: AJAX and Javascript | Scrape This Site | A public sandbox for learning web scraping",
+        "rendering": "dinámico o mixto",
+        "has_forms": false,
+        "authentication_detected": false,
+        "captcha_detected": false,
+        "blocked": false,
+        "pagination_detected": false,
+        "load_more_detected": false,
+        "infinite_scroll_suspected": false,
+        "user_interaction_suspected": true,
+        "tables_detected": true,
+        "api_hints": [],
+        "warnings": [
+          "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+        ]
+      },
+      "salidas": [
+        "datasets/multisitio/runs/07_bajo_demanda/records-4c20a3d1-0bc8-4a66-8c02-787261c56e17.xlsx",
+        "datasets/multisitio/runs/07_bajo_demanda/profiles/www.scrapethissite.com.json",
+        "datasets/multisitio/runs/07_bajo_demanda/report-4c20a3d1-0bc8-4a66-8c02-787261c56e17.json"
+      ],
+      "cambios": {
+        "baseline_created": true
+      },
+      "iniciado_utc": "2026-11-20T20:26:53.961342+00:00",
+      "diagnostico_resumen": {
+        "http": 200,
+        "renderizado": "dinámico o mixto",
+        "formularios": false,
+        "autenticacion": false,
+        "captcha": false,
+        "bloqueado": false,
+        "paginacion": false,
+        "cargar_mas": false,
+        "scroll_infinito": false,
+        "interaccion_usuario": true,
+        "pistas_api": []
+      },
+      "mecanismo_detectado": "JS/dinámico, carga bajo demanda",
+      "proteccion": "Renderizado en cliente (sin WAF)",
+      "viabilidad": "Viable con navegador",
+      "observacion": "La tabla está vacía hasta pulsar un año; la página añade una espera artificial de 1,5 s."
+    },
+    {
+      "escenario": "08_autenticacion",
+      "nombre": "Autenticación autorizada",
+      "sitio": "quotes.toscrape.com/login",
+      "url": "https://quotes.toscrape.com/login",
+      "metodo": "selenium",
+      "mecanismo_declarado": "Formulario de inicio de sesión",
+      "estrategia": "selenium: detectar login y detenerse (no se automatiza el acceso)",
+      "esperado": "incidencia",
+      "config": {
+        "max_pages": 1,
+        "max_records": 1,
+        "delay_seconds": 2.0,
+        "scroll_steps": 0,
+        "load_more_clicks": 0,
+        "item_selector": "form",
+        "campos": [
+          "usuario=input#username::name"
+        ]
+      },
+      "robots_url": "https://quotes.toscrape.com/robots.txt",
+      "robots_estado": "HTTP 404",
+      "permitido_por_robots": true,
+      "estado": "failed",
+      "registros": 0,
+      "paginas": 0,
+      "advertencias": [
+        "Se detectó autenticación; usa solo credenciales y permisos legítimos."
+      ],
+      "error": "Se detectó un formulario de autenticación; se detuvo el navegador.",
+      "execution_id": "6ecbc099-cb6f-4f43-82ee-5ec899a47b4a",
+      "diagnostico": {
+        "url": "https://quotes.toscrape.com/login",
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8",
+        "title": "Quotes to Scrape",
+        "rendering": "HTML estático",
+        "has_forms": true,
+        "authentication_detected": true,
+        "captcha_detected": false,
+        "blocked": false,
+        "pagination_detected": false,
+        "load_more_detected": false,
+        "infinite_scroll_suspected": false,
+        "user_interaction_suspected": false,
+        "tables_detected": false,
+        "api_hints": [],
+        "warnings": [
+          "Se detectó autenticación; usa solo credenciales y permisos legítimos."
+        ]
+      },
+      "salidas": [
+        "datasets/multisitio/runs/08_autenticacion/report-6ecbc099-cb6f-4f43-82ee-5ec899a47b4a.json"
+      ],
+      "cambios": {},
+      "iniciado_utc": "2026-11-20T20:27:05.022155+00:00",
+      "diagnostico_resumen": {
+        "http": 200,
+        "renderizado": "HTML estático",
+        "formularios": true,
+        "autenticacion": true,
+        "captcha": false,
+        "bloqueado": false,
+        "paginacion": false,
+        "cargar_mas": false,
+        "scroll_infinito": false,
+        "interaccion_usuario": false,
+        "pistas_api": []
+      },
+      "mecanismo_detectado": "login",
+      "proteccion": "Autenticación (formulario de login)",
+      "viabilidad": "Requiere autorización",
+      "observacion": "La herramienta no envía credenciales; extraer tras el login exige autorización del titular y un mecanismo permitido (p. ej. token/encabezado autorizado)."
+    },
+    {
+      "escenario": "09_captcha",
+      "nombre": "CAPTCHA → incidencia",
+      "sitio": "google.com/recaptcha/api2/demo",
+      "url": "https://www.google.com/recaptcha/api2/demo",
+      "metodo": "requests",
+      "mecanismo_declarado": "CAPTCHA (reCAPTCHA v2)",
+      "estrategia": "requests: detectar CAPTCHA, detener y reportar (no se resuelve)",
+      "esperado": "incidencia",
+      "config": {
+        "max_pages": 1,
+        "max_records": 1,
+        "delay_seconds": 2.0,
+        "scroll_steps": 0,
+        "load_more_clicks": 0,
+        "item_selector": "body",
+        "campos": [
+          "titulo=title"
+        ]
+      },
+      "robots_url": "https://www.google.com/robots.txt",
+      "robots_estado": "HTTP 200",
+      "permitido_por_robots": false,
+      "estado": "omitido_robots",
+      "registros": 0,
+      "paginas": 0,
+      "advertencias": [],
+      "error": "robots.txt no permite esta ruta para el User-Agent de la herramienta.",
+      "execution_id": "",
+      "diagnostico": {},
+      "salidas": [],
+      "diagnostico_resumen": {
+        "http": null,
+        "renderizado": null,
+        "formularios": null,
+        "autenticacion": null,
+        "captcha": null,
+        "bloqueado": null,
+        "paginacion": null,
+        "cargar_mas": null,
+        "scroll_infinito": null,
+        "interaccion_usuario": null,
+        "pistas_api": []
+      },
+      "mecanismo_detectado": "sin diagnóstico",
+      "proteccion": "robots.txt no permite la ruta",
+      "viabilidad": "No viable – robots.txt",
+      "observacion": "Página demo oficial de reCAPTCHA; el robots.txt de Google no permite la ruta, así que la herramienta ni siquiera la solicita (control de cortesía previo al diagnóstico)."
+    },
+    {
+      "escenario": "10_captcha_incidencia",
+      "nombre": "CAPTCHA → incidencia (diagnóstico y reporte)",
+      "sitio": "nopecha.com/demo/recaptcha",
+      "url": "https://nopecha.com/demo/recaptcha",
+      "metodo": "requests",
+      "mecanismo_declarado": "CAPTCHA (reCAPTCHA v2)",
+      "estrategia": "requests: detectar CAPTCHA, detener y reportar (no se resuelve)",
+      "esperado": "incidencia",
+      "config": {
+        "max_pages": 1,
+        "max_records": 1,
+        "delay_seconds": 2.0,
+        "scroll_steps": 0,
+        "load_more_clicks": 0,
+        "item_selector": "body",
+        "campos": [
+          "titulo=title"
+        ]
+      },
+      "robots_url": "https://nopecha.com/robots.txt",
+      "robots_estado": "HTTP 200",
+      "permitido_por_robots": true,
+      "estado": "failed",
+      "registros": 0,
+      "paginas": 0,
+      "advertencias": [
+        "Se detectó un CAPTCHA o challenge; el scraper no intentará resolverlo.",
+        "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+      ],
+      "error": "Se detectó un CAPTCHA o challenge; el scraper no intentará resolverlo.; Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador.",
+      "execution_id": "4b1ce673-9a4c-43b1-894e-21f70a4f844f",
+      "diagnostico": {
+        "url": "https://nopecha.com/demo/recaptcha",
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8",
+        "title": "NopeCHA - reCAPTCHA Demo",
+        "rendering": "dinámico o mixto",
+        "has_forms": false,
+        "authentication_detected": false,
+        "captcha_detected": true,
+        "blocked": true,
+        "pagination_detected": false,
+        "load_more_detected": false,
+        "infinite_scroll_suspected": false,
+        "user_interaction_suspected": true,
+        "tables_detected": false,
+        "api_hints": [],
+        "warnings": [
+          "Se detectó un CAPTCHA o challenge; el scraper no intentará resolverlo.",
+          "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+        ]
+      },
+      "salidas": [
+        "datasets/multisitio/runs/10_captcha_incidencia/report-4b1ce673-9a4c-43b1-894e-21f70a4f844f.json"
+      ],
+      "cambios": {},
+      "iniciado_utc": "2026-11-20T20:27:19.027529+00:00",
+      "diagnostico_resumen": {
+        "http": 200,
+        "renderizado": "dinámico o mixto",
+        "formularios": false,
+        "autenticacion": false,
+        "captcha": true,
+        "bloqueado": true,
+        "paginacion": false,
+        "cargar_mas": false,
+        "scroll_infinito": false,
+        "interaccion_usuario": true,
+        "pistas_api": []
+      },
+      "mecanismo_detectado": "CAPTCHA, JS/dinámico, carga bajo demanda",
+      "proteccion": "CAPTCHA / verificación anti-bot",
+      "viabilidad": "No viable – CAPTCHA",
+      "observacion": "Demo pública de CAPTCHA (robots.txt permite todo); una sola solicitud de diagnóstico, sin intento de resolverlo ni evadirlo."
+    }
+  ]
+}

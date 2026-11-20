@@ -1,0 +1,36 @@
+{
+  "url": "https://www.scrapethissite.com/pages/ajax-javascript/",
+  "method": "selenium",
+  "item_selector": "tr.film",
+  "fields": [
+    {
+      "name": "pelicula",
+      "selector": "td.film-title",
+      "attribute": null,
+      "required": true
+    },
+    {
+      "name": "nominaciones",
+      "selector": "td.film-nominations",
+      "attribute": null,
+      "required": false
+    },
+    {
+      "name": "premios",
+      "selector": "td.film-awards",
+      "attribute": null,
+      "required": false
+    }
+  ],
+  "json_records_path": "",
+  "timeout_seconds": 20,
+  "max_records": 30,
+  "max_pages": 1,
+  "pagination_selector": "",
+  "load_more_selector": "a.year-link",
+  "load_more_clicks": 2,
+  "delay_seconds": 2.0,
+  "scroll_steps": 0,
+  "headless": true,
+  "authorized_api": false
+}

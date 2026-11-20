@@ -38,6 +38,7 @@ class InspectionReport:
         blocked: ``True`` si hay 401/403/429 o CAPTCHA; se debe detener el acceso.
         pagination_detected, load_more_detected, infinite_scroll_suspected,
         user_interaction_suspected: señales de carga bajo demanda.
+        tables_detected: ``True`` si el HTML contiene tablas ``<table>``.
         api_hints: posibles endpoints del mismo host.
         warnings: mensajes legibles para el usuario.
     """
@@ -54,6 +55,7 @@ class InspectionReport:
     load_more_detected: bool = False
     infinite_scroll_suspected: bool = False
     user_interaction_suspected: bool = False
+    tables_detected: bool = False
     api_hints: list[str] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
 
@@ -205,6 +207,7 @@ def diagnose(url: str, status_code: int, content_type: str, body: bytes) -> Insp
         load_more_detected=load_more,
         infinite_scroll_suspected=infinite,
         user_interaction_suspected=interaction,
+        tables_detected=bool(soup.find("table")),
         api_hints=sorted(hints),
     )
     if status_code == 429:

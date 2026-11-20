@@ -1,0 +1,43 @@
+{
+  "execution_id": "37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea",
+  "started_at": "2026-11-20T20:26:48.071435+00:00",
+  "source_url": "https://www.scrapethissite.com/pages/forms/?page_num=1",
+  "method": "requests",
+  "status": "completed",
+  "records_found": 50,
+  "records_saved": 50,
+  "invalid_fields": 0,
+  "pages_visited": 2,
+  "diagnostic": {
+    "url": "https://www.scrapethissite.com/pages/forms/?page_num=1",
+    "status_code": 200,
+    "content_type": "text/html; charset=utf-8",
+    "title": "Hockey Teams: Forms, Searching and Pagination | Scrape This Site | A public sandbox for learning web scraping",
+    "rendering": "dinámico o mixto",
+    "has_forms": true,
+    "authentication_detected": false,
+    "captcha_detected": false,
+    "blocked": false,
+    "pagination_detected": true,
+    "load_more_detected": false,
+    "infinite_scroll_suspected": false,
+    "user_interaction_suspected": false,
+    "tables_detected": true,
+    "api_hints": [],
+    "warnings": [
+      "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+    ]
+  },
+  "output_paths": [
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\06_tablas\\records-37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea.xlsx",
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\06_tablas\\profiles\\www.scrapethissite.com.json",
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\06_tablas\\report-37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea.json"
+  ],
+  "changes": {
+    "baseline_created": true
+  },
+  "warnings": [
+    "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+  ],
+  "error": ""
+}

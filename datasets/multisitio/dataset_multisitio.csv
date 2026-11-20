@@ -1,0 +1,818 @@
+﻿escenario,registro_id,url_origen,metodo,execution_id,campo,valor
+01_html_estatico,1,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,texto,The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.
+01_html_estatico,2,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,texto,"It is our choices, Harry, that show what we truly are, far more than our abilities."
+01_html_estatico,3,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,texto,There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.
+01_html_estatico,4,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,texto,"The person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid."
+01_html_estatico,5,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,texto,"Imperfection is beauty, madness is genius and it's better to be absolutely ridiculous than absolutely boring."
+01_html_estatico,6,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,texto,Try not to become a man of success. Rather become a man of value.
+01_html_estatico,7,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,texto,It is better to be hated for what you are than to be loved for what you are not.
+01_html_estatico,8,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,texto,"I have not failed. I've just found 10,000 ways that won't work."
+01_html_estatico,9,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,texto,A woman is like a tea bag; you never know how strong it is until it's in hot water.
+01_html_estatico,10,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,texto,"A day without sunshine is like, you know, night."
+01_html_estatico,1,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,autor,Albert Einstein
+01_html_estatico,2,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,autor,J.K. Rowling
+01_html_estatico,3,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,autor,Albert Einstein
+01_html_estatico,4,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,autor,Jane Austen
+01_html_estatico,5,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,autor,Marilyn Monroe
+01_html_estatico,6,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,autor,Albert Einstein
+01_html_estatico,7,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,autor,André Gide
+01_html_estatico,8,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,autor,Thomas A. Edison
+01_html_estatico,9,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,autor,Eleanor Roosevelt
+01_html_estatico,10,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,autor,Steve Martin
+01_html_estatico,1,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,etiqueta,change
+01_html_estatico,2,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,etiqueta,abilities
+01_html_estatico,3,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,etiqueta,inspirational
+01_html_estatico,4,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,etiqueta,aliteracy
+01_html_estatico,5,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,etiqueta,be-yourself
+01_html_estatico,6,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,etiqueta,adulthood
+01_html_estatico,7,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,etiqueta,life
+01_html_estatico,8,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,etiqueta,edison
+01_html_estatico,9,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,etiqueta,misattributed-eleanor-roosevelt
+01_html_estatico,10,https://quotes.toscrape.com/,requests,6b91a59d-5050-469b-9a76-99af9748cf1d,etiqueta,humor
+02_javascript,1,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,texto,The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.
+02_javascript,2,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,texto,"It is our choices, Harry, that show what we truly are, far more than our abilities."
+02_javascript,3,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,texto,There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.
+02_javascript,4,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,texto,"The person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid."
+02_javascript,5,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,texto,"Imperfection is beauty, madness is genius and it's better to be absolutely ridiculous than absolutely boring."
+02_javascript,6,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,texto,Try not to become a man of success. Rather become a man of value.
+02_javascript,7,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,texto,It is better to be hated for what you are than to be loved for what you are not.
+02_javascript,8,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,texto,"I have not failed. I've just found 10,000 ways that won't work."
+02_javascript,9,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,texto,A woman is like a tea bag; you never know how strong it is until it's in hot water.
+02_javascript,10,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,texto,"A day without sunshine is like, you know, night."
+02_javascript,1,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,autor,Albert Einstein
+02_javascript,2,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,autor,J.K. Rowling
+02_javascript,3,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,autor,Albert Einstein
+02_javascript,4,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,autor,Jane Austen
+02_javascript,5,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,autor,Marilyn Monroe
+02_javascript,6,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,autor,Albert Einstein
+02_javascript,7,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,autor,André Gide
+02_javascript,8,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,autor,Thomas A. Edison
+02_javascript,9,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,autor,Eleanor Roosevelt
+02_javascript,10,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,autor,Steve Martin
+02_javascript,1,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,etiqueta,change
+02_javascript,2,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,etiqueta,abilities
+02_javascript,3,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,etiqueta,inspirational
+02_javascript,4,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,etiqueta,aliteracy
+02_javascript,5,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,etiqueta,be-yourself
+02_javascript,6,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,etiqueta,adulthood
+02_javascript,7,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,etiqueta,life
+02_javascript,8,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,etiqueta,edison
+02_javascript,9,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,etiqueta,misattributed-eleanor-roosevelt
+02_javascript,10,https://quotes.toscrape.com/js/,selenium,36d56956-c78b-4b8d-ba79-b4a4752273d8,etiqueta,humor
+03_api_json,1,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,texto,The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.
+03_api_json,2,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,texto,"It is our choices, Harry, that show what we truly are, far more than our abilities."
+03_api_json,3,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,texto,There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.
+03_api_json,4,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,texto,"The person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid."
+03_api_json,5,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,texto,"Imperfection is beauty, madness is genius and it's better to be absolutely ridiculous than absolutely boring."
+03_api_json,6,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,texto,Try not to become a man of success. Rather become a man of value.
+03_api_json,7,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,texto,It is better to be hated for what you are than to be loved for what you are not.
+03_api_json,8,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,texto,"I have not failed. I've just found 10,000 ways that won't work."
+03_api_json,9,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,texto,A woman is like a tea bag; you never know how strong it is until it's in hot water.
+03_api_json,10,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,texto,"A day without sunshine is like, you know, night."
+03_api_json,1,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor,Albert Einstein
+03_api_json,2,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor,J.K. Rowling
+03_api_json,3,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor,Albert Einstein
+03_api_json,4,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor,Jane Austen
+03_api_json,5,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor,Marilyn Monroe
+03_api_json,6,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor,Albert Einstein
+03_api_json,7,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor,André Gide
+03_api_json,8,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor,Thomas A. Edison
+03_api_json,9,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor,Eleanor Roosevelt
+03_api_json,10,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor,Steve Martin
+03_api_json,1,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor_slug,Albert-Einstein
+03_api_json,2,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor_slug,J-K-Rowling
+03_api_json,3,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor_slug,Albert-Einstein
+03_api_json,4,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor_slug,Jane-Austen
+03_api_json,5,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor_slug,Marilyn-Monroe
+03_api_json,6,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor_slug,Albert-Einstein
+03_api_json,7,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor_slug,Andre-Gide
+03_api_json,8,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor_slug,Thomas-A-Edison
+03_api_json,9,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor_slug,Eleanor-Roosevelt
+03_api_json,10,https://quotes.toscrape.com/api/quotes?page=1,api,7eff57df-0985-4da3-b27a-5a3750a1059f,autor_slug,Steve-Martin
+04_paginacion,1,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,A Light in the Attic
+04_paginacion,2,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Tipping the Velvet
+04_paginacion,3,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Soumission
+04_paginacion,4,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Sharp Objects
+04_paginacion,5,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Sapiens: A Brief History of Humankind
+04_paginacion,6,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,The Requiem Red
+04_paginacion,7,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,The Dirty Little Secrets of Getting Your Dream Job
+04_paginacion,8,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,"The Coming Woman: A Novel Based on the Life of the Infamous Feminist, Victoria Woodhull"
+04_paginacion,9,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,The Boys in the Boat: Nine Americans and Their Epic Quest for Gold at the 1936 Berlin Olympics
+04_paginacion,10,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,The Black Maria
+04_paginacion,11,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,"Starving Hearts (Triangular Trade Trilogy, #1)"
+04_paginacion,12,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Shakespeare's Sonnets
+04_paginacion,13,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Set Me Free
+04_paginacion,14,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Scott Pilgrim's Precious Little Life (Scott Pilgrim #1)
+04_paginacion,15,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Rip it Up and Start Again
+04_paginacion,16,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,"Our Band Could Be Your Life: Scenes from the American Indie Underground, 1981-1991"
+04_paginacion,17,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Olio
+04_paginacion,18,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Mesaerion: The Best Science Fiction Stories 1800-1849
+04_paginacion,19,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Libertarianism for Beginners
+04_paginacion,20,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,It's Only the Himalayas
+04_paginacion,21,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,In Her Wake
+04_paginacion,22,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,How Music Works
+04_paginacion,23,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,"Foolproof Preserving: A Guide to Small Batch Jams, Jellies, Pickles, Condiments, and More: A Foolproof Guide to Making Small Batch Jams, Jellies, Pickles, Condiments, and More"
+04_paginacion,24,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Chase Me (Paris Nights #2)
+04_paginacion,25,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Black Dust
+04_paginacion,26,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Birdsong: A Story in Pictures
+04_paginacion,27,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,America's Cradle of Quarterbacks: Western Pennsylvania's Football Factory from Johnny Unitas to Joe Montana
+04_paginacion,28,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Aladdin and His Wonderful Lamp
+04_paginacion,29,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Worlds Elsewhere: Journeys Around Shakespeare’s Globe
+04_paginacion,30,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Wall and Piece
+04_paginacion,31,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,The Four Agreements: A Practical Guide to Personal Freedom
+04_paginacion,32,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,The Five Love Languages: How to Express Heartfelt Commitment to Your Mate
+04_paginacion,33,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,The Elephant Tree
+04_paginacion,34,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,The Bear and the Piano
+04_paginacion,35,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Sophie's World
+04_paginacion,36,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Penny Maybe
+04_paginacion,37,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Maude (1883-1993):She Grew Up with the country
+04_paginacion,38,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,"In a Dark, Dark Wood"
+04_paginacion,39,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Behind Closed Doors
+04_paginacion,40,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,You can't bury them all: Poems
+04_paginacion,41,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Slow States of Collapse: Poems
+04_paginacion,42,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Reasons to Stay Alive
+04_paginacion,43,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Private Paris (Private #10)
+04_paginacion,44,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,#HigherSelfie: Wake Up Your Life. Free Your Soul. Find Your Tribe.
+04_paginacion,45,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Without Borders (Wanderlove #1)
+04_paginacion,46,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,When We Collided
+04_paginacion,47,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,"We Love You, Charlie Freeman"
+04_paginacion,48,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Untitled Collection: Sabbath Poems 2014
+04_paginacion,49,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,"Unseen City: The Majesty of Pigeons, the Discreet Charm of Snails & Other Wonders of the Urban Wilderness"
+04_paginacion,50,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Unicorn Tracks
+04_paginacion,51,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,"Unbound: How Eight Technologies Made Us Human, Transformed Society, and Brought Our World to the Brink"
+04_paginacion,52,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Tsubasa: WoRLD CHRoNiCLE 2 (Tsubasa WoRLD CHRoNiCLE #2)
+04_paginacion,53,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Throwing Rocks at the Google Bus: How Growth Became the Enemy of Prosperity
+04_paginacion,54,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,This One Summer
+04_paginacion,55,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,Thirst
+04_paginacion,56,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,The Torch Is Passed: A Harding Family Story
+04_paginacion,57,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,The Secret of Dreadwillow Carse
+04_paginacion,58,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,"The Pioneer Woman Cooks: Dinnertime: Comfort Classics, Freezer Food, 16-Minute Meals, and Other Delicious Ways to Solve Supper!"
+04_paginacion,59,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,The Past Never Ends
+04_paginacion,60,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,titulo,The Natural History of Us (The Fine Art of Pretending #2)
+04_paginacion,1,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,51.77
+04_paginacion,2,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,53.74
+04_paginacion,3,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,50.1
+04_paginacion,4,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,47.82
+04_paginacion,5,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,54.23
+04_paginacion,6,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,22.65
+04_paginacion,7,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,33.34
+04_paginacion,8,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,17.93
+04_paginacion,9,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,22.6
+04_paginacion,10,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,52.15
+04_paginacion,11,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,13.99
+04_paginacion,12,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,20.66
+04_paginacion,13,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,17.46
+04_paginacion,14,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,52.29
+04_paginacion,15,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,35.02
+04_paginacion,16,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,57.25
+04_paginacion,17,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,23.88
+04_paginacion,18,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,37.59
+04_paginacion,19,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,51.33
+04_paginacion,20,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,45.17
+04_paginacion,21,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,12.84
+04_paginacion,22,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,37.32
+04_paginacion,23,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,30.52
+04_paginacion,24,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,25.27
+04_paginacion,25,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,34.53
+04_paginacion,26,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,54.64
+04_paginacion,27,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,22.5
+04_paginacion,28,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,53.13
+04_paginacion,29,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,40.3
+04_paginacion,30,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,44.18
+04_paginacion,31,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,17.66
+04_paginacion,32,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,31.05
+04_paginacion,33,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,23.82
+04_paginacion,34,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,36.89
+04_paginacion,35,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,15.94
+04_paginacion,36,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,33.29
+04_paginacion,37,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,18.02
+04_paginacion,38,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,19.63
+04_paginacion,39,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,52.22
+04_paginacion,40,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,33.63
+04_paginacion,41,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,57.31
+04_paginacion,42,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,26.41
+04_paginacion,43,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,47.61
+04_paginacion,44,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,23.11
+04_paginacion,45,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,45.07
+04_paginacion,46,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,31.77
+04_paginacion,47,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,50.27
+04_paginacion,48,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,14.27
+04_paginacion,49,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,44.18
+04_paginacion,50,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,18.78
+04_paginacion,51,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,25.52
+04_paginacion,52,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,16.28
+04_paginacion,53,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,31.12
+04_paginacion,54,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,19.49
+04_paginacion,55,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,17.27
+04_paginacion,56,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,19.09
+04_paginacion,57,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,56.13
+04_paginacion,58,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,56.41
+04_paginacion,59,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,56.5
+04_paginacion,60,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,precio_gbp,45.22
+04_paginacion,1,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,2,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,3,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,4,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,5,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,6,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,7,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,8,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,9,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,10,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,11,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,12,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,13,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,14,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,15,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,16,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,17,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,18,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,19,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,20,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,21,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,22,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,23,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,24,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,25,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,26,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,27,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,28,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,29,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,30,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,31,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,32,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,33,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,34,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,35,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,36,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,37,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,38,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,39,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,40,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,41,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,42,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,43,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,44,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,45,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,46,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,47,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,48,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,49,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,50,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,51,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,52,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,53,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,54,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,55,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,56,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,57,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,58,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,59,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,60,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,disponibilidad,True
+04_paginacion,1,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,3
+04_paginacion,2,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,1
+04_paginacion,3,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,1
+04_paginacion,4,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,4
+04_paginacion,5,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,5
+04_paginacion,6,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,1
+04_paginacion,7,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,4
+04_paginacion,8,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,3
+04_paginacion,9,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,4
+04_paginacion,10,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,1
+04_paginacion,11,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,2
+04_paginacion,12,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,4
+04_paginacion,13,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,5
+04_paginacion,14,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,5
+04_paginacion,15,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,5
+04_paginacion,16,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,3
+04_paginacion,17,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,1
+04_paginacion,18,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,1
+04_paginacion,19,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,2
+04_paginacion,20,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,2
+04_paginacion,21,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,1
+04_paginacion,22,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,2
+04_paginacion,23,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,3
+04_paginacion,24,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,5
+04_paginacion,25,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,5
+04_paginacion,26,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,3
+04_paginacion,27,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,3
+04_paginacion,28,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,3
+04_paginacion,29,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,5
+04_paginacion,30,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,4
+04_paginacion,31,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,5
+04_paginacion,32,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,3
+04_paginacion,33,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,5
+04_paginacion,34,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,1
+04_paginacion,35,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,5
+04_paginacion,36,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,3
+04_paginacion,37,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,2
+04_paginacion,38,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,1
+04_paginacion,39,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,4
+04_paginacion,40,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,2
+04_paginacion,41,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,3
+04_paginacion,42,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,2
+04_paginacion,43,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,5
+04_paginacion,44,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,5
+04_paginacion,45,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,2
+04_paginacion,46,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,1
+04_paginacion,47,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,5
+04_paginacion,48,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,4
+04_paginacion,49,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,4
+04_paginacion,50,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,3
+04_paginacion,51,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,1
+04_paginacion,52,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,1
+04_paginacion,53,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,3
+04_paginacion,54,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,4
+04_paginacion,55,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,5
+04_paginacion,56,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,1
+04_paginacion,57,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,1
+04_paginacion,58,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,1
+04_paginacion,59,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,4
+04_paginacion,60,https://books.toscrape.com/,requests,598fece6-8ed8-4bb2-a6d3-e6cb88969d69,rating,3
+05_scroll_infinito,1,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.
+05_scroll_infinito,2,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"It is our choices, Harry, that show what we truly are, far more than our abilities."
+05_scroll_infinito,3,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.
+05_scroll_infinito,4,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"The person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid."
+05_scroll_infinito,5,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"Imperfection is beauty, madness is genius and it's better to be absolutely ridiculous than absolutely boring."
+05_scroll_infinito,6,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,Try not to become a man of success. Rather become a man of value.
+05_scroll_infinito,7,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,It is better to be hated for what you are than to be loved for what you are not.
+05_scroll_infinito,8,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"I have not failed. I've just found 10,000 ways that won't work."
+05_scroll_infinito,9,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,A woman is like a tea bag; you never know how strong it is until it's in hot water.
+05_scroll_infinito,10,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"A day without sunshine is like, you know, night."
+05_scroll_infinito,11,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"This life is what you make it. No matter what, you're going to mess up sometimes, it's a universal truth. But the good part is you get to decide how you're going to mess it up. Girls will be your friends - they'll act like it anyway. But just remember, some come, some go. The ones that stay with you through everything - they're your true best friends. Don't let go of them. Also remember, sisters make the best friends in the world. As for lovers, well, they'll come and go too. And baby, I hate to say it, most of them - actually pretty much all of them are going to break your heart, but you can't give up because if you give up, you'll never find your soulmate. You'll never find that half who makes you whole and that goes for everything. Just because you fail once, doesn't mean you're gonna fail at everything. Keep trying, hold on, and always, always, always believe in yourself, because if you don't, then who will, sweetie? So keep your head high, keep your chin up, and most importantly, keep smiling, because life's a beautiful thing and there's so much to smile about."
+05_scroll_infinito,12,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"It takes a great deal of bravery to stand up to our enemies, but just as much to stand up to our friends."
+05_scroll_infinito,13,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"If you can't explain it to a six year old, you don't understand it yourself."
+05_scroll_infinito,14,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"You may not be her first, her last, or her only. She loved before she may love again. But if she loves you now, what else matters? She's not perfect—you aren't either, and the two of you may never be perfect together but if she can make you laugh, cause you to think twice, and admit to being human and making mistakes, hold onto her and give her the most you can. She may not be thinking about you every second of the day, but she will give you a part of her that she knows you can break—her heart. So don't hurt her, don't change her, don't analyze and don't expect more than she can give. Smile when she makes you happy, let her know when she makes you mad, and miss her when she's not there."
+05_scroll_infinito,15,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"I like nonsense, it wakes up the brain cells. Fantasy is a necessary ingredient in living."
+05_scroll_infinito,16,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"I may not have gone where I intended to go, but I think I have ended up where I needed to be."
+05_scroll_infinito,17,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"The opposite of love is not hate, it's indifference. The opposite of art is not ugliness, it's indifference. The opposite of faith is not heresy, it's indifference. And the opposite of life is not death, it's indifference."
+05_scroll_infinito,18,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"It is not a lack of love, but a lack of friendship that makes unhappy marriages."
+05_scroll_infinito,19,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"Good friends, good books, and a sleepy conscience: this is the ideal life."
+05_scroll_infinito,20,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,Life is what happens to us while we are making other plans.
+05_scroll_infinito,21,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"I love you without knowing how, or when, or from where. I love you simply, without problems or pride: I love you in this way because I do not know any other way of loving but this, in which there is no I or you, so intimate that your hand upon my chest is my hand, so intimate that when I fall asleep your eyes close."
+05_scroll_infinito,22,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,For every minute you are angry you lose sixty seconds of happiness.
+05_scroll_infinito,23,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"If you judge people, you have no time to love them."
+05_scroll_infinito,24,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,Anyone who thinks sitting in church can make you a Christian must also think that sitting in a garage can make you a car.
+05_scroll_infinito,25,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,Beauty is in the eye of the beholder and it may be necessary from time to time to give a stupid or misinformed beholder a black eye.
+05_scroll_infinito,26,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"Today you are You, that is truer than true. There is no one alive who is Youer than You."
+05_scroll_infinito,27,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"If you want your children to be intelligent, read them fairy tales. If you want them to be more intelligent, read them more fairy tales."
+05_scroll_infinito,28,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"It is impossible to live without failing at something, unless you live so cautiously that you might as well not have lived at all - in which case, you fail by default."
+05_scroll_infinito,29,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,Logic will get you from A to Z; imagination will get you everywhere.
+05_scroll_infinito,30,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,texto,"One good thing about music, when it hits you, you feel no pain."
+05_scroll_infinito,1,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Albert Einstein
+05_scroll_infinito,2,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,J.K. Rowling
+05_scroll_infinito,3,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Albert Einstein
+05_scroll_infinito,4,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Jane Austen
+05_scroll_infinito,5,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Marilyn Monroe
+05_scroll_infinito,6,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Albert Einstein
+05_scroll_infinito,7,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,André Gide
+05_scroll_infinito,8,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Thomas A. Edison
+05_scroll_infinito,9,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Eleanor Roosevelt
+05_scroll_infinito,10,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Steve Martin
+05_scroll_infinito,11,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Marilyn Monroe
+05_scroll_infinito,12,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,J.K. Rowling
+05_scroll_infinito,13,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Albert Einstein
+05_scroll_infinito,14,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Bob Marley
+05_scroll_infinito,15,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Dr. Seuss
+05_scroll_infinito,16,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Douglas Adams
+05_scroll_infinito,17,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Elie Wiesel
+05_scroll_infinito,18,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Friedrich Nietzsche
+05_scroll_infinito,19,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Mark Twain
+05_scroll_infinito,20,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Allen Saunders
+05_scroll_infinito,21,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Pablo Neruda
+05_scroll_infinito,22,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Ralph Waldo Emerson
+05_scroll_infinito,23,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Mother Teresa
+05_scroll_infinito,24,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Garrison Keillor
+05_scroll_infinito,25,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Jim Henson
+05_scroll_infinito,26,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Dr. Seuss
+05_scroll_infinito,27,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Albert Einstein
+05_scroll_infinito,28,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,J.K. Rowling
+05_scroll_infinito,29,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Albert Einstein
+05_scroll_infinito,30,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,autor,Bob Marley
+05_scroll_infinito,1,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,change
+05_scroll_infinito,2,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,abilities
+05_scroll_infinito,3,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,inspirational
+05_scroll_infinito,4,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,aliteracy
+05_scroll_infinito,5,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,be-yourself
+05_scroll_infinito,6,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,adulthood
+05_scroll_infinito,7,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,life
+05_scroll_infinito,8,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,edison
+05_scroll_infinito,9,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,misattributed-eleanor-roosevelt
+05_scroll_infinito,10,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,humor
+05_scroll_infinito,11,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,friends
+05_scroll_infinito,12,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,courage
+05_scroll_infinito,13,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,simplicity
+05_scroll_infinito,14,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,love
+05_scroll_infinito,15,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,fantasy
+05_scroll_infinito,16,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,life
+05_scroll_infinito,17,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,activism
+05_scroll_infinito,18,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,friendship
+05_scroll_infinito,19,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,books
+05_scroll_infinito,20,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,fate
+05_scroll_infinito,21,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,love
+05_scroll_infinito,22,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,happiness
+05_scroll_infinito,23,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,attributed-no-source
+05_scroll_infinito,24,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,humor
+05_scroll_infinito,25,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,humor
+05_scroll_infinito,26,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,comedy
+05_scroll_infinito,27,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,children
+05_scroll_infinito,29,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,imagination
+05_scroll_infinito,30,https://quotes.toscrape.com/scroll,selenium,6b4762da-cb48-4b98-b06f-c548e9b94843,etiqueta,music
+06_tablas,1,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Boston Bruins
+06_tablas,2,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Buffalo Sabres
+06_tablas,3,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Calgary Flames
+06_tablas,4,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Chicago Blackhawks
+06_tablas,5,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Detroit Red Wings
+06_tablas,6,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Edmonton Oilers
+06_tablas,7,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Hartford Whalers
+06_tablas,8,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Los Angeles Kings
+06_tablas,9,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Minnesota North Stars
+06_tablas,10,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Montreal Canadiens
+06_tablas,11,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,New Jersey Devils
+06_tablas,12,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,New York Islanders
+06_tablas,13,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,New York Rangers
+06_tablas,14,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Philadelphia Flyers
+06_tablas,15,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Pittsburgh Penguins
+06_tablas,16,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Quebec Nordiques
+06_tablas,17,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,St. Louis Blues
+06_tablas,18,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Toronto Maple Leafs
+06_tablas,19,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Vancouver Canucks
+06_tablas,20,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Washington Capitals
+06_tablas,21,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Winnipeg Jets
+06_tablas,22,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Boston Bruins
+06_tablas,23,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Buffalo Sabres
+06_tablas,24,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Calgary Flames
+06_tablas,25,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Chicago Blackhawks
+06_tablas,26,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Detroit Red Wings
+06_tablas,27,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Edmonton Oilers
+06_tablas,28,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Hartford Whalers
+06_tablas,29,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Los Angeles Kings
+06_tablas,30,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Minnesota North Stars
+06_tablas,31,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Montreal Canadiens
+06_tablas,32,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,New Jersey Devils
+06_tablas,33,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,New York Islanders
+06_tablas,34,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,New York Rangers
+06_tablas,35,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Philadelphia Flyers
+06_tablas,36,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Pittsburgh Penguins
+06_tablas,37,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Quebec Nordiques
+06_tablas,38,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,San Jose Sharks
+06_tablas,39,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,St. Louis Blues
+06_tablas,40,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Toronto Maple Leafs
+06_tablas,41,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Vancouver Canucks
+06_tablas,42,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Washington Capitals
+06_tablas,43,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Winnipeg Jets
+06_tablas,44,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Boston Bruins
+06_tablas,45,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Buffalo Sabres
+06_tablas,46,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Calgary Flames
+06_tablas,47,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Chicago Blackhawks
+06_tablas,48,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Detroit Red Wings
+06_tablas,49,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Edmonton Oilers
+06_tablas,50,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,equipo,Hartford Whalers
+06_tablas,1,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,2,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,3,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,4,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,5,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,6,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,7,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,8,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,9,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,10,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,11,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,12,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,13,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,14,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,15,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,16,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,17,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,18,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,19,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,20,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,21,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1990
+06_tablas,22,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,23,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,24,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,25,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,26,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,27,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,28,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,29,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,30,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,31,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,32,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,33,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,34,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,35,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,36,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,37,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,38,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,39,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,40,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,41,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,42,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,43,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1991
+06_tablas,44,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1992
+06_tablas,45,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1992
+06_tablas,46,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1992
+06_tablas,47,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1992
+06_tablas,48,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1992
+06_tablas,49,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1992
+06_tablas,50,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,anio,1992
+06_tablas,1,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,44
+06_tablas,2,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,31
+06_tablas,3,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,46
+06_tablas,4,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,49
+06_tablas,5,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,34
+06_tablas,6,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,37
+06_tablas,7,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,31
+06_tablas,8,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,46
+06_tablas,9,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,27
+06_tablas,10,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,39
+06_tablas,11,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,32
+06_tablas,12,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,25
+06_tablas,13,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,36
+06_tablas,14,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,33
+06_tablas,15,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,41
+06_tablas,16,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,16
+06_tablas,17,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,47
+06_tablas,18,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,23
+06_tablas,19,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,28
+06_tablas,20,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,37
+06_tablas,21,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,26
+06_tablas,22,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,36
+06_tablas,23,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,31
+06_tablas,24,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,31
+06_tablas,25,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,36
+06_tablas,26,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,43
+06_tablas,27,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,36
+06_tablas,28,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,26
+06_tablas,29,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,35
+06_tablas,30,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,32
+06_tablas,31,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,41
+06_tablas,32,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,38
+06_tablas,33,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,34
+06_tablas,34,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,50
+06_tablas,35,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,32
+06_tablas,36,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,39
+06_tablas,37,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,20
+06_tablas,38,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,17
+06_tablas,39,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,36
+06_tablas,40,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,30
+06_tablas,41,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,42
+06_tablas,42,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,45
+06_tablas,43,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,33
+06_tablas,44,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,51
+06_tablas,45,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,38
+06_tablas,46,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,43
+06_tablas,47,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,47
+06_tablas,48,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,47
+06_tablas,49,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,26
+06_tablas,50,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,victorias,26
+06_tablas,1,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,24
+06_tablas,2,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,30
+06_tablas,3,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,26
+06_tablas,4,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,23
+06_tablas,5,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,38
+06_tablas,6,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,37
+06_tablas,7,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,38
+06_tablas,8,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,24
+06_tablas,9,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,39
+06_tablas,10,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,30
+06_tablas,11,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,33
+06_tablas,12,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,45
+06_tablas,13,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,31
+06_tablas,14,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,37
+06_tablas,15,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,33
+06_tablas,16,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,50
+06_tablas,17,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,22
+06_tablas,18,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,46
+06_tablas,19,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,43
+06_tablas,20,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,36
+06_tablas,21,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,43
+06_tablas,22,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,32
+06_tablas,23,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,37
+06_tablas,24,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,37
+06_tablas,25,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,29
+06_tablas,26,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,25
+06_tablas,27,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,34
+06_tablas,28,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,41
+06_tablas,29,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,31
+06_tablas,30,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,42
+06_tablas,31,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,28
+06_tablas,32,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,31
+06_tablas,33,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,35
+06_tablas,34,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,25
+06_tablas,35,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,37
+06_tablas,36,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,32
+06_tablas,37,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,48
+06_tablas,38,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,58
+06_tablas,39,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,33
+06_tablas,40,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,43
+06_tablas,41,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,26
+06_tablas,42,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,27
+06_tablas,43,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,32
+06_tablas,44,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,26
+06_tablas,45,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,36
+06_tablas,46,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,30
+06_tablas,47,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,25
+06_tablas,48,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,28
+06_tablas,49,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,50
+06_tablas,50,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,derrotas,52
+06_tablas,1,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.55
+06_tablas,2,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.388
+06_tablas,3,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.575
+06_tablas,4,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.613
+06_tablas,5,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.425
+06_tablas,6,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.463
+06_tablas,7,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.388
+06_tablas,8,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.575
+06_tablas,9,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.338
+06_tablas,10,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.487
+06_tablas,11,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.4
+06_tablas,12,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.312
+06_tablas,13,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.45
+06_tablas,14,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.412
+06_tablas,15,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.512
+06_tablas,16,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.2
+06_tablas,17,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.588
+06_tablas,18,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.287
+06_tablas,19,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.35
+06_tablas,20,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.463
+06_tablas,21,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.325
+06_tablas,22,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.45
+06_tablas,23,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.388
+06_tablas,24,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.388
+06_tablas,25,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.45
+06_tablas,26,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.537
+06_tablas,27,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.45
+06_tablas,28,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.325
+06_tablas,29,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.438
+06_tablas,30,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.4
+06_tablas,31,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.512
+06_tablas,32,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.475
+06_tablas,33,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.425
+06_tablas,34,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.625
+06_tablas,35,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.4
+06_tablas,36,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.487
+06_tablas,37,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.25
+06_tablas,38,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.212
+06_tablas,39,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.45
+06_tablas,40,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.375
+06_tablas,41,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.525
+06_tablas,42,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.562
+06_tablas,43,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.412
+06_tablas,44,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.607
+06_tablas,45,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.452
+06_tablas,46,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.512
+06_tablas,47,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.56
+06_tablas,48,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.56
+06_tablas,49,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.31
+06_tablas,50,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,porcentaje_victorias,0.31
+06_tablas,1,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,299
+06_tablas,2,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,292
+06_tablas,3,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,344
+06_tablas,4,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,284
+06_tablas,5,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,273
+06_tablas,6,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,272
+06_tablas,7,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,238
+06_tablas,8,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,340
+06_tablas,9,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,256
+06_tablas,10,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,273
+06_tablas,11,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,272
+06_tablas,12,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,223
+06_tablas,13,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,297
+06_tablas,14,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,252
+06_tablas,15,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,342
+06_tablas,16,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,236
+06_tablas,17,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,310
+06_tablas,18,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,241
+06_tablas,19,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,243
+06_tablas,20,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,258
+06_tablas,21,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,260
+06_tablas,22,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,270
+06_tablas,23,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,289
+06_tablas,24,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,296
+06_tablas,25,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,257
+06_tablas,26,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,320
+06_tablas,27,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,295
+06_tablas,28,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,247
+06_tablas,29,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,287
+06_tablas,30,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,246
+06_tablas,31,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,267
+06_tablas,32,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,289
+06_tablas,33,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,291
+06_tablas,34,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,321
+06_tablas,35,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,252
+06_tablas,36,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,343
+06_tablas,37,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,255
+06_tablas,38,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,219
+06_tablas,39,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,279
+06_tablas,40,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,234
+06_tablas,41,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,285
+06_tablas,42,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,330
+06_tablas,43,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,251
+06_tablas,44,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,332
+06_tablas,45,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,335
+06_tablas,46,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,322
+06_tablas,47,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,279
+06_tablas,48,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,369
+06_tablas,49,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,242
+06_tablas,50,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_favor,284
+06_tablas,1,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,264
+06_tablas,2,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,278
+06_tablas,3,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,263
+06_tablas,4,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,211
+06_tablas,5,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,298
+06_tablas,6,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,272
+06_tablas,7,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,276
+06_tablas,8,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,254
+06_tablas,9,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,266
+06_tablas,10,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,249
+06_tablas,11,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,264
+06_tablas,12,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,290
+06_tablas,13,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,265
+06_tablas,14,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,267
+06_tablas,15,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,305
+06_tablas,16,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,354
+06_tablas,17,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,250
+06_tablas,18,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,318
+06_tablas,19,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,315
+06_tablas,20,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,258
+06_tablas,21,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,288
+06_tablas,22,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,275
+06_tablas,23,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,299
+06_tablas,24,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,305
+06_tablas,25,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,236
+06_tablas,26,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,256
+06_tablas,27,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,297
+06_tablas,28,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,283
+06_tablas,29,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,296
+06_tablas,30,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,278
+06_tablas,31,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,207
+06_tablas,32,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,259
+06_tablas,33,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,299
+06_tablas,34,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,246
+06_tablas,35,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,273
+06_tablas,36,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,308
+06_tablas,37,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,318
+06_tablas,38,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,359
+06_tablas,39,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,266
+06_tablas,40,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,294
+06_tablas,41,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,250
+06_tablas,42,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,275
+06_tablas,43,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,244
+06_tablas,44,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,268
+06_tablas,45,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,297
+06_tablas,46,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,282
+06_tablas,47,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,230
+06_tablas,48,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,280
+06_tablas,49,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,337
+06_tablas,50,https://www.scrapethissite.com/pages/forms/?page_num=1,requests,37f1f84c-88a2-4c61-8ec4-e59d3f1b02ea,goles_contra,369
+07_bajo_demanda,1,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,pelicula,Spotlight
+07_bajo_demanda,2,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,pelicula,Mad Max: Fury Road
+07_bajo_demanda,3,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,pelicula,The Revenant
+07_bajo_demanda,4,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,pelicula,Bridge of Spies
+07_bajo_demanda,5,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,pelicula,The Big Short
+07_bajo_demanda,6,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,pelicula,The Danish Girl
+07_bajo_demanda,7,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,pelicula,Room
+07_bajo_demanda,8,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,pelicula,Ex Machina
+07_bajo_demanda,9,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,pelicula,The Hateful Eight
+07_bajo_demanda,10,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,pelicula,Inside Out
+07_bajo_demanda,11,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,pelicula,Amy
+07_bajo_demanda,12,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,pelicula,Bear Story
+07_bajo_demanda,13,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,pelicula,A Girl in the River: The Price of Forgiveness
+07_bajo_demanda,14,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,pelicula,Son of Saul
+07_bajo_demanda,15,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,pelicula,Spectre
+07_bajo_demanda,16,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,pelicula,Stutterer
+07_bajo_demanda,1,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,nominaciones,6
+07_bajo_demanda,2,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,nominaciones,10
+07_bajo_demanda,3,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,nominaciones,12
+07_bajo_demanda,4,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,nominaciones,6
+07_bajo_demanda,5,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,nominaciones,5
+07_bajo_demanda,6,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,nominaciones,4
+07_bajo_demanda,7,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,nominaciones,4
+07_bajo_demanda,8,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,nominaciones,2
+07_bajo_demanda,9,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,nominaciones,2
+07_bajo_demanda,10,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,nominaciones,2
+07_bajo_demanda,11,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,nominaciones,1
+07_bajo_demanda,12,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,nominaciones,1
+07_bajo_demanda,13,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,nominaciones,1
+07_bajo_demanda,14,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,nominaciones,1
+07_bajo_demanda,15,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,nominaciones,1
+07_bajo_demanda,16,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,nominaciones,1
+07_bajo_demanda,1,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,premios,2
+07_bajo_demanda,2,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,premios,6
+07_bajo_demanda,3,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,premios,3
+07_bajo_demanda,4,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,premios,1
+07_bajo_demanda,5,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,premios,1
+07_bajo_demanda,6,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,premios,1
+07_bajo_demanda,7,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,premios,1
+07_bajo_demanda,8,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,premios,1
+07_bajo_demanda,9,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,premios,1
+07_bajo_demanda,10,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,premios,1
+07_bajo_demanda,11,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,premios,1
+07_bajo_demanda,12,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,premios,1
+07_bajo_demanda,13,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,premios,1
+07_bajo_demanda,14,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,premios,1
+07_bajo_demanda,15,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,premios,1
+07_bajo_demanda,16,https://www.scrapethissite.com/pages/ajax-javascript/,selenium,4c20a3d1-0bc8-4a66-8c02-787261c56e17,premios,1

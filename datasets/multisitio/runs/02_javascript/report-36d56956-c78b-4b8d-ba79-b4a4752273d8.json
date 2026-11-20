@@ -1,0 +1,43 @@
+{
+  "execution_id": "36d56956-c78b-4b8d-ba79-b4a4752273d8",
+  "started_at": "2026-11-20T20:26:11.316045+00:00",
+  "source_url": "https://quotes.toscrape.com/js/",
+  "method": "selenium",
+  "status": "completed",
+  "records_found": 10,
+  "records_saved": 10,
+  "invalid_fields": 0,
+  "pages_visited": 1,
+  "diagnostic": {
+    "url": "https://quotes.toscrape.com/js/",
+    "status_code": 200,
+    "content_type": "text/html; charset=utf-8",
+    "title": "Quotes to Scrape",
+    "rendering": "dinámico o mixto",
+    "has_forms": false,
+    "authentication_detected": false,
+    "captcha_detected": false,
+    "blocked": false,
+    "pagination_detected": true,
+    "load_more_detected": false,
+    "infinite_scroll_suspected": false,
+    "user_interaction_suspected": false,
+    "tables_detected": false,
+    "api_hints": [],
+    "warnings": [
+      "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+    ]
+  },
+  "output_paths": [
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\02_javascript\\records-36d56956-c78b-4b8d-ba79-b4a4752273d8.xlsx",
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\02_javascript\\profiles\\quotes.toscrape.com.json",
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\02_javascript\\report-36d56956-c78b-4b8d-ba79-b4a4752273d8.json"
+  ],
+  "changes": {
+    "baseline_created": true
+  },
+  "warnings": [
+    "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+  ],
+  "error": ""
+}

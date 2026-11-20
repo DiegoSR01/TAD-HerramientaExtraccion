@@ -112,12 +112,7 @@ def _save_sqlite(
                 field TEXT NOT NULL, value_json TEXT, validation_status TEXT NOT NULL,
                 transformations_json TEXT NOT NULL)"""
         )
-        connection.execute(
-            """CREATE TABLE IF NOT EXISTS run_snapshots (
-                host TEXT PRIMARY KEY, execution_id TEXT NOT NULL, field_names TEXT NOT NULL,
-                endpoints TEXT NOT NULL, record_count INTEGER NOT NULL,
-                captured_at TEXT NOT NULL)"""
-        )
+        _ensure_snapshot_table(connection)
         connection.executemany(
             "INSERT OR REPLACE INTO records VALUES (?, ?, ?, ?, ?, ?)",
             [
@@ -144,14 +139,74 @@ def _save_sqlite(
         )
 
 
+_SNAPSHOT_TABLE = """CREATE TABLE IF NOT EXISTS run_snapshots (
+    host TEXT PRIMARY KEY, execution_id TEXT NOT NULL, field_names TEXT NOT NULL,
+    endpoints TEXT NOT NULL, record_count INTEGER NOT NULL, captured_at TEXT NOT NULL,
+    selectors TEXT, json_structure TEXT)"""
+
+
+def _ensure_snapshot_table(connection: sqlite3.Connection) -> None:
+    """Crea ``run_snapshots`` y migra tablas antiguas añadiendo columnas nuevas.
+
+    Si la tabla existía sin ``selectors`` o ``json_structure`` se agregan con
+    ``ALTER TABLE`` (valores NULL en las filas previas), sin perder datos.
+    """
+    connection.execute(_SNAPSHOT_TABLE)
+    existing = {row[1] for row in connection.execute("PRAGMA table_info(run_snapshots)")}
+    for column in ("selectors", "json_structure"):
+        if column not in existing:
+            connection.execute(f"ALTER TABLE run_snapshots ADD COLUMN {column} TEXT")
+
+
+def json_structure_signature(value: Any, max_paths: int = 500) -> list[str]:
+    """Calcula la firma estructural de un valor JSON como rutas de claves.
+
+    Los diccionarios anidados usan rutas con puntos (``a.b``) y las listas se
+    marcan con ``[]`` (``items[].id``). Si ``value`` es una lista de registros
+    se analizan todos y se unen sus rutas.
+
+    Args:
+        value: documento JSON ya interpretado, o lista de registros.
+        max_paths: tope de rutas para acotar el tamaño de la firma.
+
+    Returns:
+        Lista ordenada de rutas únicas.
+    """
+    paths: set[str] = set()
+
+    def walk(node: Any, prefix: str) -> None:
+        if len(paths) >= max_paths:
+            return
+        if isinstance(node, dict):
+            for key, child in node.items():
+                path = f"{prefix}.{key}" if prefix else str(key)
+                paths.add(path)
+                walk(child, path)
+        elif isinstance(node, list):
+            for child in node:
+                walk(child, f"{prefix}[]")
+
+    walk(value, "")
+    return sorted(paths)
+
+
 def compare_and_store_snapshot(
     database: Path,
     execution_id: str,
     records: list[dict],
     endpoints: list[str],
     source_url: str,
+    *,
+    selectors: dict[str, str] | None = None,
+    json_structure: list[str] | None = None,
 ) -> dict:
     """Compara la ejecución actual con la anterior del mismo host y guarda la nueva.
+
+    Sin ``selectors`` ni ``json_structure`` devuelve el conjunto original de
+    cambios (compatibilidad). Si se pasa alguno, el resultado incluye además
+    ``new_columns``, ``selector_changes``, ``json_structure_added/removed``,
+    ``record_count_previous``, ``record_count_percent`` y ``changes_detected``.
+    La tabla SQLite se migra automáticamente si es de una versión anterior.
 
     Args:
         database: archivo SQLite de historial.
@@ -159,42 +214,72 @@ def compare_and_store_snapshot(
         records: registros guardados.
         endpoints: endpoints sugeridos por la inspección.
         source_url: URL de origen (su host identifica el historial).
+        selectors: selectores CSS/rutas por campo (y ``_item_selector``).
+        json_structure: firma de rutas JSON (ver ``json_structure_signature``).
 
     Returns:
-        Diccionario de cambios (campos añadidos/faltantes, endpoints nuevos o
-        eliminados, variación de registros) o ``{"baseline_created": True}``.
+        Diccionario de cambios o ``{"baseline_created": True}`` si no hay
+        ejecución previa.
     """
     host = urlparse(source_url).netloc.lower()
     fields = sorted({str(name) for record in records for name in record})
     captured_at = datetime.now(timezone.utc).isoformat()
+    extended = selectors is not None or json_structure is not None
     with sqlite3.connect(database) as connection:
-        connection.execute(
-            """CREATE TABLE IF NOT EXISTS run_snapshots (
-                host TEXT PRIMARY KEY, execution_id TEXT NOT NULL, field_names TEXT NOT NULL,
-                endpoints TEXT NOT NULL, record_count INTEGER NOT NULL, captured_at TEXT NOT NULL)"""
-        )
+        _ensure_snapshot_table(connection)
         previous = connection.execute(
-            "SELECT field_names, endpoints, record_count FROM run_snapshots WHERE host = ?", (host,)
+            "SELECT field_names, endpoints, record_count, selectors, json_structure "
+            "FROM run_snapshots WHERE host = ?",
+            (host,),
         ).fetchone()
         current_endpoints = sorted(set(endpoints))
         changes: dict[str, Any] = {}
         if previous:
-            old_fields, old_endpoints, old_count = previous
+            old_fields, old_endpoints, old_count, old_selectors, old_structure = previous
             old_fields_set = set(json.loads(old_fields))
             old_endpoints_set = set(json.loads(old_endpoints))
+            added = sorted(set(fields) - old_fields_set)
             changes = {
-                "added_fields": sorted(set(fields) - old_fields_set),
+                "added_fields": added,
                 "missing_fields": sorted(old_fields_set - set(fields)),
                 "new_endpoints": sorted(set(current_endpoints) - old_endpoints_set),
                 "removed_endpoints": sorted(old_endpoints_set - set(current_endpoints)),
                 "record_count_delta": len(records) - old_count,
             }
+            if extended:
+                changes["new_columns"] = added
+                changes["record_count_previous"] = old_count
+                changes["record_count_percent"] = (
+                    round((len(records) - old_count) * 100 / old_count, 2) if old_count else None
+                )
+                changes["selector_changes"] = {}
+                if selectors is not None and old_selectors:
+                    before = json.loads(old_selectors)
+                    for name in sorted(set(before) | set(selectors)):
+                        if before.get(name) != selectors.get(name):
+                            changes["selector_changes"][name] = {
+                                "before": before.get(name), "after": selectors.get(name),
+                            }
+                changes["json_structure_added"] = []
+                changes["json_structure_removed"] = []
+                if json_structure is not None and old_structure:
+                    before_paths = set(json.loads(old_structure))
+                    changes["json_structure_added"] = sorted(set(json_structure) - before_paths)
+                    changes["json_structure_removed"] = sorted(before_paths - set(json_structure))
+                changes["changes_detected"] = any(
+                    bool(changes[key]) for key in (
+                        "added_fields", "missing_fields", "new_endpoints", "removed_endpoints",
+                        "record_count_delta", "selector_changes",
+                        "json_structure_added", "json_structure_removed",
+                    )
+                )
         else:
             changes = {"baseline_created": True}
         connection.execute(
             """INSERT OR REPLACE INTO run_snapshots
-                (host, execution_id, field_names, endpoints, record_count, captured_at)
-                VALUES (?, ?, ?, ?, ?, ?)""",
+                (host, execution_id, field_names, endpoints, record_count, captured_at,
+                 selectors, json_structure)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
             (
                 host,
                 execution_id,
@@ -202,6 +287,8 @@ def compare_and_store_snapshot(
                 json.dumps(current_endpoints),
                 len(records),
                 captured_at,
+                json.dumps(selectors, ensure_ascii=False) if selectors is not None else None,
+                json.dumps(sorted(json_structure)) if json_structure is not None else None,
             ),
         )
     return changes

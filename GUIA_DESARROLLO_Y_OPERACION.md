@@ -57,7 +57,7 @@ También se puede usar:
 python -m smart_scraper
 ```
 
-La ventana permite inspeccionar, configurar y ejecutar tareas. El directorio inicial de resultados es `output` dentro de la carpeta actual; puede cambiarse desde el botón **Carpeta…**.
+La ventana permite inspeccionar, configurar y ejecutar tareas, y muestra un panel de progreso con los 9 pasos del flujo, la barra con tiempo transcurrido, el escenario detectado con la estrategia recomendada (INCIDENCIA en naranja si se bloquea) y un log con marcas de tiempo. El directorio inicial de resultados es `output` dentro de la carpeta actual; puede cambiarse desde el botón **Carpeta…**.
 
 ## 4. Flujo de uso
 
@@ -190,9 +190,9 @@ La lógica se separa en siete módulos para que los métodos de adquisición, la
 | 6. Almacenamiento | `smart_scraper/storage.py` | Exportaciones a archivo, SQLite y conectores opcionales |
 | 7. Monitoreo | `smart_scraper/monitoring.py` | Reporte JSON y log |
 
-`smart_scraper/app.py` coordina la tarea de extremo a extremo y `smart_scraper/gui.py` implementa la interfaz Tkinter. `smart_scraper/__main__.py` permite iniciar la GUI como módulo.
+`smart_scraper/estrategia.py` (`classify_scenario`) traduce el diagnóstico a un escenario y una estrategia recomendada (requests, selenium, api o detener). `smart_scraper/app.py` coordina la tarea de extremo a extremo (`run_job(..., progress=cb)` y `diagnose_config(config, progress=)` notifican los 9 pasos) y `smart_scraper/gui.py` implementa la interfaz Tkinter. `smart_scraper/__main__.py` permite iniciar la GUI como módulo.
 
-La comparación entre ejecuciones detecta cambios en nombres de campos, endpoints visibles en el HTML y volumen de registros. No compara los valores de todos los campos entre snapshots ni inspecciona el tráfico real de red. La primera ejecución para un host establece una línea base.
+La comparación entre ejecuciones detecta cambios en nombres de campos y columnas nuevas, selectores, estructura JSON (rutas añadidas/eliminadas), endpoints visibles en el HTML y volumen de registros (diferencia y porcentaje). La tabla de snapshots se migra sola si viene de una versión anterior. No compara los valores de todos los campos entre snapshots ni inspecciona el tráfico real de red. La primera ejecución para un host establece una línea base.
 
 ## 7. Cómo se desarrolló
 
@@ -220,7 +220,7 @@ Ejecuta la suite:
 python -m pytest -q
 ```
 
-Las pruebas levantan un servidor HTTP local, cubriendo HTML estático/dinámico, API JSON/GraphQL, tabla, paginación, botón de carga, autenticación autorizada de prueba, 401/403, CAPTCHA, linaje y exportaciones. Selenium y Playwright se prueban con adaptadores simulados; no es una prueba de navegador real. La última validación del proyecto completó **14 pruebas**, además de compilación de módulos e importación de la GUI.
+Las pruebas levantan un servidor HTTP local, cubriendo HTML estático/dinámico, API JSON/GraphQL, tabla, paginación, botón de carga, autenticación autorizada de prueba, 401/403, CAPTCHA, linaje y exportaciones. Selenium y Playwright se prueban con adaptadores simulados; no es una prueba de navegador real. La última validación del proyecto completó **32 pruebas** (14 de integración y 18 de progreso, clasificador de escenarios y detección de cambios), además de compilación de módulos e importación de la GUI.
 
 Para comprobar sintaxis manualmente:
 
@@ -240,6 +240,10 @@ Se hizo una inspección individual de bajo impacto (sin paginación, sin scroll 
 - La URL de DOF produjo un error TLS por discrepancia del hostname; no se desactivó la validación del certificado.
 
 Estos resultados son observaciones puntuales, pueden cambiar y no certifican viabilidad legal. Antes de nuevas consultas, revisa términos, robots, permisos, privacidad y límites aplicables. La herramienta se detiene ante CAPTCHA/challenge, HTTP 401/403/429; no sortea bloqueos.
+
+### Evidencia multisitio
+
+`python scripts/evidencia_extraccion.py` (requiere Chrome, ~2 min, unas 30 peticiones públicas con pausa de 2 s y consulta previa de `robots.txt`) ejecuta 10 escenarios declarativos con el mismo motor y escribe `datasets/multisitio/`, `docs/evidencias/extraccion_<fecha>.json` y `docs/evidencias/MATRIZ_ESCENARIOS.md`. El informe Word se actualiza con `python scripts/generar_informe_docx.py`.
 
 ## 10. Solución de problemas
 

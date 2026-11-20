@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import time
 from dataclasses import dataclass, field
-from typing import Any
+from typing import Any, Callable
 from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
@@ -146,7 +146,11 @@ def _check_browser_page(url: str, html: str) -> None:
         raise AccessRestrictionError("Se detectó un formulario de autenticación; se detuvo el navegador.")
 
 
-def scrape(config: ScrapeConfig, initial_page: InspectedPage | None = None) -> AcquisitionResult:
+def scrape(
+    config: ScrapeConfig,
+    initial_page: InspectedPage | None = None,
+    on_page: Callable[[int, str, int], None] | None = None,
+) -> AcquisitionResult:
     """Extrae hasta el límite configurado y solo sigue paginación del mismo host.
 
     Recorre como máximo ``max_pages`` páginas, evita URL repetidas, espera
@@ -156,6 +160,8 @@ def scrape(config: ScrapeConfig, initial_page: InspectedPage | None = None) -> A
     Args:
         config: configuración (se valida al inicio).
         initial_page: inspección ya hecha de la primera página, si existe.
+        on_page: callback opcional ``on_page(numero_pagina, url, registros_acumulados)``
+            invocado tras procesar cada página (para mostrar progreso).
 
     Returns:
         ``AcquisitionResult`` con registros, URL final y páginas visitadas.
@@ -187,6 +193,8 @@ def scrape(config: ScrapeConfig, initial_page: InspectedPage | None = None) -> A
         remaining = config.max_records - len(result.records)
         result.records.extend(records[:remaining])
         result.pages_visited += 1
+        if on_page:
+            on_page(result.pages_visited, url, len(result.records))
         if len(result.records) >= config.max_records or not config.pagination_selector:
             break
         html = body.decode("utf-8", errors="replace") if isinstance(body, bytes) else body

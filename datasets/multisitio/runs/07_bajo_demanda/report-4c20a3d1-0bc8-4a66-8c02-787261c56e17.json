@@ -1,0 +1,43 @@
+{
+  "execution_id": "4c20a3d1-0bc8-4a66-8c02-787261c56e17",
+  "started_at": "2026-11-20T20:26:53.961342+00:00",
+  "source_url": "https://www.scrapethissite.com/pages/ajax-javascript/",
+  "method": "selenium",
+  "status": "completed",
+  "records_found": 16,
+  "records_saved": 16,
+  "invalid_fields": 0,
+  "pages_visited": 1,
+  "diagnostic": {
+    "url": "https://www.scrapethissite.com/pages/ajax-javascript/",
+    "status_code": 200,
+    "content_type": "text/html; charset=utf-8",
+    "title": "Oscar Winning Films: AJAX and Javascript | Scrape This Site | A public sandbox for learning web scraping",
+    "rendering": "dinámico o mixto",
+    "has_forms": false,
+    "authentication_detected": false,
+    "captcha_detected": false,
+    "blocked": false,
+    "pagination_detected": false,
+    "load_more_detected": false,
+    "infinite_scroll_suspected": false,
+    "user_interaction_suspected": true,
+    "tables_detected": true,
+    "api_hints": [],
+    "warnings": [
+      "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+    ]
+  },
+  "output_paths": [
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\07_bajo_demanda\\records-4c20a3d1-0bc8-4a66-8c02-787261c56e17.xlsx",
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\07_bajo_demanda\\profiles\\www.scrapethissite.com.json",
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\07_bajo_demanda\\report-4c20a3d1-0bc8-4a66-8c02-787261c56e17.json"
+  ],
+  "changes": {
+    "baseline_created": true
+  },
+  "warnings": [
+    "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+  ],
+  "error": ""
+}

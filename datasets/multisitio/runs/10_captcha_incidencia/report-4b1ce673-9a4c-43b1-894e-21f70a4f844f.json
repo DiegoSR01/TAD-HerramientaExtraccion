@@ -1,0 +1,41 @@
+{
+  "execution_id": "4b1ce673-9a4c-43b1-894e-21f70a4f844f",
+  "started_at": "2026-11-20T20:27:19.027529+00:00",
+  "source_url": "https://nopecha.com/demo/recaptcha",
+  "method": "requests",
+  "status": "failed",
+  "records_found": 0,
+  "records_saved": 0,
+  "invalid_fields": 0,
+  "pages_visited": 0,
+  "diagnostic": {
+    "url": "https://nopecha.com/demo/recaptcha",
+    "status_code": 200,
+    "content_type": "text/html; charset=utf-8",
+    "title": "NopeCHA - reCAPTCHA Demo",
+    "rendering": "dinámico o mixto",
+    "has_forms": false,
+    "authentication_detected": false,
+    "captcha_detected": true,
+    "blocked": true,
+    "pagination_detected": false,
+    "load_more_detected": false,
+    "infinite_scroll_suspected": false,
+    "user_interaction_suspected": true,
+    "tables_detected": false,
+    "api_hints": [],
+    "warnings": [
+      "Se detectó un CAPTCHA o challenge; el scraper no intentará resolverlo.",
+      "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+    ]
+  },
+  "output_paths": [
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\10_captcha_incidencia\\report-4b1ce673-9a4c-43b1-894e-21f70a4f844f.json"
+  ],
+  "changes": {},
+  "warnings": [
+    "Se detectó un CAPTCHA o challenge; el scraper no intentará resolverlo.",
+    "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+  ],
+  "error": "Se detectó un CAPTCHA o challenge; el scraper no intentará resolverlo.; Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+}

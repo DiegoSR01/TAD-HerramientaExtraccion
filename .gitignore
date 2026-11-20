@@ -16,3 +16,6 @@ video/_demo_tiempos.json
 video/_*.png
 video/demo_arquitectura*.mp4
 video/preview/
+
+video/_avance_*
+video/demo_output_avance/

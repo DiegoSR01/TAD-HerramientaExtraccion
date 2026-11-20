@@ -1,5 +1,7 @@
 # Dataset procesado: books.toscrape.com
 
+> Dataset consolidado multisitio (10 escenarios, 5 sitios, 186 registros en 7 extracciones y 3 incidencias): ver [multisitio/](multisitio/README.md). Este archivo describe el dataset de books.toscrape.com.
+
 ## Fuente y método
 - **Fuente:** https://books.toscrape.com/ (sandbox público creado para practicar scraping).
 - **Fecha de extracción:** 2026-11-09.

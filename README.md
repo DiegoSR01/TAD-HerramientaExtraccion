@@ -28,13 +28,15 @@ También se puede instalar con `pip install -r requirements.txt` y abrir la inte
 3. Para API JSON elige `api`, confirma que tienes autorización y define opcionalmente una ruta como `items` o `data.results`. Los campos usan rutas separadas por puntos (`product.name`).
 4. Ajusta el límite, la pausa y, si aplica, la paginación, los desplazamientos o clics limitados en un botón de carga que hayas identificado. Elige el formato y pulsa **Extraer y guardar**.
 
-El programa exporta datos, linaje por campo, perfiles del sitio sin encabezados secretos, logs y un informe JSON. Las ejecuciones sucesivas comparan campos, endpoints detectables y volumen de registros. Los perfiles se guardan en la carpeta `profiles` dentro del destino.
+Mientras corre, un **panel de progreso** muestra el flujo de 9 pasos (ingreso de URL, diagnóstico, presentación de resultados, selección de datos, configuración, ejecución del motor, limpieza y validación, almacenamiento y reporte final), una barra con tiempo transcurrido, el **escenario detectado y la estrategia recomendada** (requests, selenium, api o detener; en naranja como INCIDENCIA cuando se bloquea) y un log con marcas de tiempo.
+
+El programa exporta datos, linaje por campo, perfiles del sitio sin encabezados secretos, logs y un informe JSON. Las ejecuciones sucesivas comparan campos y columnas nuevas, selectores, estructura JSON, endpoints detectables y volumen de registros (diferencia y porcentaje). Los perfiles se guardan en la carpeta `profiles` dentro del destino.
 
 ### Formatos
 
 CSV, Excel (`.xlsx`), JSON y SQLite están disponibles localmente. PostgreSQL requiere `pip install ".[postgres]"` y `SCRAPER_POSTGRES_DSN`; MongoDB requiere `pip install ".[mongodb]"` y `SCRAPER_MONGODB_URI`. No guardes esas cadenas en el código ni en perfiles.
 
-## Arquitectura: siete módulos
+## Arquitectura: siete módulos y un módulo de apoyo
 
 | Módulo | Archivo | Responsabilidad |
 |---|---|---|
@@ -46,7 +48,9 @@ CSV, Excel (`.xlsx`), JSON y SQLite están disponibles localmente. PostgreSQL re
 | 6. Almacenamiento | `smart_scraper/storage.py` | CSV, Excel, JSON, SQLite y conectores opcionales |
 | 7. Monitoreo | `smart_scraper/monitoring.py` | Logs y reportes de ejecución |
 
-`smart_scraper/app.py` coordina los módulos y `smart_scraper/gui.py` implementa la interfaz Tkinter.
+| Apoyo | `smart_scraper/estrategia.py` | Clasifica el escenario detectado (`classify_scenario`) y recomienda requests, selenium, api o detener |
+
+`smart_scraper/app.py` coordina los módulos (`run_job(..., progress=cb)` y `diagnose_config(config, progress=)` informan el avance) y `smart_scraper/gui.py` implementa la interfaz Tkinter con el panel de progreso.
 
 ## Seguridad, límites y uso responsable
 
@@ -59,10 +63,18 @@ CSV, Excel (`.xlsx`), JSON y SQLite están disponibles localmente. PostgreSQL re
 ## Pruebas
 
 ```powershell
-pytest
+python -m pytest -q
 ```
 
-Las pruebas usan un servidor HTTP local con sitios simulados; no envían solicitudes a páginas públicas. El informe en [docs/INFORME_TECNICO.md](docs/INFORME_TECNICO.md) distingue esa evidencia de una evaluación legal o de pruebas en cinco dominios externos.
+La suite tiene **32 pruebas** (14 de integración con un servidor HTTP local de sitios simulados y 18 del panel de progreso, el clasificador de escenarios y la detección de cambios); no envían solicitudes a páginas públicas. El informe en [docs/INFORME_TECNICO.md](docs/INFORME_TECNICO.md) distingue esa evidencia de la evaluación legal y de la evidencia multisitio real.
+
+## Evidencia multisitio
+
+`python scripts/evidencia_extraccion.py` ejecuta **10 escenarios declarativos con un único motor** (`run_job`) sobre **5 sitios** y **9 mecanismos** (HTML estático, JavaScript, API, paginación, scroll infinito, bajo demanda, tablas, autenticación y CAPTCHA): 7 extracciones completadas (**186 registros**) y 3 incidencias detectadas sin evadirlas (login, ruta no permitida por `robots.txt`, CAPTCHA). Requiere Chrome y hace unas 30 peticiones públicas con pausa de 2 s.
+
+- Matriz de escenarios: [docs/evidencias/MATRIZ_ESCENARIOS.md](docs/evidencias/MATRIZ_ESCENARIOS.md) (datos crudos: `docs/evidencias/extraccion_2026-11-20.json`).
+- Dataset consolidado (SQLite, CSV y Excel): [datasets/multisitio/](datasets/multisitio/README.md).
+- Video: `video/demo_avance.mp4` (GUI con panel de progreso en distintos escenarios); `video/demo_en_vivo.mp4` es la versión anterior.
 
 ## Dataset de ejemplo
 

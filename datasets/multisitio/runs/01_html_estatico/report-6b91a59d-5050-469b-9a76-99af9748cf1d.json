@@ -1,0 +1,39 @@
+{
+  "execution_id": "6b91a59d-5050-469b-9a76-99af9748cf1d",
+  "started_at": "2026-11-20T20:26:07.440223+00:00",
+  "source_url": "https://quotes.toscrape.com/",
+  "method": "requests",
+  "status": "completed",
+  "records_found": 10,
+  "records_saved": 10,
+  "invalid_fields": 0,
+  "pages_visited": 1,
+  "diagnostic": {
+    "url": "https://quotes.toscrape.com/",
+    "status_code": 200,
+    "content_type": "text/html; charset=utf-8",
+    "title": "Quotes to Scrape",
+    "rendering": "HTML estático",
+    "has_forms": false,
+    "authentication_detected": false,
+    "captcha_detected": false,
+    "blocked": false,
+    "pagination_detected": true,
+    "load_more_detected": false,
+    "infinite_scroll_suspected": false,
+    "user_interaction_suspected": false,
+    "tables_detected": false,
+    "api_hints": [],
+    "warnings": []
+  },
+  "output_paths": [
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\01_html_estatico\\records-6b91a59d-5050-469b-9a76-99af9748cf1d.xlsx",
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\01_html_estatico\\profiles\\quotes.toscrape.com.json",
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\01_html_estatico\\report-6b91a59d-5050-469b-9a76-99af9748cf1d.json"
+  ],
+  "changes": {
+    "baseline_created": true
+  },
+  "warnings": [],
+  "error": ""
+}

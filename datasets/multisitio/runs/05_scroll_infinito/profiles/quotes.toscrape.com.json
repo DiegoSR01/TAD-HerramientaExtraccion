@@ -1,0 +1,36 @@
+{
+  "url": "https://quotes.toscrape.com/scroll",
+  "method": "selenium",
+  "item_selector": "div.quote",
+  "fields": [
+    {
+      "name": "texto",
+      "selector": "span.text",
+      "attribute": null,
+      "required": true
+    },
+    {
+      "name": "autor",
+      "selector": "small.author",
+      "attribute": null,
+      "required": true
+    },
+    {
+      "name": "etiqueta",
+      "selector": "a.tag",
+      "attribute": null,
+      "required": false
+    }
+  ],
+  "json_records_path": "",
+  "timeout_seconds": 20,
+  "max_records": 30,
+  "max_pages": 1,
+  "pagination_selector": "",
+  "load_more_selector": "",
+  "load_more_clicks": 0,
+  "delay_seconds": 2.0,
+  "scroll_steps": 2,
+  "headless": true,
+  "authorized_api": false
+}

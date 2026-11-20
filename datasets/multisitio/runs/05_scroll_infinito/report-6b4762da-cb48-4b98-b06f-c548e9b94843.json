@@ -1,0 +1,45 @@
+{
+  "execution_id": "6b4762da-cb48-4b98-b06f-c548e9b94843",
+  "started_at": "2026-11-20T20:26:35.349910+00:00",
+  "source_url": "https://quotes.toscrape.com/scroll",
+  "method": "selenium",
+  "status": "completed",
+  "records_found": 30,
+  "records_saved": 30,
+  "invalid_fields": 0,
+  "pages_visited": 1,
+  "diagnostic": {
+    "url": "https://quotes.toscrape.com/scroll",
+    "status_code": 200,
+    "content_type": "text/html; charset=utf-8",
+    "title": "Quotes to Scrape",
+    "rendering": "dinámico o mixto",
+    "has_forms": false,
+    "authentication_detected": false,
+    "captcha_detected": false,
+    "blocked": false,
+    "pagination_detected": false,
+    "load_more_detected": false,
+    "infinite_scroll_suspected": false,
+    "user_interaction_suspected": false,
+    "tables_detected": false,
+    "api_hints": [
+      "https://quotes.toscrape.com/api/quotes"
+    ],
+    "warnings": [
+      "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+    ]
+  },
+  "output_paths": [
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\05_scroll_infinito\\records-6b4762da-cb48-4b98-b06f-c548e9b94843.xlsx",
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\05_scroll_infinito\\profiles\\quotes.toscrape.com.json",
+    "C:\\DEV\\TAD-HerramientaExtraccion\\datasets\\multisitio\\runs\\05_scroll_infinito\\report-6b4762da-cb48-4b98-b06f-c548e9b94843.json"
+  ],
+  "changes": {
+    "baseline_created": true
+  },
+  "warnings": [
+    "Las señales de JavaScript son heurísticas; no se inspeccionó el tráfico del navegador."
+  ],
+  "error": ""
+}

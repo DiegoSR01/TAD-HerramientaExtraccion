@@ -8,6 +8,10 @@ resultados y el progreso se muestran de vuelta en el hilo de Tkinter con
 de avance, tiempo transcurrido, escenario detectado y un registro de eventos
 con marcas de tiempo. Los encabezados autorizados se mantienen solo en
 memoria (campo enmascarado).
+
+Ante un CAPTCHA (Selenium/Playwright) el hilo del scraper deja una solicitud en
+``CanalIntervencion``; la interfaz la consulta cada 200 ms con ``root.after`` y
+muestra un aviso modal. El hilo del scraper nunca toca widgets.
 """
 
 from __future__ import annotations
@@ -23,6 +27,7 @@ from tkinter import filedialog, messagebox, ttk
 from .app import STEP_TITLES, RunFailure, diagnose_config, load_profile_for_url, run_job
 from .config import AcquisitionMethod, ScrapeConfig, parse_field_rules
 from .inspector import InspectedPage
+from .intervencion import CanalIntervencion, Decision, SolicitudCaptcha
 
 # Estado de cada paso -> (icono, color)
 STATUS_STYLE = {
@@ -64,8 +69,12 @@ class ScraperWindow:
         self._started_at = 0.0
         self._timer_running = False
         self._step_states = ["pending"] * len(STEP_TITLES)
+        # Canal con el hilo del scraper para los avisos de CAPTCHA: el hilo
+        # deja solicitudes en una cola y la interfaz las consulta con root.after.
+        self.canal_captcha = CanalIntervencion()
         self._configure_style()
         self._build()
+        self._poll_captcha()
 
     # ------------------------------------------------------------------ estilo
     def _configure_style(self) -> None:
@@ -187,7 +196,11 @@ class ScraperWindow:
         ttk.Label(settings, text="Pausa (s)").pack(side="left")
         self.delay = ttk.Spinbox(settings, from_=1, to=30, increment=0.5, width=5)
         self.delay.set("1.5")
-        self.delay.pack(side="left", padx=4)
+        self.delay.pack(side="left", padx=(4, 12))
+        ttk.Label(settings, text="Espera CAPTCHA (s)").pack(side="left")
+        self.captcha_timeout = ttk.Spinbox(settings, from_=10, to=3600, increment=30, width=6)
+        self.captcha_timeout.set("300")
+        self.captcha_timeout.pack(side="left", padx=4)
 
         # --- Seguridad y salida
         security = ttk.LabelFrame(parent, text=" 4. Acceso autorizado y salida ", padding=10)
@@ -405,6 +418,7 @@ class ScraperWindow:
             delay_seconds=float(self.delay.get()),
             scroll_steps=int(self.scroll_steps.get()),
             headless=self.headless.get(),
+            captcha_timeout_seconds=int(self.captcha_timeout.get()),
             authorized_api=self.authorized_api.get(),
             headers=headers,
         )
@@ -457,6 +471,7 @@ class ScraperWindow:
                 outcome = run_job(
                     config, self.output_directory, self.format_name.get(), cached,
                     progress=self._progress_callback,
+                    canal_captcha=self.canal_captcha,
                 )
                 display = json.dumps(outcome.report.to_dict(), indent=2, ensure_ascii=False)
                 self.root.after(0, self._append, display)
@@ -501,9 +516,76 @@ class ScraperWindow:
             self.load_more_selector.delete(0, "end")
             self.load_more_selector.insert(0, config.load_more_selector)
             self.load_more_clicks.set(str(config.load_more_clicks))
+            self.captcha_timeout.set(str(config.captcha_timeout_seconds))
             self._show("Perfil cargado. Las credenciales y la autorización API deben ingresarse de nuevo.")
         except Exception as exc:
             messagebox.showerror("Perfil", str(exc))
+
+    # ------------------------------------------------------- CAPTCHA (intervención)
+    def _poll_captcha(self) -> None:
+        """Revisa cada 200 ms si el hilo del scraper pidió intervención (hilo de Tkinter)."""
+        solicitud = self.canal_captcha.siguiente()
+        if solicitud is not None:
+            self._show_captcha_dialog(solicitud)
+        self.root.after(200, self._poll_captcha)
+
+    def _show_captcha_dialog(self, solicitud: SolicitudCaptcha) -> None:
+        """Muestra el aviso modal de CAPTCHA con Continuar / Omitir / Cancelar.
+
+        El modal no bloquea el bucle de Tkinter (la ventana sigue respondiendo);
+        el hilo del scraper es el que espera la respuesta. Si vence el plazo, el
+        modal se cierra solo y el scraper trata la página como omitida.
+        """
+        dialog = tk.Toplevel(self.root)
+        dialog.title("CAPTCHA detectado")
+        dialog.configure(bg=PAGE_BG)
+        dialog.transient(self.root)
+        dialog.resizable(False, False)
+        frame = ttk.Frame(dialog, padding=16)
+        frame.pack(fill="both", expand=True)
+        tk.Label(frame, text="⛔ Se requiere intervención humana", bg=PAGE_BG, fg="#b45309",
+                 font=(FONT, 12, "bold")).pack(anchor="w")
+        tk.Label(frame, text=solicitud.mensaje, bg=PAGE_BG, fg="#1f2937", font=(FONT, 10),
+                 justify="left", wraplength=520).pack(anchor="w", pady=(8, 8))
+        countdown = tk.Label(frame, text="", bg=PAGE_BG, fg="#4a5568", font=(FONT, 10))
+        countdown.pack(anchor="w", pady=(0, 10))
+        buttons = ttk.Frame(frame)
+        buttons.pack(fill="x")
+
+        def answer(decision: Decision) -> None:
+            if solicitud.responder(decision):
+                self._log(f"Usuario eligió «{decision.value}» ante el CAPTCHA en {solicitud.url}", "blocked")
+            dialog.grab_release()
+            dialog.destroy()
+
+        ttk.Button(buttons, text="Continuar", style="Run.TButton",
+                   command=lambda: answer(Decision.CONTINUAR)).pack(side="left")
+        ttk.Button(buttons, text="Omitir esta página",
+                   command=lambda: answer(Decision.OMITIR)).pack(side="left", padx=8)
+        ttk.Button(buttons, text="Cancelar extracción",
+                   command=lambda: answer(Decision.CANCELAR)).pack(side="left")
+        # Cerrar con la X no decide nada: hay que elegir una opción o esperar el plazo.
+        dialog.protocol("WM_DELETE_WINDOW", dialog.bell)
+
+        def tick() -> None:
+            if not dialog.winfo_exists():
+                return
+            if solicitud.cerrada:
+                self._log(f"Tiempo de espera agotado para el CAPTCHA en {solicitud.url}; se omite.", "blocked")
+                dialog.grab_release()
+                dialog.destroy()
+                return
+            remaining = solicitud.segundos_restantes()
+            countdown.configure(text=f"Tiempo restante: {remaining // 60:02d}:{remaining % 60:02d}")
+            dialog.after(500, tick)
+
+        tick()
+        dialog.update_idletasks()
+        x = self.root.winfo_rootx() + (self.root.winfo_width() - dialog.winfo_width()) // 2
+        y = self.root.winfo_rooty() + (self.root.winfo_height() - dialog.winfo_height()) // 3
+        dialog.geometry(f"+{max(0, x)}+{max(0, y)}")
+        dialog.grab_set()
+        dialog.lift()
 
     def _choose_directory(self) -> None:
         """Permite elegir la carpeta de salida y descarta la inspección en caché."""

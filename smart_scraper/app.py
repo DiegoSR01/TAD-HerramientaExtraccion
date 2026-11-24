@@ -18,8 +18,9 @@ from typing import Callable
 
 from .config import ScrapeConfig, save_profile
 from .estrategia import classify_scenario
-from .extractor import AccessRestrictionError, scrape
+from .extractor import AccessRestrictionError, captcha_atendible, scrape
 from .inspector import InspectedPage, InspectionError, inspect_url
+from .intervencion import CanalIntervencion, IntervencionHumana
 from .monitoring import RunReport, configure_logging, write_report
 from .selection import parse_json_body
 from .storage import compare_and_store_snapshot, json_structure_signature, save_results
@@ -92,23 +93,32 @@ class RunFailure(RuntimeError):
 
 
 def _announce_inspection(
-    page: InspectedPage, progress: ProgressCallback | None, reused: bool = False
+    page: InspectedPage, progress: ProgressCallback | None, reused: bool = False,
+    atendible: bool = False,
 ) -> None:
     """Emite los pasos 2 y 3 (diagnóstico y escenario detectado) de una inspección.
 
-    Si el sitio restringe el acceso, el paso 3 se emite con estado "blocked".
+    Si el sitio restringe el acceso, el paso 3 se emite con estado "blocked",
+    salvo que el bloqueo sea un CAPTCHA que se atenderá con intervención humana.
 
     Args:
         page: página ya inspeccionada.
         progress: callback de progreso opcional.
         reused: ``True`` si la inspección se reutilizó sin nueva solicitud.
+        atendible: ``True`` si el CAPTCHA se resolverá a mano en el navegador.
     """
     report = page.report
     origin = "inspección previa reutilizada" if reused else "solicitud GET acotada"
     _emit(progress, 2, f"HTTP {report.status_code} ({origin}); {report.rendering}", "done")
     scenario = classify_scenario(report)
     detail = f"{scenario.summary()}\n{scenario.reason}"
-    if report.blocked:
+    if report.blocked and atendible:
+        _emit(
+            progress, 3,
+            f"{detail}\nCAPTCHA detectado: se pausará para que lo resuelvas en el navegador.",
+            "done",
+        )
+    elif report.blocked:
         reasons = "; ".join(report.warnings) or "El servidor restringió el acceso."
         _emit(progress, 3, f"{detail}\nIncidencia: {reasons}", "blocked")
     else:
@@ -154,6 +164,7 @@ def run_job(
     format_name: str = "csv",
     inspected_page: InspectedPage | None = None,
     progress: ProgressCallback | None = None,
+    canal_captcha: CanalIntervencion | None = None,
 ) -> RunOutcome:
     """Ejecuta una tarea acotada; registra incluso los errores y restricciones.
 
@@ -172,9 +183,14 @@ def run_job(
         progress: callback opcional ``progress(paso, total, titulo, detalle, estado)``
             que recibe los 9 pasos del flujo (estado: running, done, error o
             blocked). Sus excepciones se ignoran.
+        canal_captcha: canal hacia la interfaz para resolver CAPTCHA a mano.
+            Solo se usa con Selenium/Playwright; sin canal (o con Requests/API)
+            un CAPTCHA detiene la ejecución como antes.
 
     Returns:
-        ``RunOutcome`` con el informe, el diagnóstico y la ruta del informe.
+        ``RunOutcome`` con el informe, el diagnóstico y la ruta del informe. Si
+        el usuario canceló ante un CAPTCHA, el estado es "cancelled" y se guardó
+        lo extraído hasta ese momento.
 
     Raises:
         ValueError: si la configuración inicial no es válida.
@@ -191,21 +207,27 @@ def run_job(
     logger = configure_logging(output_directory)
     report = RunReport(source_url=config.url, method=config.method.value)
     diagnostic: dict = {}
+    intervencion = None
+    if canal_captcha is not None:
+        intervencion = IntervencionHumana(
+            canal_captcha, config.captcha_timeout_seconds, logger,
+            notificar=lambda texto, estado: _emit(progress, 6, texto, estado),
+        )
     step = 2  # paso en curso, para informar en qué etapa ocurrió un error
     incident_reported = False
     try:
         if inspected_page is not None:
             page = inspected_page
-            _announce_inspection(page, progress, reused=True)
         else:
             _emit(progress, 2, "Inspeccionando la URL (una sola solicitud GET)...", "running")
             page = inspect_url(config.url, config.timeout_seconds, config.headers)
-            _announce_inspection(page, progress)
+        atendible = captcha_atendible(page.report, config.method, intervencion is not None)
+        _announce_inspection(page, progress, reused=inspected_page is not None, atendible=atendible)
         step = 3
         diagnostic = page.report.to_dict()
         report.diagnostic = diagnostic
         report.warnings.extend(page.report.warnings)
-        if page.report.blocked:
+        if page.report.blocked and not atendible:
             incident_reported = True  # ya se emitió "blocked" en el paso 3
             raise AccessRestrictionError(
                 "; ".join(page.report.warnings) or "El servidor restringió el acceso."
@@ -227,12 +249,29 @@ def run_job(
         def on_page(number: int, url: str, total: int) -> None:
             _emit(progress, 6, f"Página {number} visitada: {url}\n{total} registros acumulados", "running")
 
-        acquisition = scrape(config, page, on_page=on_page)
-        _emit(
-            progress, 6,
-            f"{acquisition.pages_visited} página(s) visitada(s); {len(acquisition.records)} registros crudos",
-            "done",
-        )
+        acquisition = scrape(config, page, on_page=on_page, intervencion=intervencion)
+        report.skipped_urls = list(acquisition.skipped_urls)
+        if acquisition.skipped_urls:
+            report.warnings.append(
+                f"{len(acquisition.skipped_urls)} página(s) omitida(s) por CAPTCHA: "
+                + ", ".join(acquisition.skipped_urls)
+            )
+        if acquisition.cancelled:
+            report.warnings.append(
+                "Extracción cancelada por el usuario ante un CAPTCHA; se guardó lo extraído hasta ese momento."
+            )
+            _emit(
+                progress, 6,
+                f"Cancelada por el usuario: {acquisition.pages_visited} página(s), "
+                f"{len(acquisition.records)} registros crudos (se guardarán)",
+                "blocked",
+            )
+        else:
+            _emit(
+                progress, 6,
+                f"{acquisition.pages_visited} página(s) visitada(s); {len(acquisition.records)} registros crudos",
+                "done",
+            )
         step = 7
         _emit(progress, 7, "Limpiando, normalizando y validando registros...", "running")
         records, lineage, report.execution_id = transform_records(
@@ -311,10 +350,11 @@ def run_job(
             f"{len(report.output_paths)} archivo(s) guardados (incluye perfil); {change_text}",
             "done",
         )
-        report.status = "completed"
+        report.status = "cancelled" if acquisition.cancelled else "completed"
         logger.info(
-            "Ejecución %s completada: %s registros, método %s",
+            "Ejecución %s %s: %s registros, método %s",
             report.execution_id,
+            "cancelada por el usuario" if acquisition.cancelled else "completada",
             report.records_saved,
             report.method,
         )
@@ -325,6 +365,8 @@ def run_job(
         if not incident_reported:
             blocked = isinstance(exc, AccessRestrictionError)
             _emit(progress, step, str(exc), "blocked" if blocked else "error")
+    if intervencion is not None:
+        report.captcha_events = list(intervencion.eventos)
     report_path = output_directory / f"report-{report.execution_id}.json"
     report.output_paths.append(str(report_path))
     _emit(progress, 9, "Generando informe final...", "running")
@@ -332,10 +374,10 @@ def run_job(
     _emit(
         progress, 9,
         f"Estado: {report.status}; informe: {report_path}",
-        "done" if report.status == "completed" else "error",
+        "done" if report.status in {"completed", "cancelled"} else "error",
     )
     outcome = RunOutcome(report, diagnostic, report_path)
-    if report.status != "completed":
+    if report.status not in {"completed", "cancelled"}:
         raise RunFailure(report.error or "La ejecución no pudo completarse.", outcome)
     return outcome
 

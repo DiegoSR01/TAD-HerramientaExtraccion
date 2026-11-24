@@ -6,9 +6,12 @@ JSON de la página (``acquire_page``), delega la selección de datos en
 (``scrape``). Con Selenium o Playwright controla un navegador real: espera la
 carga, hace clic en "cargar más" y se desplaza un número limitado de veces.
 
-Seguridad: ante CAPTCHA, formularios de autenticación o respuestas
-401/403/429 se lanza ``AccessRestrictionError`` y se detiene la navegación; el
-módulo nunca intenta resolver ni evadir esas restricciones. Solo se sigue
+Seguridad: ante formularios de autenticación o respuestas 401/403/429 se
+lanza ``AccessRestrictionError`` y se detiene la navegación. Ante un CAPTCHA
+con navegador real y un canal hacia la interfaz, la extracción se pausa para
+que una persona lo resuelva a mano (``intervencion``); sin ese canal, o en modo
+Requests/API, se detiene igual que antes. El módulo nunca intenta resolver ni
+evadir esas restricciones. Solo se sigue
 paginación del mismo host y siempre con límites de páginas, registros y bytes.
 """
 
@@ -26,9 +29,12 @@ from .inspector import (
     MAX_HTML_BYTES,
     InspectionError,
     InspectedPage,
+    InspectionReport,
+    detectar_captcha,
     diagnose,
     inspect_url,
 )
+from .intervencion import ExtraccionCancelada, IntervencionHumana, PaginaOmitida, Resultado
 from .selection import parse_json_body, select_html, select_json
 
 
@@ -49,11 +55,15 @@ class AcquisitionResult:
         final_url: última URL visitada.
         methods_used: métodos de adquisición empleados.
         pages_visited: número de páginas procesadas.
+        skipped_urls: páginas omitidas por CAPTCHA (decisión del usuario o tiempo agotado).
+        cancelled: ``True`` si el usuario canceló la extracción desde el aviso de CAPTCHA.
     """
     records: list[dict[str, Any]]
     final_url: str
     methods_used: list[str] = field(default_factory=list)
     pages_visited: int = 0
+    skipped_urls: list[str] = field(default_factory=list)
+    cancelled: bool = False
 
 
 def acquire_page(config: ScrapeConfig, inspected: InspectedPage | None = None) -> str | bytes:
@@ -126,42 +136,302 @@ def extract_page(config: ScrapeConfig, body: str | bytes) -> list[dict[str, Any]
     html = body.decode("utf-8", errors="replace") if isinstance(body, bytes) else body
     report = diagnose(config.url, 200, "text/html", html.encode("utf-8"))
     if report.captcha_detected:
-        raise AccessRestrictionError("Se detectó un CAPTCHA/challenge; no se intentará resolver.")
+        raise AccessRestrictionError(_CAPTCHA_MSG)
     return select_html(html, config.item_selector, config.fields, config.max_records)
 
 
-def _check_browser_page(url: str, html: str) -> None:
-    """Revisa el DOM renderizado por el navegador y se detiene ante restricciones.
+BROWSER_METHODS = {AcquisitionMethod.SELENIUM, AcquisitionMethod.PLAYWRIGHT}
+_CAPTCHA_MSG = "Se detectó un CAPTCHA/challenge; no se intentará resolver."
+_AUTH_MSG = "Se detectó un formulario de autenticación; se detuvo el navegador."
 
-    Se invoca tras cada carga, clic o desplazamiento para no seguir navegando
-    si aparece un CAPTCHA o un formulario de autenticación.
 
-    Raises:
-        AccessRestrictionError: si se detecta CAPTCHA o autenticación.
+def captcha_atendible(report: InspectionReport, method: AcquisitionMethod, hay_intervencion: bool) -> bool:
+    """Indica si un bloqueo por CAPTCHA puede pasar a intervención humana.
+
+    Solo aplica con navegador real (Selenium/Playwright), con un canal hacia la
+    interfaz y cuando el bloqueo se debe únicamente al CAPTCHA (no a 401/403/429).
+    En modo Requests/API no hay ventana donde resolverlo: se sigue deteniendo.
     """
-    report = diagnose(url, 200, "text/html", html.encode("utf-8"))
-    if report.captcha_detected:
-        raise AccessRestrictionError("Se detectó un CAPTCHA/challenge; no se intentará resolver.")
-    if report.authentication_detected:
-        raise AccessRestrictionError("Se detectó un formulario de autenticación; se detuvo el navegador.")
+    return (
+        hay_intervencion
+        and method in BROWSER_METHODS
+        and report.captcha_detected
+        and report.status_code not in {401, 403, 429}
+    )
+
+
+class _BrowserSession:
+    """Navegador que permanece abierto durante toda la ejecución.
+
+    Conserva sesión, cookies y página actual entre páginas y durante la pausa
+    por CAPTCHA. Las subclases implementan las operaciones de Selenium o
+    Playwright; aquí está el flujo común de ``adquirir`` y la vigilancia.
+    """
+
+    def __init__(self, config: ScrapeConfig, intervencion: IntervencionHumana | None = None):
+        self.config = config
+        self.headless = config.headless
+        self.intervencion = intervencion
+        self._lanzar(self.headless)
+        if intervencion is not None:
+            intervencion.vincular(self._captcha_presente, self.asegurar_visible)
+
+    # --- operaciones propias de cada motor -------------------------------
+    def _lanzar(self, headless: bool) -> None:
+        raise NotImplementedError
+
+    def _navegar(self, url: str) -> None:
+        raise NotImplementedError
+
+    def _documento(self) -> object:
+        """Objeto que entiende ``detectar_captcha`` (driver o página)."""
+        raise NotImplementedError
+
+    def html(self) -> str:
+        raise NotImplementedError
+
+    def _clic_cargar_mas(self) -> bool:
+        raise NotImplementedError
+
+    def _desplazar(self) -> None:
+        raise NotImplementedError
+
+    def _relanzar_visible(self) -> None:
+        raise NotImplementedError
+
+    def cerrar(self) -> None:
+        raise NotImplementedError
+
+    # --- flujo común ------------------------------------------------------
+    def _captcha_presente(self) -> bool:
+        return detectar_captcha(self._documento())
+
+    def asegurar_visible(self) -> bool:
+        """Relanza en modo visible (copiando cookies) si estaba en headless.
+
+        Returns:
+            ``True`` si hubo que relanzar el navegador.
+        """
+        if not self.headless:
+            return False
+        self._relanzar_visible()
+        self.headless = False
+        return True
+
+    def html_seguro(self) -> str:
+        """HTML actual, o cadena vacía si el navegador ya no responde."""
+        try:
+            return self.html()
+        except Exception:
+            return ""
+
+    def vigilar(self, url: str) -> None:
+        """Revisa la página tras cada navegación, clic, scroll o envío de formulario.
+
+        Sin intervención humana se detiene como antes. Con intervención, pausa
+        con ``esperar_intervencion_humana`` y continúa solo si el CAPTCHA se resolvió.
+
+        Raises:
+            AccessRestrictionError: CAPTCHA sin intervención disponible, o autenticación.
+            PaginaOmitida: el usuario omitió la página o venció el tiempo de espera.
+            ExtraccionCancelada: el usuario canceló la extracción.
+        """
+        if self._captcha_presente():
+            if self.intervencion is None:
+                raise AccessRestrictionError(_CAPTCHA_MSG)
+            resultado = self.intervencion.esperar_intervencion_humana(url)
+            if resultado == Resultado.CANCELADO:
+                raise ExtraccionCancelada(url)
+            if resultado in {Resultado.OMITIDO, Resultado.EXPIRADO}:
+                raise PaginaOmitida(url, resultado)
+        if diagnose(url, 200, "text/html", self.html().encode("utf-8")).authentication_detected:
+            raise AccessRestrictionError(_AUTH_MSG)
+
+    def adquirir(self, url: str) -> str:
+        """Abre ``url`` en el navegador ya lanzado y devuelve el DOM final.
+
+        Pasos: navegar, vigilar, clics acotados en "cargar más" y
+        desplazamientos acotados (vigilando tras cada uno) y leer el DOM.
+
+        Raises:
+            InspectionError: si el DOM supera ``MAX_HTML_BYTES``.
+        """
+        self._navegar(url)
+        self.vigilar(url)
+        for _ in range(self.config.load_more_clicks):
+            if not self._clic_cargar_mas():
+                break  # ya no hay botón: no quedan más datos por cargar
+            self.vigilar(url)
+        for _ in range(self.config.scroll_steps):
+            self._desplazar()
+            self.vigilar(url)
+        html = self.html()
+        if len(html.encode("utf-8")) > MAX_HTML_BYTES:
+            raise InspectionError(f"El DOM renderizado supera el límite de {MAX_HTML_BYTES} bytes.")
+        return html
+
+
+class _SeleniumSession(_BrowserSession):
+    """Sesión de Selenium/Chrome."""
+
+    def __init__(self, config: ScrapeConfig, intervencion: IntervencionHumana | None = None):
+        # Importación diferida: Selenium es opcional y solo se exige si se usa este método.
+        try:
+            from selenium import webdriver
+            from selenium.webdriver.support.ui import WebDriverWait
+        except ImportError as exc:
+            raise RuntimeError("Instala Selenium con `pip install selenium`.") from exc
+        self._webdriver = webdriver
+        self._wait = WebDriverWait
+        super().__init__(config, intervencion)
+
+    def _lanzar(self, headless: bool) -> None:
+        options = self._webdriver.ChromeOptions()
+        if headless:
+            options.add_argument("--headless=new")  # headless moderno de Chrome
+        options.add_argument("--disable-notifications")
+        options.add_argument("--window-size=1280,900")
+        # Selenium Manager localiza/descarga el chromedriver adecuado.
+        self.driver = self._webdriver.Chrome(options=options)
+        self.driver.set_page_load_timeout(self.config.timeout_seconds)
+
+    def _navegar(self, url: str) -> None:
+        self.driver.get(url)
+        # Espera explícita a que el documento esté "interactive" o "complete".
+        self._wait(self.driver, self.config.timeout_seconds).until(
+            lambda browser: browser.execute_script("return document.readyState") in {"interactive", "complete"}
+        )
+
+    def _documento(self) -> object:
+        return self.driver
+
+    def html(self) -> str:
+        return self.driver.page_source
+
+    def _clic_cargar_mas(self) -> bool:
+        buttons = self.driver.find_elements("css selector", self.config.load_more_selector)
+        if not buttons:
+            return False
+        buttons[0].click()
+        time.sleep(1)  # pausa cortés para dejar que cargue el contenido
+        return True
+
+    def _desplazar(self) -> None:
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+        time.sleep(1)
+
+    def _relanzar_visible(self) -> None:
+        # Chrome no puede salir de headless en caliente: se relanza visible,
+        # se copian las cookies y se vuelve a abrir la misma URL.
+        url = self.driver.current_url
+        cookies = self.driver.get_cookies()
+        self.driver.quit()
+        self._lanzar(False)
+        self.driver.get(url)
+        for cookie in cookies:
+            try:
+                self.driver.add_cookie(cookie)
+            except Exception:
+                pass  # cookies de otro dominio o expiradas
+        self.driver.get(url)
+
+    def cerrar(self) -> None:
+        self.driver.quit()
+
+
+class _PlaywrightSession(_BrowserSession):
+    """Sesión de Playwright/Chromium."""
+
+    def __init__(self, config: ScrapeConfig, intervencion: IntervencionHumana | None = None):
+        try:
+            from playwright.sync_api import sync_playwright
+        except ImportError as exc:
+            raise RuntimeError(
+                "Instala Playwright con `pip install '.[playwright]'` y `playwright install chromium`."
+            ) from exc
+        self._contexto = sync_playwright()
+        self._playwright = self._contexto.__enter__()
+        try:
+            super().__init__(config, intervencion)
+        except Exception:
+            self._contexto.__exit__(None, None, None)
+            raise
+
+    def _lanzar(self, headless: bool) -> None:
+        self.browser = self._playwright.chromium.launch(headless=headless)
+        self.page = self.browser.new_page(extra_http_headers=self.config.headers)
+
+    def _navegar(self, url: str) -> None:
+        response = self.page.goto(url, wait_until="domcontentloaded", timeout=self.config.timeout_seconds * 1000)
+        if response and response.status >= 400:
+            raise AccessRestrictionError(f"El sitio respondió HTTP {response.status}; se detuvo la navegación.")
+
+    def _documento(self) -> object:
+        return self.page
+
+    def html(self) -> str:
+        return self.page.content()
+
+    def _clic_cargar_mas(self) -> bool:
+        button = self.page.locator(self.config.load_more_selector)
+        if not button.count():
+            return False
+        button.first.click(timeout=self.config.timeout_seconds * 1000)
+        self.page.wait_for_timeout(1000)
+        return True
+
+    def _desplazar(self) -> None:
+        self.page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+        self.page.wait_for_timeout(1000)
+
+    def _relanzar_visible(self) -> None:
+        url = self.page.url
+        cookies = self.page.context.cookies()
+        self.browser.close()
+        self._lanzar(False)
+        if cookies:
+            self.page.context.add_cookies(cookies)
+        self.page.goto(url, wait_until="domcontentloaded", timeout=self.config.timeout_seconds * 1000)
+
+    def cerrar(self) -> None:
+        try:
+            self.browser.close()
+        finally:
+            self._contexto.__exit__(None, None, None)
+
+
+def _abrir_sesion(config: ScrapeConfig, intervencion: IntervencionHumana | None) -> _BrowserSession:
+    """Lanza el navegador del método configurado."""
+    if config.method == AcquisitionMethod.SELENIUM:
+        return _SeleniumSession(config, intervencion)
+    return _PlaywrightSession(config, intervencion)
 
 
 def scrape(
     config: ScrapeConfig,
     initial_page: InspectedPage | None = None,
     on_page: Callable[[int, str, int], None] | None = None,
+    intervencion: IntervencionHumana | None = None,
 ) -> AcquisitionResult:
     """Extrae hasta el límite configurado y solo sigue paginación del mismo host.
 
     Recorre como máximo ``max_pages`` páginas, evita URL repetidas, espera
     ``delay_seconds`` entre páginas y se detiene al alcanzar ``max_records`` o si
-    el enlace de siguiente página apunta a otro host.
+    el enlace de siguiente página apunta a otro host. Con Selenium/Playwright
+    usa un único navegador para todas las páginas (conserva sesión y cookies).
+
+    Si hay ``intervencion`` y aparece un CAPTCHA en el navegador, la extracción
+    se pausa hasta que una persona decide: *Continuar* (reanuda en la misma
+    página), *Omitir* (registra la URL en ``skipped_urls`` y sigue con la
+    siguiente página si el DOM actual tiene enlace) o *Cancelar* (marca
+    ``cancelled`` y devuelve lo extraído hasta ese momento).
 
     Args:
         config: configuración (se valida al inicio).
         initial_page: inspección ya hecha de la primera página, si existe.
         on_page: callback opcional ``on_page(numero_pagina, url, registros_acumulados)``
             invocado tras procesar cada página (para mostrar progreso).
+        intervencion: controlador de intervención humana ante CAPTCHA (opcional).
 
     Returns:
         ``AcquisitionResult`` con registros, URL final y páginas visitadas.
@@ -176,37 +446,61 @@ def scrape(
     visited: set[str] = set()
     page = initial_page
     original_host = urlparse(config.url).netloc.lower()
+    con_navegador = config.method in BROWSER_METHODS
+    sesion: _BrowserSession | None = None
 
-    for page_number in range(config.max_pages):
-        if url in visited:
-            break
-        visited.add(url)
-        page_config = _with_url(config, url)
-        if page_number:
-            page = inspect_url(url, config.timeout_seconds, config.headers)
-        if page and page.report.blocked:
-            raise AccessRestrictionError("; ".join(page.report.warnings) or "Acceso restringido.")
-        body = acquire_page(page_config, page)
-        if config.method in {AcquisitionMethod.SELENIUM, AcquisitionMethod.PLAYWRIGHT}:
-            result.methods_used.append(config.method.value)
-        records = extract_page(page_config, body)
-        remaining = config.max_records - len(result.records)
-        result.records.extend(records[:remaining])
-        result.pages_visited += 1
-        if on_page:
-            on_page(result.pages_visited, url, len(result.records))
-        if len(result.records) >= config.max_records or not config.pagination_selector:
-            break
-        html = body.decode("utf-8", errors="replace") if isinstance(body, bytes) else body
-        node = BeautifulSoup(html, "html.parser").select_one(config.pagination_selector)
-        href = node.get("href") if node else None
-        next_url = urljoin(url, href) if href else ""
-        if not next_url or urlparse(next_url).netloc.lower() != original_host:
-            break
-        if page_number + 1 < config.max_pages:
-            time.sleep(config.delay_seconds)
-            url = next_url
-            page = None
+    try:
+        for page_number in range(config.max_pages):
+            if url in visited:
+                break
+            visited.add(url)
+            page_config = _with_url(config, url)
+            if page_number:
+                page = inspect_url(url, config.timeout_seconds, config.headers)
+            if page and page.report.blocked and not captcha_atendible(
+                page.report, config.method, intervencion is not None
+            ):
+                raise AccessRestrictionError("; ".join(page.report.warnings) or "Acceso restringido.")
+            omitida = False
+            try:
+                if con_navegador:
+                    if sesion is None:
+                        sesion = _abrir_sesion(config, intervencion)
+                    body: str | bytes = sesion.adquirir(url)
+                    result.methods_used.append(config.method.value)
+                else:
+                    body = acquire_page(page_config, page)
+                records = extract_page(page_config, body)
+            except PaginaOmitida:
+                omitida = True
+                result.skipped_urls.append(url)
+                records = []
+                # Se intenta seguir la paginación con el DOM que quedó en pantalla.
+                body = sesion.html_seguro() if sesion else ""
+            except ExtraccionCancelada:
+                result.cancelled = True
+                break
+            remaining = config.max_records - len(result.records)
+            result.records.extend(records[:remaining])
+            if not omitida:
+                result.pages_visited += 1
+                if on_page:
+                    on_page(result.pages_visited, url, len(result.records))
+            if len(result.records) >= config.max_records or not config.pagination_selector:
+                break
+            html = body.decode("utf-8", errors="replace") if isinstance(body, bytes) else body
+            node = BeautifulSoup(html, "html.parser").select_one(config.pagination_selector)
+            href = node.get("href") if node else None
+            next_url = urljoin(url, href) if href else ""
+            if not next_url or urlparse(next_url).netloc.lower() != original_host:
+                break
+            if page_number + 1 < config.max_pages:
+                time.sleep(config.delay_seconds)
+                url = next_url
+                page = None
+    finally:
+        if sesion is not None:
+            sesion.cerrar()  # el navegador se cierra solo al terminar toda la ejecución
     result.final_url = url
     return result
 
@@ -219,11 +513,9 @@ def _with_url(config: ScrapeConfig, url: str) -> ScrapeConfig:
 
 
 def _acquire_selenium(config: ScrapeConfig) -> str:
-    """Navega con Selenium/Chrome y devuelve el HTML renderizado.
+    """Navega con Selenium/Chrome una sola URL y devuelve el HTML renderizado.
 
-    Pasos: configurar Chrome, abrir la URL, esperar a que el documento cargue,
-    revisar CAPTCHA/autenticación, pulsar "cargar más" un número acotado de
-    veces, desplazarse un número acotado de veces y leer el DOM final. El
+    Sin intervención humana: ante CAPTCHA o autenticación se detiene. El
     navegador siempre se cierra al terminar.
 
     Raises:
@@ -231,104 +523,25 @@ def _acquire_selenium(config: ScrapeConfig) -> str:
         AccessRestrictionError: si aparece CAPTCHA o autenticación.
         InspectionError: si el DOM supera ``MAX_HTML_BYTES``.
     """
-    # Importación diferida: Selenium es opcional y solo se exige si se usa este método.
+    sesion = _SeleniumSession(config)
     try:
-        from selenium import webdriver
-        from selenium.webdriver.support.ui import WebDriverWait
-    except ImportError as exc:
-        raise RuntimeError("Instala Selenium con `pip install selenium`.") from exc
-    # --- Opciones de Chrome ---
-    options = webdriver.ChromeOptions()
-    if config.headless:
-        # Modo sin interfaz gráfica (headless moderno de Chrome).
-        options.add_argument("--headless=new")
-    # Evita ventanas emergentes de notificaciones que bloquearían la página.
-    options.add_argument("--disable-notifications")
-    # Tamaño de ventana fijo para que el diseño responsivo sea reproducible.
-    options.add_argument("--window-size=1280,900")
-    # Selenium Manager localiza/descarga el chromedriver adecuado.
-    driver = webdriver.Chrome(options=options)
-    try:
-        # Tope de tiempo para la carga de la página (evita esperas infinitas).
-        driver.set_page_load_timeout(config.timeout_seconds)
-        # Navegación inicial a la URL objetivo.
-        driver.get(config.url)
-        # Espera explícita (WebDriverWait): continúa cuando el documento está
-        # "interactive" o "complete"; falla con timeout si no ocurre a tiempo.
-        WebDriverWait(driver, config.timeout_seconds).until(
-            lambda browser: browser.execute_script("return document.readyState") in {"interactive", "complete"}
-        )
-        # Seguridad: si ya hay CAPTCHA o login, se detiene antes de interactuar.
-        _check_browser_page(config.url, driver.page_source)
-        # Clics acotados (0-5) en el botón "cargar más" para revelar más elementos.
-        for _ in range(config.load_more_clicks):
-            # find_elements (plural) no lanza excepción si el botón no existe.
-            buttons = driver.find_elements("css selector", config.load_more_selector)
-            if not buttons:
-                # Ya no hay botón: no quedan más datos por cargar.
-                break
-            buttons[0].click()
-            # Pausa cortés para no saturar el servidor y dejar que cargue el contenido.
-            time.sleep(1)
-            # Revalida el DOM tras cada clic (CAPTCHA/autenticación).
-            _check_browser_page(config.url, driver.page_source)
-        # Desplazamiento acotado (0-5 pasos) hasta el final de la página, útil
-        # para el scroll infinito / carga perezosa.
-        for _ in range(config.scroll_steps):
-            driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-            # Pausa para que el contenido nuevo se renderice.
-            time.sleep(1)
-            _check_browser_page(config.url, driver.page_source)
-        # DOM final ya renderizado por JavaScript.
-        html = driver.page_source
-        # Límite de tamaño para evitar procesar documentos desproporcionados.
-        if len(html.encode("utf-8")) > MAX_HTML_BYTES:
-            raise InspectionError(f"El DOM renderizado supera el límite de {MAX_HTML_BYTES} bytes.")
-        return html
+        return sesion.adquirir(config.url)
     finally:
-        # Cierra siempre el navegador y el driver, incluso si hubo errores o restricciones.
-        driver.quit()
+        sesion.cerrar()
 
 
 def _acquire_playwright(config: ScrapeConfig) -> str:
-    """Navega con Playwright/Chromium y devuelve el HTML renderizado.
+    """Navega con Playwright/Chromium una sola URL y devuelve el HTML renderizado.
 
-    Equivalente a ``_acquire_selenium``: carga la URL, se detiene ante HTTP
-    >= 400, CAPTCHA o autenticación, hace clics acotados en "cargar más" y
-    desplazamientos acotados, y cierra siempre el navegador.
+    Equivalente a ``_acquire_selenium``; además se detiene ante HTTP >= 400.
 
     Raises:
         RuntimeError: si Playwright no está instalado.
         AccessRestrictionError: si el sitio responde >= 400 o hay CAPTCHA/login.
         InspectionError: si el DOM supera ``MAX_HTML_BYTES``.
     """
+    sesion = _PlaywrightSession(config)
     try:
-        from playwright.sync_api import sync_playwright
-    except ImportError as exc:
-        raise RuntimeError("Instala Playwright con `pip install '.[playwright]'` y `playwright install chromium`.") from exc
-    with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=config.headless)
-        page = browser.new_page(extra_http_headers=config.headers)
-        try:
-            response = page.goto(config.url, wait_until="domcontentloaded", timeout=config.timeout_seconds * 1000)
-            if response and response.status >= 400:
-                raise AccessRestrictionError(f"El sitio respondió HTTP {response.status}; se detuvo la navegación.")
-            _check_browser_page(config.url, page.content())
-            if config.load_more_selector:
-                button = page.locator(config.load_more_selector)
-                for _ in range(config.load_more_clicks):
-                    if not button.count():
-                        break
-                    button.first.click(timeout=config.timeout_seconds * 1000)
-                    page.wait_for_timeout(1000)
-                    _check_browser_page(config.url, page.content())
-            for _ in range(config.scroll_steps):
-                page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-                page.wait_for_timeout(1000)
-                _check_browser_page(config.url, page.content())
-            html = page.content()
-            if len(html.encode("utf-8")) > MAX_HTML_BYTES:
-                raise InspectionError(f"El DOM renderizado supera el límite de {MAX_HTML_BYTES} bytes.")
-            return html
-        finally:
-            browser.close()
+        return sesion.adquirir(config.url)
+    finally:
+        sesion.cerrar()

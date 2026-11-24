@@ -49,13 +49,16 @@ CSV, Excel (`.xlsx`), JSON y SQLite están disponibles localmente. PostgreSQL re
 | 7. Monitoreo | `smart_scraper/monitoring.py` | Logs y reportes de ejecución |
 
 | Apoyo | `smart_scraper/estrategia.py` | Clasifica el escenario detectado (`classify_scenario`) y recomienda requests, selenium, api o detener |
+| Apoyo | `smart_scraper/intervencion.py` | Pausa ante CAPTCHA con intervención humana (`esperar_intervencion_humana`) y canal hilo↔GUI |
 
 `smart_scraper/app.py` coordina los módulos (`run_job(..., progress=cb)` y `diagnose_config(config, progress=)` informan el avance) y `smart_scraper/gui.py` implementa la interfaz Tkinter con el panel de progreso.
 
 ## Seguridad, límites y uso responsable
 
 - Solo inspecciona la URL ingresada; no rastrea dominios ni ejecuta pruebas masivas. La configuración limita la respuesta a 2 MB, a 1.000 registros, 10 páginas y cinco scrolls, con pausa mínima de un segundo.
-- CAPTCHAs, challenges, respuestas 401/403 y 429 detienen la ejecución. No resuelve CAPTCHA, evade autenticación, rota proxies ni intenta sortear controles.
+- Respuestas 401/403/429 y formularios de autenticación detienen la ejecución. No resuelve CAPTCHA, evade autenticación, rota proxies ni intenta sortear controles.
+- CAPTCHA: con **Requests/API** (o sin interfaz) la ejecución se detiene. Con **Selenium/Playwright** desde la GUI, la extracción se **pausa**: el navegador sigue abierto (si estaba en headless se relanza visible copiando las cookies), aparece un aviso con **Continuar / Omitir esta página / Cancelar extracción** y una persona resuelve el CAPTCHA a mano. *Continuar* revisa la página y vuelve a avisar si el CAPTCHA sigue; *Omitir* (o agotar la espera, 300 s por defecto, configurable en «Espera CAPTCHA») registra la URL en `skipped_urls`; *Cancelar* guarda lo extraído con estado `cancelled`. Cada evento queda en `smart_scraper.log` y en `captcha_events` del informe. La detección está centralizada en `inspector.detectar_captcha`.
+- Prueba manual: `python scripts/sitio_captcha_local.py` y en la GUI método `selenium`, URL `http://127.0.0.1:8765/`, registros `article.item`, campo `titulo=h2`, siguiente página `a.next`, 3 páginas.
 - Las credenciales se ingresan en memoria mediante encabezados autorizados y no se escriben en el perfil. En sitios con login, usa únicamente un mecanismo y una cuenta autorizados.
 - Antes de ejecutar, verifica términos de uso, `robots.txt`, privacidad, derechos sobre los datos, permisos del endpoint y límites del servicio. Una respuesta pública no equivale a autorización.
 - El diagnóstico es heurístico: detecta pistas de APIs embebidas en HTML, pero no captura exhaustivamente el tráfico XHR/Fetch del navegador ni deduce por sí solo si un uso es legal.
@@ -66,7 +69,7 @@ CSV, Excel (`.xlsx`), JSON y SQLite están disponibles localmente. PostgreSQL re
 python -m pytest -q
 ```
 
-La suite tiene **32 pruebas** (14 de integración con un servidor HTTP local de sitios simulados y 18 del panel de progreso, el clasificador de escenarios y la detección de cambios); no envían solicitudes a páginas públicas. El informe en [docs/INFORME_TECNICO.md](docs/INFORME_TECNICO.md) distingue esa evidencia de la evaluación legal y de la evidencia multisitio real.
+La suite tiene **56 pruebas** (14 de integración con un servidor HTTP local de sitios simulados, 18 del panel de progreso, el clasificador de escenarios y la detección de cambios, y 24 de la pausa por CAPTCHA con intervención humana); no envían solicitudes a páginas públicas. El informe en [docs/INFORME_TECNICO.md](docs/INFORME_TECNICO.md) distingue esa evidencia de la evaluación legal y de la evidencia multisitio real.
 
 ## Evidencia multisitio
 

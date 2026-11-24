@@ -43,8 +43,11 @@ class RunReport:
     Atributos:
         execution_id: identificador único (UUID).
         started_at: marca de tiempo UTC ISO 8601.
-        status: "started", "completed" o "failed".
+        status: "started", "completed", "cancelled" (el usuario canceló ante un
+            CAPTCHA; se guardó lo extraído) o "failed".
         records_found, records_saved, invalid_fields, pages_visited: conteos.
+        skipped_urls: páginas omitidas por CAPTCHA (usuario o tiempo agotado).
+        captcha_events: eventos de CAPTCHA (hora, evento, url, detalle).
         diagnostic: resultado de la inspección.
         output_paths: archivos generados.
         changes: diferencias respecto a la ejecución anterior.
@@ -59,6 +62,8 @@ class RunReport:
     records_saved: int = 0
     invalid_fields: int = 0
     pages_visited: int = 0
+    skipped_urls: list[str] = field(default_factory=list)
+    captcha_events: list[dict] = field(default_factory=list)
     diagnostic: dict = field(default_factory=dict)
     output_paths: list[str] = field(default_factory=list)
     changes: dict = field(default_factory=dict)

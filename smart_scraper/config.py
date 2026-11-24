@@ -61,6 +61,8 @@ class ScrapeConfig:
     delay_seconds: float = 1.5
     scroll_steps: int = 0
     headless: bool = True
+    # Espera máxima a que una persona resuelva un CAPTCHA (al agotarse = omitir).
+    captcha_timeout_seconds: int = 300
     authorized_api: bool = False
     headers: dict[str, str] = field(default_factory=dict, repr=False)
 
@@ -69,7 +71,7 @@ class ScrapeConfig:
 
         Comprueba esquema http/https, ausencia de credenciales o tokens en la URL,
         y los límites: tiempo 1-30 s, registros 1-1000, páginas 1-10, clics 0-5,
-        desplazamientos 0-5, pausa mínima de 1 s, autorización explícita para API,
+        desplazamientos 0-5, pausa mínima de 1 s, espera por CAPTCHA 10-3600 s, autorización explícita para API,
         campos únicos y encabezados sin saltos de línea.
 
         Raises:
@@ -103,6 +105,8 @@ class ScrapeConfig:
             raise ValueError("El intervalo entre páginas debe ser de al menos 1 segundo.")
         if not 0 <= self.scroll_steps <= 5:
             raise ValueError("El número de desplazamientos debe estar entre 0 y 5.")
+        if not 10 <= self.captcha_timeout_seconds <= 3600:
+            raise ValueError("La espera por CAPTCHA debe estar entre 10 y 3600 segundos.")
         if self.method == AcquisitionMethod.API and not self.authorized_api:
             raise ValueError("La extracción API requiere confirmar que el endpoint está autorizado.")
         if self.method == AcquisitionMethod.API and not self.fields:

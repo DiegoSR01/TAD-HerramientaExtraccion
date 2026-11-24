@@ -19,7 +19,16 @@ from bs4 import BeautifulSoup
 
 MAX_HTML_BYTES = 2_000_000
 DEFAULT_USER_AGENT = "SmartWebScraper/1.0 (user-initiated; responsible access)"
-_CAPTCHA_MARKERS = ("captcha", "hcaptcha", "recaptcha", "cf-chl-", "verify you are human")
+# --- Detección de CAPTCHA (centralizada en ``detectar_captcha``) ---
+# iframes de proveedores de CAPTCHA: se revisa el atributo ``src``.
+CAPTCHA_IFRAME_TOKENS = ("recaptcha", "hcaptcha", "turnstile")
+# Contenedores de widgets conocidos.
+CAPTCHA_SELECTORES = (".g-recaptcha", ".h-captcha", ".cf-turnstile", "#captcha")
+# Selectores propios de los sitios de prueba locales (tests/conftest.py y
+# scripts/sitio_captcha_local.py).
+CAPTCHA_SELECTORES_SITIOS_PRUEBA = ("[data-captcha-demo]",)
+# Páginas de challenge completas (Cloudflare y similares) que no usan widget.
+CAPTCHA_TEXTOS_CHALLENGE = ("cf-chl-", "verify you are human")
 _AUTH_MARKERS = ("type=\"password\"", "type='password'", "name=\"password\"", "name='password'")
 _API_PATTERN = re.compile(
     r"""(?:(?:https?:)?//[^\s"'<>]+|/[A-Za-z0-9_./?=&%-]+)""",
@@ -74,6 +83,49 @@ class InspectedPage:
     body: bytes
     headers: dict[str, str]
     encoding: str | None
+
+
+def _html_de(page: object) -> str:
+    """Obtiene el HTML de un driver de Selenium, una página de Playwright o un texto."""
+    if isinstance(page, bytes):
+        return page.decode("utf-8", errors="replace")
+    if isinstance(page, str):
+        return page
+    if hasattr(page, "page_source"):  # Selenium WebDriver
+        return page.page_source
+    if callable(getattr(page, "content", None)):  # Playwright Page
+        return page.content()
+    raise TypeError(f"No se puede leer el HTML de {type(page).__name__}.")
+
+
+def detectar_captcha(page: object) -> bool:
+    """Indica si la página actual muestra un CAPTCHA o un challenge anti-bot.
+
+    Único punto de detección del paquete. Revisa:
+
+    * iframes cuyo ``src`` contiene "recaptcha", "hcaptcha" o "turnstile";
+    * contenedores ``.g-recaptcha``, ``.h-captcha``, ``.cf-turnstile`` y ``#captcha``;
+    * selectores de los sitios de prueba locales (``[data-captcha-demo]``);
+    * textos de páginas de challenge completas ("cf-chl-", "verify you are human").
+
+    Solo lee el DOM: no interactúa con el CAPTCHA ni intenta resolverlo.
+
+    Args:
+        page: driver de Selenium, ``Page`` de Playwright, o HTML (``str``/``bytes``).
+
+    Returns:
+        ``True`` si se detectó un CAPTCHA.
+    """
+    html = _html_de(page)
+    soup = BeautifulSoup(html, "html.parser")
+    for frame in soup.find_all("iframe"):
+        src = (frame.get("src") or "").lower()
+        if any(token in src for token in CAPTCHA_IFRAME_TOKENS):
+            return True
+    if soup.select_one(", ".join(CAPTCHA_SELECTORES + CAPTCHA_SELECTORES_SITIOS_PRUEBA)):
+        return True
+    lowered = html.lower()
+    return any(text in lowered for text in CAPTCHA_TEXTOS_CHALLENGE)
 
 
 class InspectionError(RuntimeError):
@@ -173,7 +225,7 @@ def diagnose(url: str, status_code: int, content_type: str, body: bytes) -> Insp
                 hints.add(candidate)
 
     forms = soup.find_all("form")
-    captcha = any(marker in source for marker in _CAPTCHA_MARKERS)
+    captcha = detectar_captcha(text)
     auth_status = status_code == 401
     auth_form = any(marker in source for marker in _AUTH_MARKERS)
     pagination = bool(

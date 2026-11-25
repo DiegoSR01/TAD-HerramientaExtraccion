@@ -12,6 +12,11 @@ memoria (campo enmascarado).
 Ante un CAPTCHA (Selenium/Playwright) el hilo del scraper deja una solicitud en
 ``CanalIntervencion``; la interfaz la consulta cada 200 ms con ``root.after`` y
 muestra un aviso modal. El hilo del scraper nunca toca widgets.
+
+Selección automática: si los campos quedan vacíos, «Inspeccionar» propone el
+selector de registros, los campos y la paginación (``autoselect``) y los escribe
+en el formulario para revisarlos; «Extraer y guardar» los detecta solo si siguen
+vacíos (con Selenium/Playwright, sobre la página ya renderizada).
 """
 
 from __future__ import annotations
@@ -25,7 +30,8 @@ from pathlib import Path
 from tkinter import filedialog, messagebox, ttk
 
 from .app import STEP_TITLES, RunFailure, diagnose_config, load_profile_for_url, run_job
-from .config import AcquisitionMethod, ScrapeConfig, parse_field_rules
+from .autoselect import EstructuraDetectada, detectar_estructura
+from .config import AcquisitionMethod, ScrapeConfig, format_field_rules, parse_field_rules
 from .inspector import InspectedPage
 from .intervencion import CanalIntervencion, Decision, SolicitudCaptcha
 
@@ -149,15 +155,19 @@ class ScraperWindow:
         selection = ttk.LabelFrame(parent, text=" 2. Selección de datos ", padding=10)
         selection.grid(row=1, column=0, sticky="nsew", pady=(0, 8))
         selection.columnconfigure(1, weight=1)
-        ttk.Label(selection, text="Selector de registros (CSS)").grid(row=0, column=0, sticky="w")
+        ttk.Label(selection, text="Selector de registros (CSS; vacío = automático)").grid(
+            row=0, column=0, sticky="w"
+        )
         self.item_selector = ttk.Entry(selection)
         self.item_selector.grid(row=0, column=1, sticky="ew", padx=8, pady=4)
         ttk.Label(selection, text="Ruta de lista JSON").grid(row=1, column=0, sticky="w")
         self.json_path = ttk.Entry(selection)
         self.json_path.grid(row=1, column=1, sticky="ew", padx=8, pady=4)
-        ttk.Label(selection, text="Campos (uno por línea: nombre=CSS::atributo; * requerido)").grid(
-            row=2, column=0, columnspan=2, sticky="w", pady=(6, 0)
-        )
+        ttk.Label(
+            selection,
+            text="Campos (uno por línea: nombre=CSS::atributo; * requerido). "
+                 "Déjalos vacíos para detectarlos automáticamente.",
+        ).grid(row=2, column=0, columnspan=2, sticky="w", pady=(6, 0))
         self.fields = tk.Text(selection, height=7, wrap="none", font=("Consolas", 10),
                               relief="solid", borderwidth=1)
         self.fields.grid(row=3, column=0, columnspan=2, sticky="nsew", pady=4)
@@ -445,6 +455,9 @@ class ScraperWindow:
                 self.inspected_url = config.url
                 display = json.dumps(page.report.to_dict(), indent=2, ensure_ascii=False)
                 self.root.after(0, self._append, display)
+                if config.method != AcquisitionMethod.API and not config.fields and not page.report.blocked:
+                    estructura = detectar_estructura(page.body, config.item_selector)
+                    self.root.after(0, self._fill_detected, estructura, config.method)
             except Exception as exc:
                 self.root.after(0, self._log, f"Inspección fallida: {exc}", "error")
             finally:
@@ -487,6 +500,24 @@ class ScraperWindow:
 
         threading.Thread(target=worker, daemon=True).start()
 
+    def _fill_detected(self, estructura: EstructuraDetectada | None, method: AcquisitionMethod) -> None:
+        """Escribe en el formulario los selectores detectados automáticamente (hilo de Tkinter)."""
+        if estructura is None:
+            extra = (
+                " Con Selenium/Playwright se intentará de nuevo sobre la página renderizada."
+                if method in {AcquisitionMethod.SELENIUM, AcquisitionMethod.PLAYWRIGHT}
+                else " Si la página usa JavaScript, prueba el método selenium."
+            )
+            self._log("Selección automática: no se encontraron registros repetidos en el HTML." + extra, "blocked")
+            return
+        self.item_selector.delete(0, "end")
+        self.item_selector.insert(0, estructura.item_selector)
+        self.fields.delete("1.0", "end")
+        self.fields.insert("1.0", format_field_rules(estructura.fields))
+        if estructura.pagination_selector and not self.pagination_selector.get().strip():
+            self.pagination_selector.insert(0, estructura.pagination_selector)
+        self._log(estructura.resumen() + ". Revisa o edita los campos antes de extraer.", "done")
+
     def _load_profile(self) -> None:
         """Carga el perfil guardado del host y rellena los controles.
 
@@ -503,14 +534,7 @@ class ScraperWindow:
             self.json_path.delete(0, "end")
             self.json_path.insert(0, config.json_records_path)
             self.fields.delete("1.0", "end")
-            self.fields.insert(
-                "1.0",
-                "\n".join(
-                    f"{rule.name}{'*' if rule.required else ''}={rule.selector}"
-                    f"{'::' + rule.attribute if rule.attribute else ''}"
-                    for rule in config.fields
-                ),
-            )
+            self.fields.insert("1.0", format_field_rules(config.fields))
             self.pagination_selector.delete(0, "end")
             self.pagination_selector.insert(0, config.pagination_selector)
             self.load_more_selector.delete(0, "end")

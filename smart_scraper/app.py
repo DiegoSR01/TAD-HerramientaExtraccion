@@ -16,7 +16,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable
 
-from .config import ScrapeConfig, save_profile
+from .config import AcquisitionMethod, ScrapeConfig, format_field_rules, save_profile
 from .estrategia import classify_scenario
 from .extractor import AccessRestrictionError, captcha_atendible, scrape
 from .inspector import InspectedPage, InspectionError, inspect_url
@@ -233,9 +233,18 @@ def run_job(
                 "; ".join(page.report.warnings) or "El servidor restringió el acceso."
             )
         step = 4
-        names = ", ".join(rule.name for rule in config.fields) or "todas las columnas detectadas"
-        where = config.json_records_path or config.item_selector or "página completa"
-        _emit(progress, 4, f"Registros: {where}\nCampos: {names}", "done")
+        automatico = config.method != AcquisitionMethod.API and not config.fields
+        if automatico:
+            _emit(
+                progress, 4,
+                "Selección automática: se detectarán registros, campos y paginación "
+                "al cargar la primera página.",
+                "done",
+            )
+        else:
+            names = ", ".join(rule.name for rule in config.fields)
+            where = config.json_records_path or config.item_selector or "página completa"
+            _emit(progress, 4, f"Registros: {where}\nCampos: {names}", "done")
         step = 5
         _emit(
             progress, 5,
@@ -249,7 +258,26 @@ def run_job(
         def on_page(number: int, url: str, total: int) -> None:
             _emit(progress, 6, f"Página {number} visitada: {url}\n{total} registros acumulados", "running")
 
-        acquisition = scrape(config, page, on_page=on_page, intervencion=intervencion)
+        def on_detect(estructura) -> None:
+            if estructura is None:
+                texto = (
+                    "Selección automática: no se encontró un grupo repetido; "
+                    "se usarán tablas o encabezados."
+                )
+            else:
+                texto = f"{estructura.resumen()}\n{format_field_rules(estructura.fields)}"
+            logger.info(texto.replace("\n", " | "))
+            _emit(progress, 6, texto, "running")
+
+        acquisition = scrape(
+            config, page, on_page=on_page, intervencion=intervencion, on_detect=on_detect,
+        )
+        if acquisition.estructura is not None:
+            config = acquisition.estructura.aplicar(config)  # perfil y linaje con lo detectado
+            report.auto_selection = acquisition.estructura.to_dict()
+            report.warnings.append(
+                "Selectores detectados automáticamente; quedan en el perfil guardado para revisarlos."
+            )
         report.skipped_urls = list(acquisition.skipped_urls)
         if acquisition.skipped_urls:
             report.warnings.append(

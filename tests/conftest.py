@@ -20,6 +20,18 @@ class FixtureHandler(BaseHTTPRequestHandler):
                 200, "text/html",
                 b'<article><h2>Page 1</h2></article><a class="next" href="/pagination?page=2">Next</a>',
             ),
+            "/catalogo": (
+                200, "text/html",
+                (
+                    "<html><title>Catálogo</title><main>"
+                    + "".join(
+                        f'<div class="card"><h2 class="nombre">Producto {n}</h2>'
+                        f'<span class="precio">${n}0</span><a href="/p/{n}">Ver</a></div>'
+                        for n in range(1, 5)
+                    )
+                    + '</main><a rel="next" href="/catalogo?p=2">Siguiente</a></html>'
+                ).encode("utf-8"),
+            ),
             "/table": (
                 200, "text/html",
                 b"<table><thead><tr><th>SKU</th><th>Price</th></tr></thead><tbody><tr><td>A-1</td><td>12</td></tr></tbody></table>",

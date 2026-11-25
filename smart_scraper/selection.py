@@ -21,7 +21,8 @@ def select_html(
     """Extrae registros de HTML mediante selectores CSS.
 
     Con reglas de campos: selecciona cada elemento repetido (``item_selector``) y
-    aplica ``select_one`` por campo (texto o atributo). Sin reglas: intenta leer la
+    aplica ``select_one`` por campo (texto o atributo); el selector ``:scope``
+    se refiere al propio registro. Sin reglas: intenta leer la
     primera tabla y, si no hay, devuelve título y encabezados h1/h2.
 
     Args:
@@ -66,7 +67,7 @@ def select_html(
     for item in items:
         record: dict[str, Any] = {}
         for rule in rules:
-            selected = item.select_one(rule.selector)
+            selected = item if rule.selector == ":scope" else item.select_one(rule.selector)
             value = None
             if selected is not None:
                 value = selected.get(rule.attribute) if rule.attribute else selected.get_text(" ", strip=True)

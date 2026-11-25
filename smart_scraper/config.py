@@ -160,6 +160,15 @@ def parse_field_rules(text: str) -> list[FieldRule]:
     return rules
 
 
+def format_field_rules(rules: list[FieldRule]) -> str:
+    """Inverso de ``parse_field_rules``: una línea ``nombre=selector::atributo`` por regla."""
+    return "\n".join(
+        f"{rule.name}{'*' if rule.required else ''}={rule.selector}"
+        f"{'::' + rule.attribute if rule.attribute else ''}"
+        for rule in rules
+    )
+
+
 def profile_path(directory: Path, url: str) -> Path:
     """Calcula la ruta del perfil JSON para el host de ``url``.
 

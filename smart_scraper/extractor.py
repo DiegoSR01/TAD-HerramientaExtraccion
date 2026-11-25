@@ -34,6 +34,7 @@ from .inspector import (
     diagnose,
     inspect_url,
 )
+from .autoselect import EstructuraDetectada, detectar_estructura
 from .intervencion import ExtraccionCancelada, IntervencionHumana, PaginaOmitida, Resultado
 from .selection import parse_json_body, select_html, select_json
 
@@ -64,6 +65,7 @@ class AcquisitionResult:
     pages_visited: int = 0
     skipped_urls: list[str] = field(default_factory=list)
     cancelled: bool = False
+    estructura: EstructuraDetectada | None = None
 
 
 def acquire_page(config: ScrapeConfig, inspected: InspectedPage | None = None) -> str | bytes:
@@ -412,6 +414,7 @@ def scrape(
     initial_page: InspectedPage | None = None,
     on_page: Callable[[int, str, int], None] | None = None,
     intervencion: IntervencionHumana | None = None,
+    on_detect: Callable[[EstructuraDetectada | None], None] | None = None,
 ) -> AcquisitionResult:
     """Extrae hasta el límite configurado y solo sigue paginación del mismo host.
 
@@ -432,6 +435,13 @@ def scrape(
         on_page: callback opcional ``on_page(numero_pagina, url, registros_acumulados)``
             invocado tras procesar cada página (para mostrar progreso).
         intervencion: controlador de intervención humana ante CAPTCHA (opcional).
+        on_detect: callback con la estructura detectada en modo automático
+            (``None`` si no se encontró ningún grupo repetido).
+
+    Selección automática: si la configuración no tiene campos (y no es API),
+    la primera página obtenida se analiza con ``autoselect.detectar_estructura``
+    y los selectores detectados se usan en todas las páginas; quedan en
+    ``AcquisitionResult.estructura``.
 
     Returns:
         ``AcquisitionResult`` con registros, URL final y páginas visitadas.
@@ -448,6 +458,7 @@ def scrape(
     original_host = urlparse(config.url).netloc.lower()
     con_navegador = config.method in BROWSER_METHODS
     sesion: _BrowserSession | None = None
+    automatico = config.method != AcquisitionMethod.API and not config.fields
 
     try:
         for page_number in range(config.max_pages):
@@ -470,6 +481,15 @@ def scrape(
                     result.methods_used.append(config.method.value)
                 else:
                     body = acquire_page(page_config, page)
+                if automatico:
+                    automatico = False  # se detecta una sola vez, con la primera página real
+                    estructura = detectar_estructura(body, config.item_selector)
+                    result.estructura = estructura
+                    if estructura is not None:
+                        config = estructura.aplicar(config)
+                        page_config = _with_url(config, url)
+                    if on_detect:
+                        on_detect(estructura)
                 records = extract_page(page_config, body)
             except PaginaOmitida:
                 omitida = True

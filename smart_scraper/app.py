@@ -110,14 +110,10 @@ def _announce_inspection(
     report = page.report
     origin = "inspección previa reutilizada" if reused else "solicitud GET acotada"
     _emit(progress, 2, f"HTTP {report.status_code} ({origin}); {report.rendering}", "done")
-    scenario = classify_scenario(report)
+    scenario = classify_scenario(report, intervencion_humana=atendible)
     detail = f"{scenario.summary()}\n{scenario.reason}"
     if report.blocked and atendible:
-        _emit(
-            progress, 3,
-            f"{detail}\nCAPTCHA detectado: se pausará para que lo resuelvas en el navegador.",
-            "done",
-        )
+        _emit(progress, 3, detail, "done")
     elif report.blocked:
         reasons = "; ".join(report.warnings) or "El servidor restringió el acceso."
         _emit(progress, 3, f"{detail}\nIncidencia: {reasons}", "blocked")
@@ -125,7 +121,11 @@ def _announce_inspection(
         _emit(progress, 3, detail, "done")
 
 
-def diagnose_config(config: ScrapeConfig, progress: ProgressCallback | None = None) -> InspectedPage:
+def diagnose_config(
+    config: ScrapeConfig,
+    progress: ProgressCallback | None = None,
+    intervencion_disponible: bool = False,
+) -> InspectedPage:
     """Valida la configuración e inspecciona la URL con una sola solicitud GET.
 
     Si se entrega ``progress`` emite los pasos 1 a 3 del flujo.
@@ -133,6 +133,9 @@ def diagnose_config(config: ScrapeConfig, progress: ProgressCallback | None = No
     Args:
         config: configuración de scraping.
         progress: callback de progreso opcional.
+        intervencion_disponible: ``True`` si hay una interfaz que atenderá el
+            CAPTCHA a mano (la GUI); entonces el paso 3 anuncia la pausa en vez
+            de "detener" cuando el método es Selenium/Playwright.
 
     Returns:
         Página inspeccionada con su informe de diagnóstico.
@@ -154,7 +157,8 @@ def diagnose_config(config: ScrapeConfig, progress: ProgressCallback | None = No
     except Exception as exc:
         _emit(progress, 2, str(exc), "error")
         raise
-    _announce_inspection(page, progress)
+    atendible = captcha_atendible(page.report, config.method, intervencion_disponible)
+    _announce_inspection(page, progress, atendible=atendible)
     return page
 
 

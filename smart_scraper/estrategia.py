@@ -46,7 +46,7 @@ class Scenario:
         return asdict(self)
 
 
-def classify_scenario(report: InspectionReport) -> Scenario:
+def classify_scenario(report: InspectionReport, intervencion_humana: bool = False) -> Scenario:
     """Clasifica el escenario a partir del diagnóstico de la inspección.
 
     Prioridad: CAPTCHA/bloqueo, autenticación, API JSON, scroll infinito,
@@ -77,6 +77,18 @@ def classify_scenario(report: InspectionReport) -> Scenario:
     if report.api_hints:
         signals.append("Endpoints API candidatos")
 
+    if report.captcha_detected and intervencion_humana:
+        razon = (
+            "Se detectó un CAPTCHA. Al pulsar «Extraer y guardar» se abrirá el navegador "
+            "visible y la ejecución se pausará para que una persona lo resuelva; "
+            "no se resuelve automáticamente."
+        )
+        if report.authentication_detected:
+            razon += " La página pide iniciar sesión: hazlo tú en el navegador durante la pausa."
+        return Scenario(
+            "CAPTCHA → intervención humana", "selenium/playwright con pausa", razon,
+            signals + ["CAPTCHA"], blocked=False,
+        )
     if report.captcha_detected:
         return Scenario(
             "CAPTCHA/bloqueo → incidencia", STRATEGY_STOP,

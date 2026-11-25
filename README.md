@@ -70,7 +70,7 @@ CSV, Excel (`.xlsx`), JSON y SQLite están disponibles localmente. PostgreSQL re
 python -m pytest -q
 ```
 
-La suite tiene **68 pruebas** (14 de integración con un servidor HTTP local de sitios simulados, 18 del panel de progreso, el clasificador de escenarios y la detección de cambios, 24 de la pausa por CAPTCHA con intervención humana y 12 de la selección automática); no envían solicitudes a páginas públicas. El informe en [docs/INFORME_TECNICO.md](docs/INFORME_TECNICO.md) distingue esa evidencia de la evaluación legal y de la evidencia multisitio real.
+La suite tiene **69 pruebas** (14 de integración con un servidor HTTP local de sitios simulados, 18 del panel de progreso, el clasificador de escenarios y la detección de cambios, 25 de la pausa por CAPTCHA con intervención humana y 12 de la selección automática); no envían solicitudes a páginas públicas. El informe en [docs/INFORME_TECNICO.md](docs/INFORME_TECNICO.md) distingue esa evidencia de la evaluación legal y de la evidencia multisitio real.
 
 ## Evidencia multisitio
 

@@ -24,7 +24,7 @@ También se puede instalar con `pip install -r requirements.txt` y abrir la inte
 ## Uso
 
 1. Ingresa una URL `http`/`https` y pulsa **Inspeccionar**. El diagnóstico busca señales HTML/JavaScript, endpoints visibles en el HTML, paginación, carga bajo demanda, formularios, autenticación y CAPTCHA.
-2. **Selección automática:** deja vacíos el selector de registros y los campos. Al pulsar **Inspeccionar** la herramienta detecta el grupo de elementos repetidos (tarjetas, filas de tabla, artículos), un campo por cada texto y atributo útil (`href`, `src`, `title`, `alt`, `datetime`) y el enlace de siguiente página, y los escribe en el formulario para que los revises o edites. Si los ejecutas vacíos, se detectan sobre la primera página obtenida (con Selenium/Playwright, ya renderizada) y quedan en el perfil y en `auto_selection` del informe. Si prefieres hacerlo a mano: campos con el formato `nombre=selector`; `nombre*` marca un campo requerido, `nombre=selector::href` lee un atributo y `:scope` es el propio registro.
+2. **Selección automática:** deja vacíos el selector de registros y los campos. Al pulsar **Inspeccionar** la herramienta detecta el grupo de elementos repetidos (tarjetas, filas de tabla, artículos), un campo por cada texto y atributo útil (`href`, `src`, `title`, `alt`, `datetime`) y el enlace de siguiente página, y los escribe en el formulario para que los revises o edites. Si los ejecutas vacíos, se detectan sobre la primera página obtenida (con Selenium/Playwright, ya renderizada: el navegador espera hasta 10 s a que el DOM deje de cambiar, para sitios Angular/React que cargan datos después) y quedan en el perfil y en `auto_selection` del informe. Si prefieres hacerlo a mano: campos con el formato `nombre=selector`; `nombre*` marca un campo requerido, `nombre=selector::href` lee un atributo y `:scope` es el propio registro.
 3. Para API JSON elige `api`, confirma que tienes autorización y define opcionalmente una ruta como `items` o `data.results`. Los campos usan rutas separadas por puntos (`product.name`).
 4. Ajusta el límite, la pausa y, si aplica, la paginación, los desplazamientos o clics limitados en un botón de carga que hayas identificado. Elige el formato y pulsa **Extraer y guardar**.
 
@@ -70,7 +70,7 @@ CSV, Excel (`.xlsx`), JSON y SQLite están disponibles localmente. PostgreSQL re
 python -m pytest -q
 ```
 
-La suite tiene **67 pruebas** (14 de integración con un servidor HTTP local de sitios simulados, 18 del panel de progreso, el clasificador de escenarios y la detección de cambios, 24 de la pausa por CAPTCHA con intervención humana y 11 de la selección automática); no envían solicitudes a páginas públicas. El informe en [docs/INFORME_TECNICO.md](docs/INFORME_TECNICO.md) distingue esa evidencia de la evaluación legal y de la evidencia multisitio real.
+La suite tiene **68 pruebas** (14 de integración con un servidor HTTP local de sitios simulados, 18 del panel de progreso, el clasificador de escenarios y la detección de cambios, 24 de la pausa por CAPTCHA con intervención humana y 12 de la selección automática); no envían solicitudes a páginas públicas. El informe en [docs/INFORME_TECNICO.md](docs/INFORME_TECNICO.md) distingue esa evidencia de la evaluación legal y de la evidencia multisitio real.
 
 ## Evidencia multisitio
 

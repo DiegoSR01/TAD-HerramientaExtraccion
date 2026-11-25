@@ -178,6 +178,35 @@ class _BrowserSession:
         if intervencion is not None:
             intervencion.vincular(self._captcha_presente, self.asegurar_visible)
 
+    # Espera a que el DOM se estabilice (sitios que cargan datos tras el "load").
+    INTERVALO_ESTABLE = 0.5  # segundos entre lecturas del DOM
+    LECTURAS_ESTABLES = 3  # lecturas seguidas sin cambios para darlo por cargado
+    ESPERA_MAXIMA = 10.0  # tope (también acotado por timeout_seconds)
+
+    def esperar_estable(self, maximo: float | None = None) -> None:
+        """Espera hasta que el DOM deje de cambiar, con un tope de tiempo.
+
+        Las aplicaciones de una sola página (Angular, React, Vue) terminan de
+        pintar el contenido después de ``readyState``: se lee el tamaño del DOM
+        cada ``INTERVALO_ESTABLE`` segundos y se continúa cuando no cambia en
+        ``LECTURAS_ESTABLES`` lecturas seguidas o al llegar al tope.
+        """
+        tope = maximo if maximo is not None else min(self.config.timeout_seconds, self.ESPERA_MAXIMA)
+        limite = time.monotonic() + tope
+        anterior, iguales = -1, 0
+        while time.monotonic() < limite:
+            try:
+                actual = len(self.html())
+            except Exception:
+                return
+            if actual == anterior:
+                iguales += 1
+                if iguales >= self.LECTURAS_ESTABLES - 1:
+                    return
+            else:
+                anterior, iguales = actual, 0
+            time.sleep(self.INTERVALO_ESTABLE)
+
     # --- operaciones propias de cada motor -------------------------------
     def _lanzar(self, headless: bool) -> None:
         raise NotImplementedError
@@ -252,20 +281,23 @@ class _BrowserSession:
     def adquirir(self, url: str) -> str:
         """Abre ``url`` en el navegador ya lanzado y devuelve el DOM final.
 
-        Pasos: navegar, vigilar, clics acotados en "cargar más" y
+        Pasos: navegar, esperar a que el DOM se estabilice, vigilar, clics acotados en "cargar más" y
         desplazamientos acotados (vigilando tras cada uno) y leer el DOM.
 
         Raises:
             InspectionError: si el DOM supera ``MAX_HTML_BYTES``.
         """
         self._navegar(url)
+        self.esperar_estable()
         self.vigilar(url)
         for _ in range(self.config.load_more_clicks):
             if not self._clic_cargar_mas():
                 break  # ya no hay botón: no quedan más datos por cargar
+            self.esperar_estable(3)
             self.vigilar(url)
         for _ in range(self.config.scroll_steps):
             self._desplazar()
+            self.esperar_estable(3)
             self.vigilar(url)
         html = self.html()
         if len(html.encode("utf-8")) > MAX_HTML_BYTES:

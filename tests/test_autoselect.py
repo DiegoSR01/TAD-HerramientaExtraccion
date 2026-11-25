@@ -183,3 +183,32 @@ def test_gui_descarta_la_deteccion_de_otra_url():
         assert "extra=p" in ventana._selector_values()[1]
     finally:
         root.destroy()
+
+
+def test_el_navegador_espera_a_que_la_spa_termine_de_pintar():
+    from smart_scraper.extractor import _BrowserSession
+
+    class SesionFalsa(_BrowserSession):
+        INTERVALO_ESTABLE = 0.01
+
+        def _lanzar(self, headless):
+            self.lecturas = 0
+
+        def _navegar(self, url):
+            self.lecturas = 0
+
+        def _documento(self):
+            return self.html()
+
+        def html(self):
+            # Las tarjetas aparecen poco a poco, como en una app Angular/React.
+            self.lecturas += 1
+            visibles = min(self.lecturas, 4)
+            return "<main>" + "".join(f"<div class='card'><h2>N{n}</h2></div>" for n in range(visibles)) + "</main>"
+
+        def cerrar(self):
+            pass
+
+    sesion = SesionFalsa(ScrapeConfig(url="https://spa.example/", method=AcquisitionMethod.SELENIUM))
+    html = sesion.adquirir("https://spa.example/")
+    assert html.count("class='card'") == 4

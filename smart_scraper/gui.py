@@ -72,6 +72,9 @@ class ScraperWindow:
         self.output_directory = Path.cwd() / "output"
         self.inspected_page: InspectedPage | None = None
         self.inspected_url = ""
+        # Última autodetección escrita en el formulario: (url, registros, campos, paginación).
+        # Si el usuario cambia de URL sin editar esos valores, se descartan y se detecta de nuevo.
+        self._auto_fill: tuple[str, str, str, str] | None = None
         self._started_at = 0.0
         self._timer_running = False
         self._step_states = ["pending"] * len(STEP_TITLES)
@@ -250,6 +253,9 @@ class ScraperWindow:
         )
         self.run_button.pack(side="left", padx=8)
         ttk.Button(actions, text="Cargar perfil del sitio", command=self._load_profile).pack(side="left")
+        ttk.Button(actions, text="Limpiar selectores", command=self._clear_selectors).pack(
+            side="left", padx=(8, 0)
+        )
 
     def _build_progress(self, parent: ttk.Frame) -> None:
         """Panel derecho: progreso del flujo (barra, pasos, escenario) y registro de salida."""
@@ -441,6 +447,7 @@ class ScraperWindow:
         Guarda la inspección para reutilizarla en la ejecución y muestra el
         diagnóstico (incluidas advertencias de CAPTCHA, autenticación o bloqueo).
         """
+        self._discard_stale_detection()
         try:
             config = self._config()
         except (ValueError, json.JSONDecodeError) as exc:
@@ -457,7 +464,7 @@ class ScraperWindow:
                 self.root.after(0, self._append, display)
                 if config.method != AcquisitionMethod.API and not config.fields and not page.report.blocked:
                     estructura = detectar_estructura(page.body, config.item_selector)
-                    self.root.after(0, self._fill_detected, estructura, config.method)
+                    self.root.after(0, self._fill_detected, estructura, config.method, config.url)
             except Exception as exc:
                 self.root.after(0, self._log, f"Inspección fallida: {exc}", "error")
             finally:
@@ -471,6 +478,7 @@ class ScraperWindow:
         Reutiliza la inspección previa si la URL no cambió. Ante ``RunFailure``
         (incluidas paradas por CAPTCHA/401/403/429) muestra el informe con el error.
         """
+        self._discard_stale_detection()
         try:
             config = self._config()
         except (ValueError, json.JSONDecodeError) as exc:
@@ -500,7 +508,51 @@ class ScraperWindow:
 
         threading.Thread(target=worker, daemon=True).start()
 
-    def _fill_detected(self, estructura: EstructuraDetectada | None, method: AcquisitionMethod) -> None:
+    def _selector_values(self) -> tuple[str, str, str]:
+        """Valores actuales de registros, campos y paginación (sin espacios sobrantes)."""
+        return (
+            self.item_selector.get().strip(),
+            self.fields.get("1.0", "end").strip(),
+            self.pagination_selector.get().strip(),
+        )
+
+    def _clear_selectors(self) -> None:
+        """Botón "Limpiar selectores": vacía registros, campos y paginación."""
+        self.item_selector.delete(0, "end")
+        self.fields.delete("1.0", "end")
+        self.pagination_selector.delete(0, "end")
+        self._auto_fill = None
+
+    def _discard_stale_detection(self) -> None:
+        """Borra la autodetección de otra URL si el usuario no la editó.
+
+        Evita que los selectores detectados para una página se reutilicen al
+        cambiar de URL: se vacían y se vuelven a detectar con la página nueva.
+        """
+        if self._auto_fill is None:
+            return
+        url, *detectado = self._auto_fill
+        if url == self.url.get().strip():
+            return
+        item, campos, paginacion = self._selector_values()
+        if (item, campos) != tuple(detectado[:2]):
+            self._log(
+                f"Cambiaste la URL, pero se conservan los selectores que editaste a mano "
+                f"(detectados para {url}). Usa «Limpiar selectores» para detectar de nuevo.",
+                "blocked",
+            )
+            self._auto_fill = None
+            return
+        self.item_selector.delete(0, "end")
+        self.fields.delete("1.0", "end")
+        if paginacion == detectado[2]:
+            self.pagination_selector.delete(0, "end")
+        self._auto_fill = None
+        self._log(f"Nueva URL: se descartan los selectores detectados para {url}.", "running")
+
+    def _fill_detected(
+        self, estructura: EstructuraDetectada | None, method: AcquisitionMethod, url: str = ""
+    ) -> None:
         """Escribe en el formulario los selectores detectados automáticamente (hilo de Tkinter)."""
         if estructura is None:
             extra = (
@@ -516,6 +568,7 @@ class ScraperWindow:
         self.fields.insert("1.0", format_field_rules(estructura.fields))
         if estructura.pagination_selector and not self.pagination_selector.get().strip():
             self.pagination_selector.insert(0, estructura.pagination_selector)
+        self._auto_fill = (url, *self._selector_values())
         self._log(estructura.resumen() + ". Revisa o edita los campos antes de extraer.", "done")
 
     def _load_profile(self) -> None:

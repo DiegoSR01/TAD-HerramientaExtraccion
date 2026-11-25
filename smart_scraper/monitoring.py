@@ -48,6 +48,8 @@ class RunReport:
         records_found, records_saved, invalid_fields, pages_visited: conteos.
         skipped_urls: páginas omitidas por CAPTCHA (usuario o tiempo agotado).
         captcha_events: eventos de CAPTCHA (hora, evento, url, detalle).
+        auto_selection: selectores detectados automáticamente (vacío si el
+            usuario los indicó).
         diagnostic: resultado de la inspección.
         output_paths: archivos generados.
         changes: diferencias respecto a la ejecución anterior.
@@ -64,6 +66,7 @@ class RunReport:
     pages_visited: int = 0
     skipped_urls: list[str] = field(default_factory=list)
     captcha_events: list[dict] = field(default_factory=list)
+    auto_selection: dict = field(default_factory=dict)
     diagnostic: dict = field(default_factory=dict)
     output_paths: list[str] = field(default_factory=list)
     changes: dict = field(default_factory=dict)

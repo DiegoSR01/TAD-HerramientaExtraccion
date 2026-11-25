@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import json
 
+import pytest
+
 from smart_scraper.app import run_job
 from smart_scraper.autoselect import detectar_estructura
 from smart_scraper.config import AcquisitionMethod, ScrapeConfig, load_profile
@@ -130,3 +132,54 @@ def test_run_job_sin_grupo_repetido_usa_la_tabla(site, tmp_path):
     assert report.status == "completed"
     assert report.auto_selection == {}
     assert report.records_saved == 1
+
+
+def test_menu_desplegable_fuera_de_nav_no_gana_a_las_tarjetas():
+    menu = "<details><ul>" + "".join(
+        f'<app-sub-menu-items><li><a href="/m{n}">Opcion {n}</a></li></app-sub-menu-items>'
+        for n in range(40)
+    ) + "</ul></details>"
+    tarjetas = "".join(
+        f'<div class="card relative"><figure><img src="/n{n}.jpg" alt="Noticia {n}">'
+        f'<div class="badge">2{n}/11/2026</div></figure><p>Resumen de la noticia {n}</p></div>'
+        for n in range(6)
+    )
+    estructura = detectar_estructura(f"<header>x</header>{menu}<main>{tarjetas}</main>")
+    assert estructura is not None
+    assert estructura.item_selector == "div.card"
+    nombres = [regla.name for regla in estructura.fields]
+    assert nombres[0] == "imagen"  # sin "imagen_imagen" ni clases de Tailwind
+    assert "badge" in nombres
+
+
+def test_gui_descarta_la_deteccion_de_otra_url():
+    tk = pytest.importorskip("tkinter")
+    from smart_scraper.gui import ScraperWindow
+
+    try:
+        root = tk.Tk()
+    except tk.TclError:
+        pytest.skip("sin pantalla")
+    root.withdraw()
+    try:
+        ventana = ScraperWindow(root)
+        estructura = detectar_estructura(_html_tarjetas())
+
+        def usar(url: str) -> None:
+            ventana.url.delete(0, "end")
+            ventana.url.insert(0, url)
+
+        usar("https://a.example/")
+        ventana._fill_detected(estructura, AcquisitionMethod.REQUESTS, "https://a.example/")
+        usar("https://b.example/")
+        ventana._discard_stale_detection()
+        assert ventana._selector_values() == ("", "", "")
+
+        usar("https://a.example/")
+        ventana._fill_detected(estructura, AcquisitionMethod.REQUESTS, "https://a.example/")
+        ventana.fields.insert("end", "\nextra=p")  # edición manual: se respeta
+        usar("https://c.example/")
+        ventana._discard_stale_detection()
+        assert "extra=p" in ventana._selector_values()[1]
+    finally:
+        root.destroy()

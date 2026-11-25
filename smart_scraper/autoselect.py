@@ -43,12 +43,23 @@ _ZONAS_NAVEGACION = {"nav", "header", "footer", "aside"}
 _CLASES_RUIDO = {
     "active", "selected", "current", "odd", "even", "first", "last", "clearfix",
     "row", "col", "container", "hidden", "visible", "show", "fade", "in",
+    # utilidades de maquetación (Tailwind, Bootstrap...)
+    "absolute", "relative", "fixed", "sticky", "static", "flex", "grid", "block",
+    "inline", "contents", "truncate", "group", "peer", "transition", "transform",
+    "shadow", "underline", "italic", "uppercase", "lowercase", "capitalize",
+    "rounded", "border", "grow", "shrink", "invisible", "collapse", "prose",
 }
+# Pistas de menús o navegación en etiquetas, clases o id de los ancestros.
+_PISTAS_MENU = re.compile(r"menu|dropdown|navbar|(^|[-_])nav($|[-_])|sidebar|breadcrumb|offcanvas|drawer")
 _CLASE_VALIDA = re.compile(r"^[A-Za-z_][A-Za-z_-]*$")
 # Prefijos de clases utilitarias (Bootstrap, Tailwind...) que cambian entre registros.
 _PREFIJO_UTILIDAD = re.compile(
     r"^(text|bg|btn|col|d|p[trblxy]?|m[trblxy]?|float|align|justify|flex|w|h|border|"
-    r"rounded|shadow|font|fw|fs|is|has|js|ng|v|g|gap|order|offset|visually|sr)-",
+    r"rounded|shadow|font|fw|fs|is|has|js|ng|v|g|gap|order|offset|visually|sr|"
+    r"object|cursor|transition|items|content|self|place|inset|top|left|right|bottom|"
+    r"z|min|max|overflow|leading|tracking|line|aspect|space|divide|ring|opacity|"
+    r"duration|ease|delay|animate|grid|basis|size|start|end|translate|scale|rotate|"
+    r"backdrop|blur|from|via|to|decoration|whitespace|break|select|pointer|outline)-",
     re.IGNORECASE,
 )
 # Selector que representa al propio registro (ver ``selection.select_html``).
@@ -163,10 +174,27 @@ def _slug(texto: str) -> str:
 
 
 def _en_navegacion(elemento: Tag) -> bool:
-    for ancestro in elemento.parents:
-        if ancestro.name in _ZONAS_NAVEGACION or ancestro.get("role") == "navigation":
+    """``True`` si el elemento está en un menú, barra de navegación o desplegable."""
+    for nodo in (elemento, *elemento.parents):
+        if not isinstance(nodo, Tag) or nodo.name == "[document]":
+            continue
+        if nodo.name in _ZONAS_NAVEGACION or nodo.get("role") in {"navigation", "menu", "menubar"}:
+            return True
+        pistas = " ".join([nodo.name, nodo.get("id") or "", *(nodo.get("class") or [])]).lower()
+        if _PISTAS_MENU.search(pistas):
             return True
     return False
+
+
+def _solo_enlaces(campos: list[FieldRule]) -> bool:
+    """``True`` si todos los campos son el texto o el ``href`` de un enlace (listas de links)."""
+    for campo in campos:
+        ultimo = campo.selector.rsplit(">", 1)[-1].strip()
+        if re.match(r"^a(?:[.:]|$)", ultimo) is None and not (
+            campo.selector == SELECTOR_PROPIO and campo.attribute in {None, "href"}
+        ):
+            return False
+    return True
 
 
 # ------------------------------------------------------------ grupos candidatos
@@ -303,7 +331,8 @@ def _candidatos_de(item: Tag, encabezados: list[str]) -> list[tuple[str, str | N
                 continue
             if not ruta:  # atributo del propio registro (p. ej. <a class="card" href>)
                 continue
-            salida.append((ruta, atributo, f"{base}_{_NOMBRE_ATRIBUTO[atributo]}"))
+            sufijo = _NOMBRE_ATRIBUTO[atributo]
+            salida.append((ruta, atributo, base if base == sufijo else f"{base}_{sufijo}"))
     return salida
 
 
@@ -403,7 +432,9 @@ def _puntaje(elementos: list[Tag], campos: list[FieldRule]) -> float:
     texto_medio = sum(len(_texto(elemento)) for elemento in elementos[:40]) / min(len(elementos), 40)
     puntaje = len(elementos) * min(len(campos), 8) * math.log1p(texto_medio)
     if _en_navegacion(elementos[0]):
-        puntaje *= 0.2
+        puntaje *= 0.1
+    if _solo_enlaces(campos):
+        puntaje *= 0.4
     if len(campos) == 1:
         puntaje *= 0.5
     # Campos con ``:nth-of-type`` fuera de celdas de tabla indican que cada

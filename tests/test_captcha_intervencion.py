@@ -304,3 +304,16 @@ def test_modo_requests_no_pausa_aunque_haya_canal(site, tmp_path):
     with pytest.raises(RunFailure):
         run_job(ScrapeConfig(f"{site}/captcha"), tmp_path, canal_captcha=canal)
     assert canal.solicitudes == []
+
+
+def test_inspeccion_con_gui_anuncia_pausa_en_vez_de_detener():
+    from smart_scraper.estrategia import classify_scenario
+    from smart_scraper.inspector import diagnose
+
+    html = b'<form><img id="captcha" src="c.png"><input type="password" name="password"></form>'
+    report = diagnose("https://portal.example/login", 200, "text/html", html)
+    sin_gui = classify_scenario(report)
+    con_gui = classify_scenario(report, intervencion_humana=True)
+    assert sin_gui.blocked and sin_gui.strategy == "detener"
+    assert not con_gui.blocked and "pausar" in con_gui.reason
+    assert "iniciar sesi" in con_gui.reason

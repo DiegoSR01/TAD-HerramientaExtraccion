@@ -457,7 +457,9 @@ class ScraperWindow:
 
         def worker() -> None:
             try:
-                page = diagnose_config(config, progress=self._progress_callback)
+                page = diagnose_config(
+                    config, progress=self._progress_callback, intervencion_disponible=True
+                )
                 self.inspected_page = page
                 self.inspected_url = config.url
                 display = json.dumps(page.report.to_dict(), indent=2, ensure_ascii=False)
